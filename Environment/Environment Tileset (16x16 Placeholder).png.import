@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bnfcmmbab2pw8"
-path="res://.godot/imported/Batchoy.jpg-a89075663a351012a077704f856e75fe.ctex"
+uid="uid://dyr1loap4elpi"
+path="res://.godot/imported/Environment Tileset (16x16 Placeholder).png-b4fbfcce7f0ea3661d3295a92b9e3dda.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Batchoy.jpg"
-dest_files=["res://.godot/imported/Batchoy.jpg-a89075663a351012a077704f856e75fe.ctex"]
+source_file="res://Environment/Environment Tileset (16x16 Placeholder).png"
+dest_files=["res://.godot/imported/Environment Tileset (16x16 Placeholder).png-b4fbfcce7f0ea3661d3295a92b9e3dda.ctex"]
 
 [params]
 
