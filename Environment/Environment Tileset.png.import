@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dyr1loap4elpi"
-path="res://.godot/imported/Environment Tileset (16x16 Placeholder).png-b4fbfcce7f0ea3661d3295a92b9e3dda.ctex"
+uid="uid://bprlhfubc72ur"
+path="res://.godot/imported/Environment Tileset.png-27fce30d3aaa572a2317853fe43fc6d5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Environment/Environment Tileset (16x16 Placeholder).png"
-dest_files=["res://.godot/imported/Environment Tileset (16x16 Placeholder).png-b4fbfcce7f0ea3661d3295a92b9e3dda.ctex"]
+source_file="res://Environment/Environment Tileset.png"
+dest_files=["res://.godot/imported/Environment Tileset.png-27fce30d3aaa572a2317853fe43fc6d5.ctex"]
 
 [params]
 

@@ -11,17 +11,17 @@ config_version=5
 [application]
 
 config/name="Batchoyan"
-run/main_scene="res://Environment/main_scene.tscn"
+run/main_scene="res://Environment/Main Scene/main_scene.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://Graphics/icon.svg"
 
 [display]
 
-window/size/viewport_width=960
-window/size/viewport_height=540
+window/size/viewport_width=640
+window/size/viewport_height=360
 window/size/resizable=false
-window/size/window_width_override=1920
-window/size/window_height_override=1080
+window/size/window_width_override=1280
+window/size/window_height_override=720
 window/stretch/mode="viewport"
 
 [input]
