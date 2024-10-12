@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://by3y8cfoypad7"]
+[gd_scene load_steps=3 format=3 uid="uid://by3y8cfoypad7"]
 
 [ext_resource type="Script" path="res://menu.gd" id="1_wilem"]
+[ext_resource type="FontFile" uid="uid://bjlabuh1eek7l" path="res://Fonts/LL_BAGUIO.ttf" id="2_0akd8"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -25,11 +26,13 @@ layout_mode = 2
 [node name="Play" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_0akd8")
 text = "Play"
 
 [node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_0akd8")
 text = "Quit"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
