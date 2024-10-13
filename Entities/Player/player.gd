@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const speed := 75
+const speed := 50
 const accel := 5
 
 @onready var player_sprite: Sprite2D = $PlayerSprite
@@ -16,7 +16,6 @@ func _physics_process(delta: float) -> void:
 	
 	# gets input within the 4 axis (+x, -x, +y, -y)
 	var input_direction: Vector2 = Input.get_vector("left", "right", "up", "down")
-	print(animation_player.speed_scale)
 	
 	# movement formula
 	velocity = lerp(velocity, input_direction * speed, delta * accel)
