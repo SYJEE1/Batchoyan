@@ -1,0 +1,87 @@
+[gd_scene load_steps=12 format=3 uid="uid://ke3muiiqgpcu"]
+
+[ext_resource type="Texture2D" uid="uid://dl4lxjctmybrt" path="res://Non_Entity/Items/Interactables.png" id="1_ateib"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mk3br"]
+atlas = ExtResource("1_ateib")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_72h4n"]
+atlas = ExtResource("1_ateib")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_noois"]
+atlas = ExtResource("1_ateib")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8hdt4"]
+atlas = ExtResource("1_ateib")
+region = Rect2(32, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ot1lg"]
+atlas = ExtResource("1_ateib")
+region = Rect2(48, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hph43"]
+atlas = ExtResource("1_ateib")
+region = Rect2(32, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_djho7"]
+atlas = ExtResource("1_ateib")
+region = Rect2(48, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a0tgc"]
+atlas = ExtResource("1_ateib")
+region = Rect2(48, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2v2kh"]
+atlas = ExtResource("1_ateib")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mmtb3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mk3br")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_72h4n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_noois")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8hdt4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ot1lg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hph43")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_djho7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a0tgc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2v2kh")
+}],
+"loop": false,
+"name": &"bowl",
+"speed": 0.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"noitem",
+"speed": 5.0
+}]
+
+[node name="Item" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
+sprite_frames = SubResource("SpriteFrames_mmtb3")
+animation = &"bowl"
+speed_scale = 0.0
