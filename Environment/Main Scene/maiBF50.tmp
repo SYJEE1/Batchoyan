@@ -1,16 +1,17 @@
-[gd_scene load_steps=17 format=4 uid="uid://ne4v0nunfed2"]
+[gd_scene load_steps=20 format=4 uid="uid://divwn1b5b3o"]
 
-[ext_resource type="Script" path="res://Environment/Main Scene/main_scene.gd" id="1_c2n3o"]
-[ext_resource type="Texture2D" uid="uid://dvg4wt154im0k" path="res://Environment/Main Scene/Background.png" id="2_3htk0"]
-[ext_resource type="Texture2D" uid="uid://bf7uhiy54nagw" path="res://Environment/Main Scene/ReferenceTiles.png" id="3_wk2i2"]
-[ext_resource type="Texture2D" uid="uid://hlcpfugews4f" path="res://Environment/Main Scene/Interactables.png" id="4_qob57"]
-[ext_resource type="Texture2D" uid="uid://bmmbewk5wg7j3" path="res://Environment/Main Scene/Interact Tileset.png" id="5_3oba7"]
-[ext_resource type="PackedScene" uid="uid://dwt7q45hesbr5" path="res://Entities/Player/player_scene.tscn" id="6_p7u1y"]
-[ext_resource type="PackedScene" uid="uid://d0f55ywfh4nng" path="res://Entities/Customer/customer_path.tscn" id="7_37sc8"]
-[ext_resource type="FontFile" uid="uid://brb1w3e1via4m" path="res://Graphics/Fonts/mago2.ttf" id="8_4ape0"]
+[ext_resource type="Script" path="res://Environment/Main Scene/main_scene.gd" id="1_qentd"]
+[ext_resource type="Texture2D" uid="uid://bf7uhiy54nagw" path="res://Environment/Main Scene/ReferenceTiles.png" id="2_ujia4"]
+[ext_resource type="Texture2D" uid="uid://hlcpfugews4f" path="res://Environment/Main Scene/Interactables.png" id="4_4kr81"]
+[ext_resource type="PackedScene" uid="uid://dwt7q45hesbr5" path="res://Entities/Player/player_scene.tscn" id="4_voske"]
+[ext_resource type="Texture2D" uid="uid://dvg4wt154im0k" path="res://Environment/Main Scene/Background.png" id="5_q4k1w"]
+[ext_resource type="Texture2D" uid="uid://bmmbewk5wg7j3" path="res://Environment/Main Scene/Interact Tileset.png" id="5_t5tqe"]
+[ext_resource type="FontFile" uid="uid://brb1w3e1via4m" path="res://Graphics/Fonts/mago2.ttf" id="6_dbhs7"]
+[ext_resource type="Script" path="res://Environment/Main Scene/path_follow_2d.gd" id="8_tipqm"]
+[ext_resource type="PackedScene" uid="uid://b3ah6ng3s0v4e" path="res://Entities/Customer/Customer.tscn" id="9_0jt1p"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y2gs0"]
-texture = ExtResource("3_wk2i2")
+texture = ExtResource("2_ujia4")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -39,7 +40,7 @@ texture = ExtResource("3_wk2i2")
 sources/0 = SubResource("TileSetAtlasSource_y2gs0")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fp571"]
-texture = ExtResource("3_wk2i2")
+texture = ExtResource("2_ujia4")
 0:0/0 = 0
 0:0/0/z_index = 1
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(4, 4, 8, 4, 8, 8, 4, 8)
@@ -107,7 +108,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_fp571")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j40br"]
-texture = ExtResource("4_qob57")
+texture = ExtResource("4_4kr81")
 15:0/0 = 0
 18:0/0 = 0
 19:0/0 = 0
@@ -213,7 +214,7 @@ texture = ExtResource("4_qob57")
 3:10/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vyaqt"]
-texture = ExtResource("5_3oba7")
+texture = ExtResource("5_t5tqe")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -254,14 +255,59 @@ sources/2 = SubResource("TileSetAtlasSource_vyaqt")
 
 [sub_resource type="LabelSettings" id="LabelSettings_7thq3"]
 
+[sub_resource type="Curve2D" id="Curve2D_tlrmc"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 246, 174, 0, 0, 0, 0, 298, 148, 0, 0, 0, 0, 299, 133, 0, 0, 0, 0, 253, 129, 0, 0, 0, 0, 250, 70, 0, 0, 0, 0, 137, 71, 0, 0, 0, 0, 135, 125, 0, 0, 0, 0, 300, 125, 0, 0, 0, 0, 298, 155, 0, 0, 0, 0, 246, 174)
+}
+point_count = 10
+
+[sub_resource type="GDScript" id="GDScript_fp5y3"]
+script/source = "extends CharacterBody2D
+
+const SPEED = 300.0
+const JUMP_VELOCITY = -400.0
+
+var path = null
+var stop_point = 0.5
+var is_following_path = true  # Start following the path automatically
+
+func _ready():
+	path = get_parent().get_node(\"PathFollow2D\")
+
+func _physics_process(delta: float) -> void:
+	# Add the gravity.
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+
+	# Handle jump (if applicable).
+	# if Input.is_action_just_pressed(\"ui_accept\") and is_on_floor():
+	#     velocity.y = JUMP_VELOCITY
+
+	# Follow the path automatically
+	if is_following_path:
+		var distance = SPEED * delta
+		var next_position = path.get_point_position(distance)
+
+		# Check if we've reached the stop point
+		if path.get_curve_length() * stop_point <= distance:
+			velocity = Vector2.ZERO
+			is_following_path = false
+			return
+
+		var target_velocity = (next_position - position).normalized() * SPEED
+		velocity = target_velocity
+
+	move_and_slide()
+"
+
 [node name="MainScene" type="Node2D"]
 y_sort_enabled = true
-script = ExtResource("1_c2n3o")
+script = ExtResource("1_qentd")
 
 [node name="Background" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 0.996078, 0.694118)
 z_index = -1
-texture = ExtResource("2_3htk0")
+texture = ExtResource("5_q4k1w")
 offset = Vector2(160, 89.5)
 
 [node name="TileMaps" type="Node2D" parent="."]
@@ -282,11 +328,9 @@ tile_set = SubResource("TileSet_6ywnp")
 tile_map_data = PackedByteArray("AAADAAMAAgAAAAEAAAAEAAMAAgAAAAIAAAAFAAMAAgAAAAIAAAAGAAMAAgAAAAIAAAAHAAMAAgACAAAAAAAIAAMAAgAAAAAAAAAJAAMAAgAAAAAAAAAHAAQAAgACAAAAAAAHAAUAAgACAAAAAAAHAAYAAgACAAAAAAAHAAcAAgACAAIAAAAGAAcAAgABAAIAAAAFAAcAAgABAAIAAAAEAAcAAgABAAIAAAADAAQAAQABAAYAAAADAAUAAQABAAcAAAAEAAQAAQACAAYAAAAEAAUAAQACAAcAAAAGAAQAAQANAAgAAAAFAAQAAQARAAEAAAA=")
 tile_set = SubResource("TileSet_xif5o")
 
-[node name="PlayerScene" parent="." instance=ExtResource("6_p7u1y")]
+[node name="PlayerScene" parent="." instance=ExtResource("4_voske")]
 y_sort_enabled = true
 position = Vector2(94, 83)
-
-[node name="CustomerPath" parent="." instance=ExtResource("7_37sc8")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(160, 90)
@@ -299,6 +343,18 @@ offset_top = -95.0
 offset_right = -84.0
 offset_bottom = -72.0
 size_flags_horizontal = 0
-theme_override_fonts/font = ExtResource("8_4ape0")
+theme_override_fonts/font = ExtResource("6_dbhs7")
 text = "FPS: 120 batchoys"
 label_settings = SubResource("LabelSettings_7thq3")
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_tlrmc")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(246, 174)
+rotates = false
+cubic_interp = false
+script = ExtResource("8_tipqm")
+
+[node name="CharacterBody2D" parent="Path2D/PathFollow2D" instance=ExtResource("9_0jt1p")]
+script = SubResource("GDScript_fp5y3")
