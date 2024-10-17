@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bmmbewk5wg7j3"
-path="res://.godot/imported/Interact Tileset.png-78fa38538cef8ef88f366bc6cd96225e.ctex"
+uid="uid://bf7uhiy54nagw"
+path="res://.godot/imported/ReferenceTiles.png-ba8669b081a885db39fd5ad44adff7b6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Non_Entity/Main Scene/Interact Tileset.png"
-dest_files=["res://.godot/imported/Interact Tileset.png-78fa38538cef8ef88f366bc6cd96225e.ctex"]
+source_file="res://Environment/Main Scene/ReferenceTiles.png"
+dest_files=["res://.godot/imported/ReferenceTiles.png-ba8669b081a885db39fd5ad44adff7b6.ctex"]
 
 [params]
 
