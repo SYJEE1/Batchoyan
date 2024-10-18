@@ -17,3 +17,4 @@ position = Vector2(702, 368)
 rotates = false
 loop = false
 script = ExtResource("1_og5pw")
+speed = null

@@ -1,18 +1,16 @@
-[gd_scene load_steps=17 format=4 uid="uid://dthuwvgddi6qb"]
+[gd_scene load_steps=18 format=4 uid="uid://fqfw6upakcux"]
 
-[ext_resource type="Script" path="res://Environment/Main Scene/main_scene.gd" id="1_4i2hu"]
-[ext_resource type="Texture2D" path="res://Environment/Main Scene/Background.png" id="2_bjrd0"]
-[ext_resource type="Texture2D" path="res://Environment/Main Scene/ReferenceTiles.png" id="3_1bvwn"]
-[ext_resource type="Texture2D" path="res://Environment/Main Scene/Interactables.png" id="4_tc4mk"]
-[ext_resource type="Texture2D" path="res://Environment/Main Scene/Interact Tileset.png" id="5_hb7yh"]
-[ext_resource type="PackedScene" uid="uid://dwt7q45hesbr5" path="res://Entities/Player/player_scene.tscn" id="6_gllwa"]
-[ext_resource type="PackedScene" uid="uid://d0f55ywfh4nng" path="res://Entities/Customer/customer_path.tscn" id="7_hgnqv"]
-[ext_resource type="FontFile" uid="uid://brb1w3e1via4m" path="res://Graphics/Fonts/mago2.ttf" id="8_62jhr"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_7thq3"]
+[ext_resource type="Script" path="res://Environment/Main Scene/main_scene.gd" id="1_c2n3o"]
+[ext_resource type="Texture2D" uid="uid://dvg4wt154im0k" path="res://Environment/Main Scene/Background.png" id="2_3htk0"]
+[ext_resource type="Texture2D" uid="uid://bf7uhiy54nagw" path="res://Environment/Main Scene/ReferenceTiles.png" id="3_wk2i2"]
+[ext_resource type="Texture2D" uid="uid://d4julfsssvig5" path="res://Environment/Main Scene/Interactables.png" id="4_qob57"]
+[ext_resource type="Texture2D" uid="uid://bmmbewk5wg7j3" path="res://Environment/Main Scene/Interact Tileset.png" id="5_3oba7"]
+[ext_resource type="PackedScene" uid="uid://dwt7q45hesbr5" path="res://Entities/Player/player_scene.tscn" id="6_p7u1y"]
+[ext_resource type="PackedScene" uid="uid://dxilfvhmicpld" path="res://Entities/Customer/customer_path.tscn" id="7_e2cq1"]
+[ext_resource type="FontFile" uid="uid://brb1w3e1via4m" path="res://Graphics/Fonts/mago2.ttf" id="8_4ape0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y2gs0"]
-texture = ExtResource("3_1bvwn")
+texture = ExtResource("3_wk2i2")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -41,7 +39,7 @@ texture = ExtResource("3_1bvwn")
 sources/0 = SubResource("TileSetAtlasSource_y2gs0")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fp571"]
-texture = ExtResource("3_1bvwn")
+texture = ExtResource("3_wk2i2")
 0:0/0 = 0
 0:0/0/z_index = 1
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(4, 4, 8, 4, 8, 8, 4, 8)
@@ -109,7 +107,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_fp571")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j40br"]
-texture = ExtResource("4_tc4mk")
+texture = ExtResource("4_qob57")
 15:0/0 = 0
 18:0/0 = 0
 19:0/0 = 0
@@ -215,7 +213,7 @@ texture = ExtResource("4_tc4mk")
 3:10/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vyaqt"]
-texture = ExtResource("5_hb7yh")
+texture = ExtResource("5_3oba7")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -254,25 +252,26 @@ texture = ExtResource("5_hb7yh")
 sources/1 = SubResource("TileSetAtlasSource_j40br")
 sources/2 = SubResource("TileSetAtlasSource_vyaqt")
 
-[node name="Tutorial" type="Node2D"]
-y_sort_enabled = true
-script = ExtResource("1_4i2hu")
+[sub_resource type="Curve2D" id="Curve2D_likgh"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 702, 368, 0, 0, 0, 0, 626, 368, 0, 0, 0, 0, 664, 346, 0, 0, 0, 0, 682, 346, 0, 0, 0, 0, 683, 321, 0, 0, 0, 0, 639.337, 318.635, 0, 0, 0, 0, 510, 284, 0, 0, 0, 0, 702, 368)
+}
+point_count = 8
 
-[node name="FPSLabel" type="Label" parent="."]
-z_index = 1
-offset_left = 1.0
-offset_top = -5.0
-offset_right = 76.0
-offset_bottom = 18.0
-size_flags_horizontal = 0
-theme_override_fonts/font = ExtResource("8_62jhr")
-text = "FPS: 120 batchoys"
-label_settings = SubResource("LabelSettings_7thq3")
+[sub_resource type="LabelSettings" id="LabelSettings_7thq3"]
+
+[node name="MainScene" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_c2n3o")
+number_of_customers = null
+spawn_interval = null
 
 [node name="Background" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 0.996078, 0.694118)
 z_index = -1
-texture = ExtResource("2_bjrd0")
+position = Vector2(4, 4)
+texture = ExtResource("2_3htk0")
 offset = Vector2(160, 89.5)
 
 [node name="TileMaps" type="Node2D" parent="."]
@@ -293,19 +292,25 @@ tile_set = SubResource("TileSet_6ywnp")
 tile_map_data = PackedByteArray("AAADAAMAAgAAAAEAAAAEAAMAAgAAAAIAAAAFAAMAAgAAAAIAAAAGAAMAAgAAAAIAAAAHAAMAAgACAAAAAAAIAAMAAgAAAAAAAAAJAAMAAgAAAAAAAAAHAAQAAgACAAAAAAAHAAUAAgACAAAAAAAHAAYAAgACAAAAAAAHAAcAAgACAAIAAAAGAAcAAgABAAIAAAAFAAcAAgABAAIAAAAEAAcAAgABAAIAAAADAAQAAQABAAYAAAADAAUAAQABAAcAAAAEAAQAAQACAAYAAAAEAAUAAQACAAcAAAAGAAQAAQANAAgAAAAFAAQAAQARAAEAAAA=")
 tile_set = SubResource("TileSet_xif5o")
 
-[node name="PlayerScene" parent="." instance=ExtResource("6_gllwa")]
-y_sort_enabled = true
-position = Vector2(94, 83)
+[node name="PlayerScene" parent="." instance=ExtResource("6_p7u1y")]
+position = Vector2(90, 86)
 
-[node name="CustomerPath" parent="." instance=ExtResource("7_hgnqv")]
+[node name="Path2D" parent="." instance=ExtResource("7_e2cq1")]
+position = Vector2(-374, -191)
+curve = SubResource("Curve2D_likgh")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+visible = false
 position = Vector2(160, 90)
 zoom = Vector2(2, 2)
 
-[node name="Label" type="Label" parent="."]
-offset_left = 117.0
-offset_top = -6.0
-offset_right = 178.0
-offset_bottom = 17.0
-text = "Tutorial"
+[node name="FPSLabel" type="Label" parent="Camera2D"]
+z_index = 1
+offset_left = -159.0
+offset_top = -95.0
+offset_right = -84.0
+offset_bottom = -72.0
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("8_4ape0")
+text = "FPS: 120 batchoys"
+label_settings = SubResource("LabelSettings_7thq3")

@@ -17,14 +17,18 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="Background" type="Sprite2D" parent="Control"]
+z_index = -1
+position = Vector2(33, 10)
+texture = ExtResource("7_h3l3b")
+
 [node name="HBoxContainer" type="HBoxContainer" parent="Control"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Background" type="Sprite2D" parent="Control/HBoxContainer"]
-position = Vector2(32, 0)
-texture = ExtResource("7_h3l3b")
+offset_left = 1.0
+offset_top = 3.0
+offset_right = 97.0
+offset_bottom = 19.0
+scale = Vector2(0.661838, 0.658915)
 
 [node name="Broth" type="TextureRect" parent="Control/HBoxContainer"]
 layout_mode = 2
