@@ -1,0 +1,62 @@
+[gd_scene load_steps=8 format=3 uid="uid://cvxnkro0h5hs6"]
+
+[ext_resource type="Script" path="res://order_system.gd" id="1_f53vy"]
+[ext_resource type="Texture2D" uid="uid://cr11ub6bcvbgk" path="res://Entities/Customer/Order/broth.png" id="2_e8vvq"]
+[ext_resource type="Texture2D" uid="uid://f04ap486o7gb" path="res://Entities/Customer/Order/miki-noodles.png" id="3_6hkao"]
+[ext_resource type="Texture2D" uid="uid://bjcshsna8sxjo" path="res://Entities/Customer/Order/pork.png" id="4_xr8uy"]
+[ext_resource type="Texture2D" uid="uid://cp771tas257b2" path="res://Entities/Customer/Order/liver.png" id="5_mvik7"]
+[ext_resource type="Texture2D" uid="uid://ct62hj0mxd84t" path="res://Entities/Customer/Order/chicharon.png" id="6_oqiop"]
+[ext_resource type="Texture2D" uid="uid://bp24iceyuahv6" path="res://Entities/Customer/Order/order-bg-4-ingre.png" id="7_h3l3b"]
+
+[node name="OrderSystem" type="Node2D"]
+script = ExtResource("1_f53vy")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Background" type="Sprite2D" parent="Control"]
+z_index = -1
+position = Vector2(33, 10)
+texture = ExtResource("7_h3l3b")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 3.0
+offset_right = 97.0
+offset_bottom = 19.0
+scale = Vector2(0.661838, 0.658915)
+
+[node name="Broth" type="TextureRect" parent="Control/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("2_e8vvq")
+
+[node name="Miki" type="TextureRect" parent="Control/HBoxContainer"]
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("3_6hkao")
+
+[node name="Pork" type="TextureRect" parent="Control/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("4_xr8uy")
+
+[node name="Liver" type="TextureRect" parent="Control/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+texture = ExtResource("5_mvik7")
+
+[node name="Chicharon" type="TextureRect" parent="Control/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+texture = ExtResource("6_oqiop")
