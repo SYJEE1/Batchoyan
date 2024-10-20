@@ -156,6 +156,7 @@ tile_set = ExtResource("6_72cbv")
 
 [node name="Glow" type="TileMapLayer" parent="TileMaps/Broth"]
 y_sort_enabled = true
+tile_map_data = PackedByteArray("AAACAAUAAAAAAAkAAAACAAYAAAAAAAoAAAADAAUAAAABAAkAAAADAAYAAAABAAoAAAADAAcAAAABAAsAAAAEAAUAAAACAAkAAAAEAAYAAAACAAoAAAAEAAcAAAACAAsAAAAFAAUAAAADAAkAAAAFAAYAAAADAAoAAAA=")
 tile_set = ExtResource("6_72cbv")
 
 [node name="Trashbin" type="TileMapLayer" parent="TileMaps"]
