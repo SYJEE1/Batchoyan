@@ -45,6 +45,8 @@ func _physics_process(delta: float) -> void:
 	
 	
 func movement(input_direction, delta) -> void:
+
+		
 	
 	# movement smoothness formula
 	velocity = lerp(velocity, input_direction * speed, delta * accel)

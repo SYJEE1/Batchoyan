@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://divwn1b5b3o"]
+[gd_scene load_steps=15 format=4 uid="uid://divwn1b5b3o"]
 
 [ext_resource type="Script" path="res://Non_Entity/Main Scene/main_scene.gd" id="1_qentd"]
 [ext_resource type="Texture2D" uid="uid://bf7uhiy54nagw" path="res://Non_Entity/Main Scene/ReferenceTiles.png" id="2_ujia4"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dvg4wt154im0k" path="res://Non_Entity/Main Scene/Background.png" id="5_q4k1w"]
 [ext_resource type="TileSet" uid="uid://c66g5q3avakk7" path="res://Non_Entity/Stations/Interactables.tres" id="6_72cbv"]
 [ext_resource type="FontFile" uid="uid://brb1w3e1via4m" path="res://Graphics/Fonts/mago2.ttf" id="6_dbhs7"]
+[ext_resource type="PackedScene" uid="uid://dx3jyunh4djpd" path="res://Non_Entity/hud.tscn" id="9_5nkri"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y2gs0"]
 texture = ExtResource("2_ujia4")
@@ -251,3 +252,5 @@ position = Vector2(104, 97)
 
 [node name="Item3" parent="." instance=ExtResource("5_pryya")]
 position = Vector2(138, 111)
+
+[node name="HUD" parent="." instance=ExtResource("9_5nkri")]
