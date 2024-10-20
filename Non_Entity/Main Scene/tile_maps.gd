@@ -16,7 +16,7 @@ const INTERACT_AREA_SCENE = preload("res://Non_Entity/Stations/InteractArea.tscn
 func _ready() -> void:
 	instantiate(countertop, preload("res://Non_Entity/Stations/Stations/countertop.gd"))
 	instantiate(broth, preload("res://Non_Entity/Stations/Stations/broth.gd"))
-	#instantiate(trashbin, preload("res://Non_Entity/Stations/Stations/trashbin.gd"))
+	instantiate(trashbin, preload("res://Non_Entity/Stations/Stations/trashbin.gd"))
 	#instantiate(cooler, preload("res://Non_Entity/Stations/Stations/cooler.gd"))
 	#instantiate(cola_ref, preload("res://Non_Entity/Stations/Stations/colaref.gd"))
 	#instantiate(ref, preload("res://Non_Entity/Stations/Stations/ref.gd"))

@@ -249,9 +249,12 @@ label_settings = SubResource("LabelSettings_7y825")
 
 [node name="Item" parent="." instance=ExtResource("5_pryya")]
 position = Vector2(130, 89)
+custom_item_type = &"bowl_super"
 
 [node name="Item2" parent="." instance=ExtResource("5_pryya")]
 position = Vector2(104, 97)
 
 [node name="Item3" parent="." instance=ExtResource("5_pryya")]
 position = Vector2(138, 111)
+
+[editable path="Item"]

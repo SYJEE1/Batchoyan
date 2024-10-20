@@ -1,149 +1,10 @@
-[gd_scene load_steps=32 format=3 uid="uid://ke3muiiqgpcu"]
+[gd_scene load_steps=13 format=3 uid="uid://ke3muiiqgpcu"]
 
-[ext_resource type="Texture2D" uid="uid://bh20llck6qa1k" path="res://Non_Entity/Stations/interactables.png" id="2_culf3"]
+[ext_resource type="SpriteFrames" uid="uid://bouevinhbka7y" path="res://Non_Entity/Items/Item.tres" id="2_opl75"]
 [ext_resource type="Script" path="res://Non_Entity/Items/item.gd" id="2_uf2dp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y505a"]
 radius = 4.0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1logx"]
-atlas = ExtResource("2_culf3")
-region = Rect2(80, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5tc0d"]
-atlas = ExtResource("2_culf3")
-region = Rect2(64, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_exbkd"]
-atlas = ExtResource("2_culf3")
-region = Rect2(64, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yccjq"]
-atlas = ExtResource("2_culf3")
-region = Rect2(80, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_61jgl"]
-atlas = ExtResource("2_culf3")
-region = Rect2(96, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e6ihi"]
-atlas = ExtResource("2_culf3")
-region = Rect2(80, 48, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_aprg7"]
-atlas = ExtResource("2_culf3")
-region = Rect2(96, 48, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_14k67"]
-atlas = ExtResource("2_culf3")
-region = Rect2(80, 64, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e34jv"]
-atlas = ExtResource("2_culf3")
-region = Rect2(96, 64, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_j6frd"]
-atlas = ExtResource("2_culf3")
-region = Rect2(48, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fvlq6"]
-atlas = ExtResource("2_culf3")
-region = Rect2(32, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_t5eu8"]
-atlas = ExtResource("2_culf3")
-region = Rect2(16, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0fsp0"]
-atlas = ExtResource("2_culf3")
-region = Rect2(32, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pejw8"]
-atlas = ExtResource("2_culf3")
-region = Rect2(48, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jc2k8"]
-atlas = ExtResource("2_culf3")
-region = Rect2(32, 48, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_chneq"]
-atlas = ExtResource("2_culf3")
-region = Rect2(48, 48, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_faurs"]
-atlas = ExtResource("2_culf3")
-region = Rect2(32, 64, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_70oa8"]
-atlas = ExtResource("2_culf3")
-region = Rect2(48, 64, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_g25tm"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1logx")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5tc0d")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_exbkd")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yccjq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_61jgl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_e6ihi")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_aprg7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_14k67")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_e34jv")
-}],
-"loop": false,
-"name": &"bowl_regular",
-"speed": 0.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_j6frd")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fvlq6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_t5eu8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0fsp0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pejw8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jc2k8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_chneq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_faurs")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_70oa8")
-}],
-"loop": false,
-"name": &"bowl_super",
-"speed": 0.0
-}]
 
 [sub_resource type="Animation" id="Animation_1i3r6"]
 length = 0.001
@@ -207,11 +68,11 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ItemSprite:offset")
+tracks/0/path = NodePath("ItemShadow:offset")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.001),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, -3)]
@@ -219,11 +80,11 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("ItemShadow:offset")
+tracks/1/path = NodePath("ItemGlow:offset")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.001),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, -3)]
@@ -231,7 +92,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("ItemGlow:offset")
+tracks/2/path = NodePath("ItemSprite:offset")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -248,7 +109,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ItemSprite:offset")
+tracks/0/path = NodePath("ItemGlow:offset")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -260,7 +121,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("ItemGlow:offset")
+tracks/1/path = NodePath("ItemSprite:offset")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -277,7 +138,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ItemSprite:offset")
+tracks/0/path = NodePath("ItemGlow:offset")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -289,7 +150,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("ItemGlow:offset")
+tracks/1/path = NodePath("ItemSprite:offset")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -321,13 +182,15 @@ shape = SubResource("CircleShape2D_y505a")
 [node name="ItemShadow" type="AnimatedSprite2D" parent="."]
 self_modulate = Color(0, 0, 0, 0.407843)
 y_sort_enabled = true
+sprite_frames = ExtResource("2_opl75")
+animation = &"bowl_regular"
 speed_scale = 0.0
 offset = Vector2(0, -3)
 
 [node name="ItemGlow" type="AnimatedSprite2D" parent="."]
 self_modulate = Color(1, 1, 1, 0)
 y_sort_enabled = true
-sprite_frames = SubResource("SpriteFrames_g25tm")
+sprite_frames = ExtResource("2_opl75")
 animation = &"bowl_regular"
 speed_scale = 0.0
 offset = Vector2(0, -3)
@@ -342,7 +205,7 @@ playback_default_blend_time = 0.1
 
 [node name="ItemSprite" type="AnimatedSprite2D" parent="."]
 y_sort_enabled = true
-sprite_frames = SubResource("SpriteFrames_g25tm")
+sprite_frames = ExtResource("2_opl75")
 animation = &"bowl_regular"
 frame = 1
 speed_scale = 0.0
