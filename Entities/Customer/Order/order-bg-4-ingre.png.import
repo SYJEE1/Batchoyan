@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bmmbewk5wg7j3"
-path="res://.godot/imported/Interact Tileset.png-78fa38538cef8ef88f366bc6cd96225e.ctex"
+uid="uid://bp24iceyuahv6"
+path="res://.godot/imported/order-bg-4-ingre.png-4643e99c34b7d08fd6f35d834990ef15.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Non_Entity/Main Scene/Interact Tileset.png"
-dest_files=["res://.godot/imported/Interact Tileset.png-78fa38538cef8ef88f366bc6cd96225e.ctex"]
+source_file="res://Entities/Customer/Order/order-bg-4-ingre.png"
+dest_files=["res://.godot/imported/order-bg-4-ingre.png-4643e99c34b7d08fd6f35d834990ef15.ctex"]
 
 [params]
 
