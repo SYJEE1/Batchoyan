@@ -15,7 +15,7 @@ warnings/check_invalid_track_paths=false
 [application]
 
 config/name="Batchoyan"
-run/main_scene="res://Environment/Main Scene/main_scene.tscn"
+run/main_scene="res://Non_Entity/Main Scene/main_scene.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://Graphics/icon.svg"
 
@@ -23,9 +23,10 @@ config/icon="res://Graphics/icon.svg"
 
 window/size/viewport_width=640
 window/size/viewport_height=360
+window/size/initial_position_type=0
 window/size/resizable=false
-window/size/window_width_override=1920
-window/size/window_height_override=1080
+window/size/window_width_override=1280
+window/size/window_height_override=720
 window/stretch/mode="viewport"
 
 [input]
@@ -63,7 +64,6 @@ interact={
 
 [layer_names]
 
-<<<<<<< HEAD
 2d_physics/layer_1="BackgroundCollision"
 2d_physics/layer_2="PlayerCollision"
 2d_physics/layer_3="PlayerInteract"
@@ -74,12 +74,6 @@ interact={
 [physics]
 
 2d/default_gravity_vector=Vector2(0, 0)
-=======
-2d_physics/layer_1="Background"
-2d_physics/layer_2="Player"
-2d_physics/layer_3="NPC"
-2d_physics/layer_4="Interactable"
->>>>>>> main
 
 [rendering]
 

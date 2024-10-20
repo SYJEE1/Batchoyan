@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cr11ub6bcvbgk"
-path="res://.godot/imported/broth.png-4dd610b5afd31ec04b4560d172474e38.ctex"
+uid="uid://bpf3hpyvp6bu7"
+path="res://.godot/imported/Select.png-ca4bd4b16461caadb374d5e37aeef48a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Entities/Customer/Order/broth.png"
-dest_files=["res://.godot/imported/broth.png-4dd610b5afd31ec04b4560d172474e38.ctex"]
+source_file="res://Non_Entity/Items/Select.png"
+dest_files=["res://.godot/imported/Select.png-ca4bd4b16461caadb374d5e37aeef48a.ctex"]
 
 [params]
 
