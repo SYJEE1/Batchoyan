@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dl4lxjctmybrt"
-path="res://.godot/imported/Interactables.png-100355eaebc2dbc8141dbc5e0df3c0bd.ctex"
+uid="uid://cr11ub6bcvbgk"
+path="res://.godot/imported/broth.png-4dd610b5afd31ec04b4560d172474e38.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Non_Entity/Items/Interactables.png"
-dest_files=["res://.godot/imported/Interactables.png-100355eaebc2dbc8141dbc5e0df3c0bd.ctex"]
+source_file="res://Entities/Customer/Order/broth.png"
+dest_files=["res://.godot/imported/broth.png-4dd610b5afd31ec04b4560d172474e38.ctex"]
 
 [params]
 

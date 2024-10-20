@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxilfvhmicpld"]
+
+[ext_resource type="Script" path="res://Entities/Customer/customerpath.gd" id="1_og5pw"]
+
+[sub_resource type="Curve2D" id="Curve2D_87pt3"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 702, 368, 0, 0, 0, 0, 626, 368, 0, 0, 0, 0, 664, 346, 0, 0, 0, 0, 682, 346, 0, 0, 0, 0, 683, 321, 0, 0, 0, 0, 639.337, 318.635, 0, 0, 0, 0, 510, 284, 0, 0, 0, 0, 702, 368)
+}
+point_count = 8
+
+[node name="CustomerPath" type="Path2D"]
+position = Vector2(-510, -284)
+curve = SubResource("Curve2D_87pt3")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+position = Vector2(702, 368)
+rotates = false
+loop = false
+script = ExtResource("1_og5pw")
+speed = null
