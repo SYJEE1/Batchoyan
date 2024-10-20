@@ -1,13 +1,15 @@
+<<<<<<< HEAD:Environment/Main Scene/main_scene.tscn
 <<<<<<< HEAD:Non_Entity/Main Scene/main_scene.tscn
 [gd_scene load_steps=14 format=4 uid="uid://divwn1b5b3o"]
+=======
+[gd_scene load_steps=12 format=4 uid="uid://divwn1b5b3o"]
+>>>>>>> parent of c468b66 (feat: interaction):Non_Entity/Main Scene/main_scene.tscn
 
 [ext_resource type="Script" path="res://Non_Entity/Main Scene/main_scene.gd" id="1_qentd"]
 [ext_resource type="Texture2D" uid="uid://bf7uhiy54nagw" path="res://Non_Entity/Main Scene/ReferenceTiles.png" id="2_ujia4"]
-[ext_resource type="Script" path="res://Non_Entity/Main Scene/tile_maps.gd" id="3_i1lbk"]
+[ext_resource type="TileSet" uid="uid://bgbug7u577l1p" path="res://Non_Entity/Main Scene/EnvironmentTileset.tres" id="3_gyj0s"]
 [ext_resource type="PackedScene" uid="uid://dwt7q45hesbr5" path="res://Entities/Player/player_scene.tscn" id="4_voske"]
-[ext_resource type="PackedScene" uid="uid://ke3muiiqgpcu" path="res://Non_Entity/Items/Item.tscn" id="5_pryya"]
 [ext_resource type="Texture2D" uid="uid://dvg4wt154im0k" path="res://Non_Entity/Main Scene/Background.png" id="5_q4k1w"]
-[ext_resource type="TileSet" uid="uid://c66g5q3avakk7" path="res://Non_Entity/Stations/Interactables.tres" id="6_72cbv"]
 [ext_resource type="FontFile" uid="uid://brb1w3e1via4m" path="res://Graphics/Fonts/mago2.ttf" id="6_dbhs7"]
 =======
 [gd_scene load_steps=17 format=4 uid="uid://fqfw6upakcux"]
@@ -58,18 +60,17 @@ texture = ExtResource("3_wk2i2")
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(4, 4, 8, 4, 8, 8, 4, 8)
 1:0/0 = 0
 1:0/0/y_sort_origin = -11
-1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 4, 8, 4, 8, 8, -8, 8)
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 5, 8, 5, 8, 8, -8, 8)
 2:0/0 = 0
-2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 4, 8, 4, 8, 8, -8, 8)
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 5, 8, 5, 8, 8, -8, 8)
 0:1/0 = 0
 0:1/0/z_index = 1
 0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(4, -8, 8, -8, 8, 8, 4, 8)
 1:1/0 = 0
 2:1/0 = 0
-2:1/0/z_index = -2
 2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 3:0/0 = 0
-3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 4, 8, 4, 8, 8, -8, 8)
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 5, 8, 5, 8, 8, -8, 8)
 4:0/0 = 0
 4:0/0/z_index = 1
 4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, 4, -4, 8, -8, 8, -8, 4)
@@ -83,7 +84,6 @@ texture = ExtResource("3_wk2i2")
 3:2/0 = 0
 3:2/0/z_index = 1
 2:2/0 = 0
-2:2/0/z_index = -2
 2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:2/0 = 0
 1:2/0/z_index = 1
@@ -119,7 +119,6 @@ texture = ExtResource("3_wk2i2")
 
 [sub_resource type="TileSet" id="TileSet_6ywnp"]
 physics_layer_0/collision_layer = 1
-physics_layer_0/collision_mask = 34
 sources/0 = SubResource("TileSetAtlasSource_fp571")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j40br"]
@@ -276,8 +275,12 @@ script = ExtResource("1_c2n3o")
 
 [node name="Background" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 0.996078, 0.694118)
+<<<<<<< HEAD:Environment/Main Scene/main_scene.tscn
 <<<<<<< HEAD:Non_Entity/Main Scene/main_scene.tscn
 z_index = -2
+=======
+z_index = -1
+>>>>>>> parent of c468b66 (feat: interaction):Non_Entity/Main Scene/main_scene.tscn
 texture = ExtResource("5_q4k1w")
 =======
 z_index = -1
@@ -289,14 +292,17 @@ metadata/_edit_lock_ = true
 
 [node name="TileMaps" type="Node2D" parent="."]
 y_sort_enabled = true
+<<<<<<< HEAD:Environment/Main Scene/main_scene.tscn
 <<<<<<< HEAD:Non_Entity/Main Scene/main_scene.tscn
 script = ExtResource("3_i1lbk")
 =======
 metadata/_edit_lock_ = true
 >>>>>>> main:Environment/Main Scene/main_scene.tscn
+=======
+>>>>>>> parent of c468b66 (feat: interaction):Non_Entity/Main Scene/main_scene.tscn
 
 [node name="Floor" type="TileMapLayer" parent="TileMaps"]
-z_index = -2
+z_index = -1
 y_sort_enabled = true
 tile_map_data = PackedByteArray("AAADAAgAAAACAAMAAAAEAAgAAAACAAMAAAAFAAgAAAACAAMAAAAGAAgAAAACAAMAAAAHAAgAAAACAAMAAAAIAAgAAAACAAMAAAAJAAgAAAACAAMAAAAKAAgAAAACAAMAAAALAAgAAAACAAMAAAAMAAgAAAACAAMAAAANAAgAAAACAAMAAAAOAAgAAAACAAMAAAAPAAgAAAACAAMAAAAQAAgAAAACAAMAAAAQAAcAAAACAAMAAAAPAAcAAAACAAMAAAAOAAcAAAACAAMAAAANAAcAAAACAAMAAAAMAAcAAAACAAMAAAALAAcAAAACAAMAAAAKAAcAAAACAAMAAAAJAAcAAAACAAMAAAAIAAcAAAACAAMAAAAHAAcAAAACAAMAAAAGAAcAAAACAAMAAAAGAAYAAAACAAMAAAAFAAYAAAACAAMAAAAFAAcAAAACAAMAAAAEAAcAAAACAAMAAAAEAAYAAAACAAMAAAADAAYAAAACAAMAAAADAAUAAAACAAMAAAADAAcAAAACAAMAAAAEAAUAAAACAAMAAAAFAAUAAAACAAMAAAAGAAUAAAACAAMAAAAHAAUAAAACAAMAAAAJAAUAAAACAAMAAAAIAAYAAAACAAMAAAAHAAYAAAACAAMAAAAJAAYAAAACAAMAAAAKAAYAAAACAAMAAAALAAYAAAACAAMAAAAMAAYAAAACAAMAAAANAAYAAAACAAMAAAAOAAYAAAACAAMAAAAPAAYAAAACAAMAAAAPAAUAAAACAAMAAAAQAAUAAAACAAMAAAAKAAUAAAACAAMAAAALAAUAAAACAAMAAAANAAUAAAACAAMAAAAOAAUAAAACAAMAAAAMAAUAAAACAAMAAAAIAAUAAAACAAMAAAAQAAYAAAACAAMAAAADAAQAAAACAAMAAAAEAAQAAAACAAMAAAAFAAQAAAACAAMAAAAGAAQAAAACAAMAAAAHAAQAAAACAAMAAAAIAAQAAAACAAMAAAAJAAQAAAACAAMAAAAKAAQAAAACAAMAAAALAAQAAAACAAMAAAAMAAQAAAACAAMAAAANAAQAAAACAAMAAAAOAAQAAAACAAMAAAAPAAQAAAACAAMAAAAQAAQAAAACAAMAAAAQAAMAAAACAAMAAAAPAAMAAAACAAMAAAAOAAMAAAACAAMAAAANAAMAAAACAAMAAAAMAAMAAAACAAMAAAALAAMAAAACAAMAAAAKAAMAAAACAAMAAAAJAAMAAAACAAMAAAAIAAMAAAACAAMAAAAHAAMAAAACAAMAAAAGAAMAAAACAAMAAAAFAAMAAAACAAMAAAAFAAIAAAACAAMAAAAEAAIAAAACAAMAAAADAAIAAAACAAMAAAADAAMAAAACAAMAAAAEAAMAAAACAAMAAAAGAAIAAAACAAMAAAAHAAIAAAACAAMAAAAIAAIAAAACAAMAAAAJAAIAAAACAAMAAAAKAAIAAAACAAMAAAALAAIAAAACAAMAAAAMAAIAAAACAAMAAAANAAIAAAACAAMAAAAOAAIAAAACAAMAAAAPAAIAAAACAAMAAAAQAAIAAAACAAMAAAA=")
 tile_set = SubResource("TileSet_f6ksw")
@@ -308,97 +314,18 @@ tile_map_data = PackedByteArray("AAAEAAgAAAACAAQAAAAFAAgAAAACAAQAAAAGAAgAAAACAAQ
 tile_set = SubResource("TileSet_6ywnp")
 metadata/_edit_lock_ = true
 
+<<<<<<< HEAD:Environment/Main Scene/main_scene.tscn
 <<<<<<< HEAD:Non_Entity/Main Scene/main_scene.tscn
 [node name="Countertop" type="TileMapLayer" parent="TileMaps"]
+=======
+[node name="Surface" type="TileMapLayer" parent="TileMaps"]
+>>>>>>> parent of c468b66 (feat: interaction):Non_Entity/Main Scene/main_scene.tscn
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AAADAAcAAAACAAwAAAADAAgAAAACAA0AAAAEAAcAAAADAAwAAAAEAAgAAAADAA0AAAAFAAQAAAABAA4AAAAGAAQAAAACAA4AAAAHAAYAAAABAAwAAAAHAAcAAAABAA0AAAAFAAcAAAADAA4AAAA=")
-tile_set = ExtResource("6_72cbv")
-
-[node name="Glow" type="TileMapLayer" parent="TileMaps/Countertop"]
-y_sort_enabled = true
-tile_set = ExtResource("6_72cbv")
-
-[node name="Broth" type="TileMapLayer" parent="TileMaps"]
-y_sort_enabled = true
-tile_map_data = PackedByteArray("AAADAAUAAAABAAYAAAAEAAUAAAACAAYAAAADAAYAAAABAAcAAAAEAAYAAAACAAcAAAA=")
-tile_set = ExtResource("6_72cbv")
-
-[node name="Glow" type="TileMapLayer" parent="TileMaps/Broth"]
-y_sort_enabled = true
-tile_map_data = PackedByteArray("AAACAAUAAAAAAAkAAAACAAYAAAAAAAoAAAADAAUAAAABAAkAAAADAAYAAAABAAoAAAADAAcAAAABAAsAAAAEAAUAAAACAAkAAAAEAAYAAAACAAoAAAAEAAcAAAACAAsAAAAFAAUAAAADAAkAAAAFAAYAAAADAAoAAAA=")
-tile_set = ExtResource("6_72cbv")
-
-[node name="Trashbin" type="TileMapLayer" parent="TileMaps"]
-y_sort_enabled = true
-tile_map_data = PackedByteArray("AAAJAAgAAAANAAEAAAA=")
-tile_set = ExtResource("6_72cbv")
-
-[node name="Glow" type="TileMapLayer" parent="TileMaps/Trashbin"]
-y_sort_enabled = true
-tile_map_data = PackedByteArray("AAAJAAcAAAAPAAAAAAAJAAgAAAAPAAEAAAAJAAkAAAAPAAIAAAA=")
-tile_set = ExtResource("6_72cbv")
-
-[node name="Cooler" type="TileMapLayer" parent="TileMaps"]
-y_sort_enabled = true
-tile_map_data = PackedByteArray("AAALAAcAAAAMAAgAAAALAAgAAAAMAAkAAAAMAAcAAAANAAgAAAAMAAgAAAANAAkAAAANAAcAAAAOAAgAAAANAAgAAAAOAAkAAAA=")
-tile_set = ExtResource("6_72cbv")
-
-[node name="Glow" type="TileMapLayer" parent="TileMaps/Cooler"]
-y_sort_enabled = true
-tile_map_data = PackedByteArray("AAADAAcAAAABAAsAAAALAAcAAAAPAAgAAAALAAgAAAAPAAkAAAAMAAYAAAAQAAcAAAAMAAcAAAAQAAgAAAAMAAgAAAAQAAkAAAANAAcAAAARAAgAAAANAAgAAAARAAkAAAA=")
-tile_set = ExtResource("6_72cbv")
-
-[node name="ColaRef" type="TileMapLayer" parent="TileMaps"]
-y_sort_enabled = true
-tile_map_data = PackedByteArray("AAAJAAQAAAANAAQAAAAJAAUAAAANAAUAAAA=")
-tile_set = ExtResource("6_72cbv")
-
-[node name="Glow" type="TileMapLayer" parent="TileMaps/ColaRef"]
-y_sort_enabled = true
-tile_map_data = PackedByteArray("AAADAAcAAAABAAsAAAAIAAMAAAAOAAMAAAAIAAQAAAAOAAQAAAAIAAUAAAAOAAUAAAAIAAYAAAAOAAYAAAAJAAMAAAAPAAMAAAAJAAQAAAAPAAQAAAAJAAUAAAAPAAUAAAAJAAYAAAAPAAYAAAAKAAMAAAAQAAMAAAAKAAQAAAAQAAQAAAAKAAUAAAAQAAUAAAAKAAYAAAAQAAYAAAA=")
-tile_set = ExtResource("6_72cbv")
-
-[node name="Ref" type="TileMapLayer" parent="TileMaps"]
-y_sort_enabled = true
-tile_map_data = PackedByteArray("AAAKAAQAAAATAAcAAAAKAAUAAAATAAgAAAA=")
-tile_set = ExtResource("6_72cbv")
-
-[node name="Glow" type="TileMapLayer" parent="TileMaps/Ref"]
-y_sort_enabled = true
-tile_map_data = PackedByteArray("AAADAAcAAAABAAsAAAAJAAMAAAAVAAYAAAAJAAQAAAAVAAcAAAAJAAUAAAAVAAgAAAAJAAYAAAAVAAkAAAAKAAMAAAAWAAYAAAAKAAQAAAAWAAcAAAAKAAUAAAAWAAgAAAAKAAYAAAAWAAkAAAALAAMAAAAXAAYAAAALAAQAAAAXAAcAAAALAAUAAAAXAAgAAAALAAYAAAAXAAkAAAA=")
-tile_set = ExtResource("6_72cbv")
-
-[node name="Stove" type="TileMapLayer" parent="TileMaps"]
-y_sort_enabled = true
-tile_map_data = PackedByteArray("AAALAAUAAAARAAEAAAA=")
-tile_set = ExtResource("6_72cbv")
-
-[node name="Glow" type="TileMapLayer" parent="TileMaps/Stove"]
-y_sort_enabled = true
-tile_map_data = PackedByteArray("AAADAAcAAAABAAsAAAAKAAQAAAASAAAAAAAKAAUAAAASAAEAAAAKAAYAAAASAAIAAAALAAQAAAATAAAAAAALAAUAAAATAAEAAAALAAYAAAATAAIAAAAMAAQAAAAUAAAAAAAMAAUAAAAUAAEAAAAMAAYAAAAUAAIAAAA=")
-tile_set = ExtResource("6_72cbv")
-
-[node name="BasketPandesal" type="TileMapLayer" parent="TileMaps"]
-y_sort_enabled = true
-tile_map_data = PackedByteArray("AAAPAAQAAAAQAAoAAAAPAAUAAAAQAAsAAAAQAAQAAAARAAoAAAAQAAUAAAARAAsAAAA=")
-tile_set = ExtResource("6_72cbv")
-
-[node name="Glow" type="TileMapLayer" parent="TileMaps/BasketPandesal"]
-y_sort_enabled = true
-tile_map_data = PackedByteArray("AAADAAcAAAABAAsAAAAPAAQAAAAQAA0AAAAPAAUAAAAQAA4AAAAQAAQAAAARAA0AAAAQAAUAAAARAA4AAAA=")
-tile_set = ExtResource("6_72cbv")
-
-[node name="BasketPuto" type="TileMapLayer" parent="TileMaps"]
-y_sort_enabled = true
-tile_map_data = PackedByteArray("AAAPAAYAAAANAAsAAAAQAAYAAAAOAAsAAAA=")
-tile_set = ExtResource("6_72cbv")
-
-[node name="Glow" type="TileMapLayer" parent="TileMaps/BasketPuto"]
-y_sort_enabled = true
-tile_map_data = PackedByteArray("AAADAAcAAAABAAsAAAAPAAYAAAANAA0AAAAQAAYAAAAOAA0AAAA=")
-tile_set = ExtResource("6_72cbv")
+tile_map_data = PackedByteArray("AAADAAUAAAAAAAMAAAADAAYAAAAAAAQAAAAMAAUAAAABAAMAAAAMAAYAAAABAAQAAAANAAUAAAACAAMAAAANAAYAAAACAAQAAAAMAAgAAAAAAAUAAAANAAgAAAABAAUAAAAKAAYAAAACAAUAAAA=")
+tile_set = ExtResource("3_gyj0s")
 
 [node name="PlayerScene" parent="." instance=ExtResource("4_voske")]
+y_sort_enabled = true
 position = Vector2(94, 83)
 =======
 [node name="Surface" type="TileMapLayer" parent="TileMaps"]
@@ -419,15 +346,16 @@ metadata/_edit_lock_ = true
 
 [node name="FPSLabel" type="Label" parent="Camera2D"]
 z_index = 1
-offset_left = -111.0
-offset_top = -79.0
-offset_right = -36.0
-offset_bottom = -56.0
+offset_left = -159.0
+offset_top = -95.0
+offset_right = -84.0
+offset_bottom = -72.0
 size_flags_horizontal = 0
 theme_override_fonts/font = ExtResource("8_4ape0")
 text = "FPS: 120 batchoys"
 <<<<<<< HEAD:Non_Entity/Main Scene/main_scene.tscn
 label_settings = SubResource("LabelSettings_7y825")
+<<<<<<< HEAD:Environment/Main Scene/main_scene.tscn
 
 [node name="Item" parent="." instance=ExtResource("5_pryya")]
 position = Vector2(130, 89)
@@ -440,3 +368,5 @@ position = Vector2(138, 111)
 =======
 label_settings = SubResource("LabelSettings_7thq3")
 >>>>>>> main:Environment/Main Scene/main_scene.tscn
+=======
+>>>>>>> parent of c468b66 (feat: interaction):Non_Entity/Main Scene/main_scene.tscn

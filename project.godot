@@ -8,10 +8,6 @@
 
 config_version=5
 
-[animation]
-
-warnings/check_invalid_track_paths=false
-
 [application]
 
 config/name="Batchoyan"
@@ -67,6 +63,7 @@ interact={
 2d_physics/layer_1="BackgroundCollision"
 2d_physics/layer_2="PlayerCollision"
 2d_physics/layer_3="PlayerInteract"
+<<<<<<< HEAD
 2d_physics/layer_4="ItemInteract"
 2d_physics/layer_5="StationInteract"
 2d_physics/layer_6="ItemCollision"
@@ -80,6 +77,10 @@ interact={
 2d_physics/layer_3="NPC"
 2d_physics/layer_4="Interactable"
 >>>>>>> main
+=======
+2d_physics/layer_4="Interactable"
+2d_physics/layer_5="FoodCollision"
+>>>>>>> parent of c468b66 (feat: interaction)
 
 [rendering]
 
