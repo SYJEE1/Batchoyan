@@ -14,10 +14,10 @@ var order_display
 @onready var hbox_container = get_node("Control/HBoxContainer")
 
 func _ready():
-	var order = stage1_order()
+	var order = tutorial_order()
 	display_order(order)
 
-func stage1_order():
+func tutorial_order():
 	var order = {}
 	
 	# Permi may broth
@@ -44,27 +44,19 @@ func display_order(order: Dictionary):
 	for child in children:
 		child.queue_free()
 	
-	# Create a background sprite
-	var background_sprite = TextureRect.new()
-	background_sprite.texture = background["Background"]
-	background_sprite.scale = Vector2(1, 1)  # No scaling needed if the texture is already 60x25
-	hbox_container.add_child(background_sprite)
-
-	# Set the position of the background sprite
-	background.position = Vector2(0, 0)  # Position it at the top-left corner of the VBoxContainer
 
 	# Display broth
 	var broth_sprite = TextureRect.new()
 	broth_sprite.texture = order["Broth"]
 	broth_sprite.scale = Vector2(1, 1)  # Set size to match the asset
-	broth_sprite.position = Vector2(5, 5)  # Centered in the background
+	broth_sprite.position = Vector2(5, 5)  # Position relative to the background
 	hbox_container.add_child(broth_sprite)
 	
 	# Display noodle
 	var noodle_sprite = TextureRect.new()
 	noodle_sprite.texture = order["Noodle"]
 	noodle_sprite.scale = Vector2(1, 1)  # Set size to match the asset
-	noodle_sprite.position = Vector2(16, 0)  # Adjusted position
+	noodle_sprite.position = Vector2(16, 0)  # Adjusted position relative to the background
 	hbox_container.add_child(noodle_sprite)
 	
 	# Display toppings
@@ -85,5 +77,4 @@ func display_order(order: Dictionary):
 			topping_sprite.scale = Vector2(1, 1)  # Set size to match the asset
 			topping_sprite.position = Vector2(topping_x, 5)  # Centered in the background
 			hbox_container.add_child(topping_sprite)
-			topping_x -= 20  # Decrement y position for next topping (16 for height + 4 for spacing)ng]
-			hbox_container.add_child(topping_sprite)
+			topping_x -= 20  # Decrement x position for next topping (20 for spacing)
