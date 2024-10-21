@@ -1,13 +1,23 @@
 extends Node2D
 
-# preload assets
+# Preload assets
 var broth = {"Broth": preload("res://Entities/Customer/Order/broth.png")}
 var noodles = {"NoodleType1": preload("res://Entities/Customer/Order/miki-noodles.png")}
 var toppings = {
 	"Topping1": preload("res://Entities/Customer/Order/pork.png"), 
 	"Topping2": preload("res://Entities/Customer/Order/liver.png"), 
-	"Topping3": preload("res://Entities/Customer/Order/chicharon.png")}
+	"Topping3": preload("res://Entities/Customer/Order/chicharon.png")
+}
 var background = {"Background": preload("res://Entities/Customer/Order/order-bg-4-ingre.png")}
+
+# Prices for each item
+var prices: Dictionary = {
+	"Broth": 50,  # Price for broth
+	"NoodleType1": 40,  # Price for noodle
+	"Topping1": 20,  # Price for topping 1
+	"Topping2": 20,  # Price for topping 2
+	"Topping3": 20   # Price for topping 3
+}
 
 # Nodes
 var order_display 
@@ -16,11 +26,13 @@ var order_display
 func _ready():
 	var order = tutorial_order()
 	display_order(order)
+	var total_price = calculate_total_price(order)
+	print("Total Price: PHP", total_price)  # Print the total price
 
 func tutorial_order():
 	var order = {}
 	
-	# Permi may broth
+	# Add broth
 	order["Broth"] = broth["Broth"]
 	
 	# Only 1 noodle type
@@ -44,7 +56,6 @@ func display_order(order: Dictionary):
 	for child in children:
 		child.queue_free()
 	
-
 	# Display broth
 	var broth_sprite = TextureRect.new()
 	broth_sprite.texture = order["Broth"]
@@ -78,3 +89,21 @@ func display_order(order: Dictionary):
 			topping_sprite.position = Vector2(topping_x, 5)  # Centered in the background
 			hbox_container.add_child(topping_sprite)
 			topping_x -= 20  # Decrement x position for next topping (20 for spacing)
+
+func calculate_total_price(order: Dictionary) -> float:
+	var total: float = 0.0
+	
+	# Add price for broth
+	if order.has("Broth"):
+		total += prices["Broth"]
+	
+	# Add price for noodle
+	if order.has("Noodle"):
+		total += prices["NoodleType1"]  # Assuming only one noodle type is present
+
+	# Add price for toppings
+	for topping in order.keys():
+		if topping.begins_with("Topping"):
+			total += prices[topping]  # Add the price of each topping
+
+	return total
