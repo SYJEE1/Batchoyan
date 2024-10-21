@@ -142,7 +142,7 @@ tile_set = SubResource("TileSet_6ywnp")
 
 [node name="Countertop" type="TileMapLayer" parent="TileMaps"]
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AAADAAcAAAACAAwAAAADAAgAAAACAA0AAAAEAAcAAAADAAwAAAAEAAgAAAADAA0AAAAFAAQAAAABAA4AAAAGAAQAAAACAA4AAAAHAAYAAAABAAwAAAAHAAcAAAABAA0AAAAFAAcAAAADAA4AAAA=")
+tile_map_data = PackedByteArray("AAADAAcAAAABAAwAAAADAAgAAAABAA0AAAAHAAcAAAACAAwAAAAHAAgAAAACAA0AAAAIAAcAAAADAAwAAAAIAAgAAAADAA0AAAADAAQAAAABAA4AAAAEAAQAAAACAA4AAAAFAAQAAAADAA4AAAA=")
 tile_set = ExtResource("6_72cbv")
 
 [node name="Glow" type="TileMapLayer" parent="TileMaps/Countertop"]
@@ -171,7 +171,7 @@ tile_set = ExtResource("6_72cbv")
 
 [node name="Cooler" type="TileMapLayer" parent="TileMaps"]
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AAALAAcAAAAMAAgAAAALAAgAAAAMAAkAAAAMAAcAAAANAAgAAAAMAAgAAAANAAkAAAANAAcAAAAOAAgAAAANAAgAAAAOAAkAAAA=")
+tile_map_data = PackedByteArray("AAAMAAcAAAANAAgAAAA=")
 tile_set = ExtResource("6_72cbv")
 
 [node name="Glow" type="TileMapLayer" parent="TileMaps/Cooler"]
@@ -230,7 +230,7 @@ tile_map_data = PackedByteArray("AAADAAcAAAABAAsAAAAPAAYAAAANAA0AAAAQAAYAAAAOAA0
 tile_set = ExtResource("6_72cbv")
 
 [node name="PlayerScene" parent="." instance=ExtResource("4_voske")]
-position = Vector2(94, 83)
+position = Vector2(94, 75)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(160, 90)
@@ -249,9 +249,12 @@ label_settings = SubResource("LabelSettings_7y825")
 
 [node name="Item" parent="." instance=ExtResource("5_pryya")]
 position = Vector2(130, 89)
+custom_item_type = &"bowl_super"
 
 [node name="Item2" parent="." instance=ExtResource("5_pryya")]
 position = Vector2(104, 97)
 
 [node name="Item3" parent="." instance=ExtResource("5_pryya")]
 position = Vector2(138, 111)
+
+[editable path="Item"]

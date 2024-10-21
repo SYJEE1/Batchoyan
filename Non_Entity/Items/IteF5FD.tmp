@@ -184,7 +184,6 @@ self_modulate = Color(0, 0, 0, 0.407843)
 y_sort_enabled = true
 sprite_frames = ExtResource("2_opl75")
 animation = &"bowl_regular"
-frame = 1
 speed_scale = 0.0
 offset = Vector2(0, -3)
 
