@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4l5pipqrhfpg"]
+
+[ext_resource type="Script" path="res://Entities/Customer/Order/score.gd" id="1_rwa5b"]
+[ext_resource type="FontFile" uid="uid://brb1w3e1via4m" path="res://Graphics/Fonts/mago2.ttf" id="2_oxxl7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2msje"]
+
+[node name="Score" type="Node2D"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.999248, 1.00019)
+script = ExtResource("1_rwa5b")
+
+[node name="Earnings" type="Label" parent="Control"]
+z_index = 1
+offset_left = 72.0542
+offset_top = -2.99943
+offset_right = 147.054
+offset_bottom = 20.0006
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("2_oxxl7")
+text = "Earnings"
+label_settings = SubResource("LabelSettings_2msje")
+
+[node name="Quota" type="Label" parent="Control"]
+z_index = 1
+offset_left = 1.00075
+offset_top = -2.99943
+offset_right = 76.0008
+offset_bottom = 20.0006
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("2_oxxl7")
+text = "Quota"
+label_settings = SubResource("LabelSettings_2msje")
