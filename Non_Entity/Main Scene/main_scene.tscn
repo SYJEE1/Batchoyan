@@ -171,7 +171,7 @@ tile_set = ExtResource("6_72cbv")
 
 [node name="Cooler" type="TileMapLayer" parent="TileMaps"]
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AAALAAcAAAAMAAgAAAALAAgAAAAMAAkAAAAMAAcAAAANAAgAAAAMAAgAAAANAAkAAAANAAcAAAAOAAgAAAANAAgAAAAOAAkAAAA=")
+tile_map_data = PackedByteArray("AAAMAAcAAAANAAgAAAA=")
 tile_set = ExtResource("6_72cbv")
 
 [node name="Glow" type="TileMapLayer" parent="TileMaps/Cooler"]

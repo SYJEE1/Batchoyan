@@ -90,9 +90,12 @@ func interact(input_direction, delta) -> void:
 		speed = 60
 		
 		if detected_station.size() > 0 and detected_station[0].takes_item == false:
-			if detected_station[0].has_method("glow"): detected_station[0].glow(carried_item)
+			if detected_station[0].has_method("glow"): detected_station[0].glow()
 			if Input.is_action_just_pressed("interact"):
-				pass
+				carried_item = detected_station[0].interact(carried_item)
+				carried_item.pickup()
+				carried_item.is_carried = true
+				has_item = true
 		
 		if detected_item.size() > 0 and detected_item[0].get_parent().is_carried == false:
 			detected_item[0].get_parent().glow()

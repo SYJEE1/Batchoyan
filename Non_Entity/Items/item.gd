@@ -14,8 +14,7 @@ const sprite_frames = preload("res://Non_Entity/Items/Item.tres")
 @export var custom_item_type: StringName
 @export var custom_frame: int = 1
 
-var is_carried : bool = false
-var item_to_be : AnimatedSprite2D
+@onready var is_carried : bool = false
 
 func _ready() -> void:
 	if custom_item_type: item_sprite.animation = custom_item_type
@@ -35,10 +34,13 @@ func _physics_process(delta: float) -> void:
 	pass
 
 func set_item(animation, frame) -> void:
+	var item_shadow: AnimatedSprite2D = $ItemShadow
+	var item_glow: AnimatedSprite2D = $ItemGlow
+	var item_sprite: AnimatedSprite2D = $ItemSprite
+	
 	item_sprite.sprite_frames = sprite_frames
 	item_sprite.animation = animation
 	item_sprite.frame = frame
-	
 	
 	item_glow.sprite_frames = item_sprite.sprite_frames
 	item_glow.animation = item_sprite.animation
