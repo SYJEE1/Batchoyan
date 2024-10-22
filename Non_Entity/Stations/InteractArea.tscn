@@ -1,6 +1,7 @@
 [gd_scene load_steps=2 format=3 uid="uid://b8uck7ghliq2v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c4us7"]
+resource_local_to_scene = true
 size = Vector2(16, 16)
 
 [node name="InteractArea" type="Area2D"]

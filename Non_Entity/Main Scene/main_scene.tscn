@@ -252,7 +252,7 @@ position = Vector2(130, 89)
 custom_item_type = &"bowl_super"
 
 [node name="Item2" parent="." instance=ExtResource("5_pryya")]
-position = Vector2(104, 97)
+position = Vector2(182, 125)
 
 [node name="Item3" parent="." instance=ExtResource("5_pryya")]
 position = Vector2(138, 111)
