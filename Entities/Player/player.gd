@@ -17,7 +17,6 @@ var has_item : bool
 @onready var interact_collision: CollisionShape2D = $InteractArea/InteractCollision
 @onready var ray_1: RayCast2D = $InteractArea/InteractCollision/Ray1
 
-
 # this functions runs once 
 func _ready() -> void:
 	animation_player.play("idle_down")
@@ -96,6 +95,7 @@ func interact(input_direction, delta) -> void:
 				carried_item.pickup()
 				carried_item.is_carried = true
 				has_item = true
+				Global.update_item_state(true)
 		
 		if detected_item.size() > 0 and detected_item[0].get_parent().is_carried == false:
 			detected_item[0].get_parent().glow()
@@ -110,6 +110,7 @@ func interact(input_direction, delta) -> void:
 				carried_item.pickup()
 				carried_item.is_carried = true
 				has_item = true
+				Global.update_item_state(true) 
 
 	else: # if has item 
 		speed = 50
@@ -125,8 +126,7 @@ func interact(input_direction, delta) -> void:
 				carried_item.is_carried = false
 				carried_item = null 
 				has_item = false
-
-
+				Global.update_item_state(false)  # Emit signal
 
 func _sort_by_distance_from_player(area1, area2):
 	var area1_to_player = interact_collision.global_position.distance_to(area1.global_position)
@@ -139,4 +139,3 @@ func _on_itementered(area: Area2D) -> void:
 func _on_itemexited(area: Area2D) -> void: 
 	if area.collision_layer == 8: detected_item.erase(area)
 	if area.collision_layer == 16: detected_station.erase(area)
-	
