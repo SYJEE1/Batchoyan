@@ -3,6 +3,7 @@ extends Area2D
 const area_type := &"station"
 var takes_item: bool = false
 var tilemap_glow : TileMapLayer
+@onready var interact_collision: CollisionShape2D = $InteractCollision
 
 var hotbar_active : bool = false
 var selection: int = clampi(3,1,4)
@@ -14,13 +15,14 @@ var player : CharacterBody2D
 var select : Sprite2D
 var drink_name: Label
 
-
 const ITEM = preload("res://Non_Entity/Items/Item.tscn")
 const HOTBAR = preload("res://Non_Entity/Stations/Stations/hotbar.tscn")
 
 func _ready() -> void:
 	tilemap_glow.modulate = Color(1,1,1,0)
-
+	global_position += Vector2(0,8)
+	interact_collision.shape.size = Vector2(8,2)
+	
 	var hotbar_instance = HOTBAR.instantiate()
 	hotbar_instance.global_position = global_position
 	add_child(hotbar_instance)
@@ -39,7 +41,6 @@ func interact(carried_item):
 	if selection == 2: new_item.set_item(&"miswa", 1)
 	if selection == 3: new_item.set_item(&"bihon", 1)
 	if selection == 4: new_item.set_item(&"sotanghon", 1)
-	new_item.apply_impulse(Vector2(randf_range(1,-1)*2000,randf_range(1,2)*2000),Vector2.ZERO)
 	get_tree().root.add_child(new_item)
 	return new_item
 	

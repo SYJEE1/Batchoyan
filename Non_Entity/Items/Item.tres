@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=44 format=3 uid="uid://bouevinhbka7y"]
+[gd_resource type="SpriteFrames" load_steps=47 format=3 uid="uid://bouevinhbka7y"]
 
 [ext_resource type="Texture2D" uid="uid://bh20llck6qa1k" path="res://Non_Entity/Stations/interactables.png" id="1_7o2gr"]
 
@@ -105,6 +105,18 @@ region = Rect2(144, 48, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_hhld0"]
 atlas = ExtResource("1_7o2gr")
 region = Rect2(144, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qv06u"]
+atlas = ExtResource("1_7o2gr")
+region = Rect2(144, 144, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6bjjc"]
+atlas = ExtResource("1_7o2gr")
+region = Rect2(144, 96, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lfxoa"]
+atlas = ExtResource("1_7o2gr")
+region = Rect2(112, 64, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n243i"]
 atlas = ExtResource("1_7o2gr")
@@ -281,6 +293,15 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qv06u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6bjjc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lfxoa")
+}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_n243i")
 }, {

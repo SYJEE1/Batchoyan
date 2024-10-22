@@ -7,7 +7,7 @@ var tilemap_glow : TileMapLayer
 
 
 func _ready() -> void:
-	position += Vector2(0,3)
+	global_position += Vector2(0,3)
 	interact_collision.shape.size = Vector2(16,8)
 	tilemap_glow.modulate = Color(1,1,1,0)
 	

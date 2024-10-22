@@ -129,7 +129,7 @@ func interact(input_direction, delta) -> void:
 			if nearest.area_type == "item" and nearest.get_parent().can_stack == true: 
 				exempted_area.push_front(detected_area.pop_front())
 			
-			if nearest.area_type == "station":
+			if nearest.area_type == "station" and nearest.takes_item == true:
 				if nearest.has_method("glow"): nearest.glow(carried_item)
 			
 				if Input.is_action_just_pressed("interact"):
