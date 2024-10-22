@@ -11,6 +11,7 @@ func interact(carried_item) -> void:
 	var item = carried_item.item_sprite
 	if item.animation == "bowl_regular" and item.frame == 1: item.frame = 2
 	if item.animation == "bowl_super" and item.frame == 1: item.frame = 2
+	Global.current_item_frame = item.frame
 		
 func glow(carried_item) -> void:
 
