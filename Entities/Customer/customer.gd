@@ -36,28 +36,45 @@ func _on_mouse_entered():
 
 func _on_mouse_exited():
 	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
-	
+		
+
+func has_item_matching_order_part(order_item):
+	if order_item.custom_frame == 1 and order_item.custom_item_type == "bowl_super":
+		return true  # para sa frame 1 if gamatch idk i didnt get u well maybe
+	else:
+		return false
+
+
+func check_if_order_complete() -> bool:
+	for key in order.keys():
+		if not has_item_matching_order_part(order[key]):
+			return false  
+	return true  
+
+
 func finish_order():
 	if order_system:
-		var paid = order_system.calculate_total_price(order)
-		var price = 1.0
+		if check_if_order_complete(): 
+			var paid = order_system.calculate_total_price(order)
+			var price = 1.0
 
-		if timer:
-			var elapsed_time = timer.wait_time - timer.time_left
-			if elapsed_time <= 10:
-				price = 0.8
-			elif elapsed_time <= 20:
-				price = 0.7
-			elif elapsed_time == 30:
-				price = 0.0
+			if timer:
+				var elapsed_time = timer.wait_time - timer.time_left
+				if elapsed_time <= 10:
+					price = 0.8
+				elif elapsed_time <= 20:
+					price = 0.7
+				elif elapsed_time == 30:
+					price = 0.0
 
-			var amount_paid = paid * price
+				var amount_paid = paid * price
+				Global.set_amount_paid(amount_paid)
+			order_system.queue_free()
+			emit_signal("removed", self)
+			queue_free()
+		else:
+			print("Order not yet complete. Customer will stay.")
 
-			# Set the amount paid in the global script
-			Global.set_amount_paid(amount_paid)  # Set the amount in the global script
-		order_system.queue_free()
-	emit_signal("removed", self)
-	queue_free()
 
 func _on_timer_timeout():
 	finish_order()

@@ -3,6 +3,10 @@ extends Area2D
 var has_item = Global.get_item_state()  # Flag to track if the player is holding an item
 var player_scene: PackedScene
 
+#idk about these two damn
+var custom_item_type: String = "bowl_super"
+var custom_frame: int = 1  
+
 func _ready():
 	connect("body_entered", Callable(self, "_on_body_entered"))
 	Global.connect("item_state_changed", Callable(self, "_on_item_state_changed"))
@@ -22,4 +26,8 @@ func _on_item_state_changed(state: bool):
 	has_item = state  # Update the has_item state based on the player's signal
 
 func is_item_matching(item: RigidBody2D) -> bool:
-	return item.custom_item_type == "bowl_super"  # Example check, adjust as necessary
+	# temporary bowl_super
+	if item.custom_item_type == "bowl_super" and item.custom_frame == 1:
+		return true  # The item matches the order
+	else:
+		return false  # The item doesn't match
