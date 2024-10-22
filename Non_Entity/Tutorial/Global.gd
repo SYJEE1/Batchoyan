@@ -32,3 +32,14 @@ func update_item_state(state: bool):
 
 func get_item_state() -> bool:
 	return has_item
+
+# Getting the correct frame for orders
+
+var current_item_frame: int = 1
+
+func get_current_frame(new_frame: float):
+	current_item_frame = new_frame
+	return current_item_frame
+
+func send_current_frame() -> int:
+	return current_item_frame
