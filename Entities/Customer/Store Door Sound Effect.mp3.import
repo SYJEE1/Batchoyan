@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c7uc456nxwbcn"
+path="res://.godot/imported/Store Door Sound Effect.mp3-d8e6b3af181b5815e763ea707fe706db.mp3str"
+
+[deps]
+
+source_file="res://Entities/Customer/Store Door Sound Effect.mp3"
+dest_files=["res://.godot/imported/Store Door Sound Effect.mp3-d8e6b3af181b5815e763ea707fe706db.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
