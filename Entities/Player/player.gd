@@ -5,6 +5,7 @@ var speed := 75
 var accel := 5 
 var detected_station = []
 var detected_item = []
+var game_running : bool
 
 # node paths
 @onready var player_sprite: Sprite2D = $PlayerSprite
@@ -45,38 +46,41 @@ func _physics_process(delta: float) -> void:
 	
 	
 func movement(input_direction, delta) -> void:
+	if game_running:
+		# movement smoothness formula
+		velocity = lerp(velocity, input_direction * speed, delta * accel)
 
-		
-	
-	# movement smoothness formula
-	velocity = lerp(velocity, input_direction * speed, delta * accel)
+		# do this if player stops moving
+		if input_direction == Vector2.ZERO:
+			velocity = lerp(velocity, Vector2.ZERO, delta * accel) # apply friction
+			animation_player.speed_scale = lerp(animation_player.speed_scale, 1.0, delta* accel)
+			if animation_player.current_animation == "walk_left": animation_player.play("idle_left")
+			elif animation_player.current_animation == "walk_right": animation_player.play("idle_right")
+			elif animation_player.current_animation == "walk_up": animation_player.play("idle_up")
+			elif animation_player.current_animation == "walk_down": animation_player.play("idle_down")
 
-	# do this if player stops moving
-	if input_direction == Vector2.ZERO:
-		velocity = lerp(velocity, Vector2.ZERO, delta * accel) # apply friction
-		animation_player.speed_scale = lerp(animation_player.speed_scale, 1.0, delta* accel)
-		if animation_player.current_animation == "walk_left": animation_player.play("idle_left")
-		elif animation_player.current_animation == "walk_right": animation_player.play("idle_right")
-		elif animation_player.current_animation == "walk_up": animation_player.play("idle_up")
-		elif animation_player.current_animation == "walk_down": animation_player.play("idle_down")
-
+		else:
+			if abs(input_direction.x) > abs(input_direction.y):
+				if input_direction.x > 0: animation_player.play("walk_right")
+				else: animation_player.play("walk_left")
+			elif abs(input_direction.x) < abs(input_direction.y):
+				if input_direction.y > 0: animation_player.play("walk_down")
+				else: animation_player.play("walk_up")
+			
+			# speeds animation via velocity
+			animation_player.speed_scale = (( abs(velocity.x) + abs(velocity.y)) /30)
+			
+			# moves interact_collision (purple thing) based on movement
+			if (input_direction.x > .5 or input_direction.x < -.5) or (input_direction.y > .5 or input_direction.y < -.5): 
+				interact_collision.position = lerp(interact_collision.position, Vector2(
+				input_direction.x * 8, 
+				input_direction.y * 6), 
+				delta * accel * 5)
 	else:
-		if abs(input_direction.x) > abs(input_direction.y):
-			if input_direction.x > 0: animation_player.play("walk_right")
-			else: animation_player.play("walk_left")
-		elif abs(input_direction.x) < abs(input_direction.y):
-			if input_direction.y > 0: animation_player.play("walk_down")
-			else: animation_player.play("walk_up")
-		
-		# speeds animation via velocity
-		animation_player.speed_scale = (( abs(velocity.x) + abs(velocity.y)) /30)
-		
-		# moves interact_collision (purple thing) based on movement
-		if (input_direction.x > .5 or input_direction.x < -.5) or (input_direction.y > .5 or input_direction.y < -.5): 
-			interact_collision.position = lerp(interact_collision.position, Vector2(
-			input_direction.x * 8, 
-			input_direction.y * 6), 
-			delta * accel * 5)
+		if Input.is_action_just_pressed("X"):
+			DialogueManager.show_example_dialogue_balloon(load("res://Entities/tutorial.dialogue"), "start")
+			game_running = true
+			$"../HUD".get_node("Start").hide()
 		
 				
 func interact(input_direction, delta) -> void:

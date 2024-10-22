@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dvg4wt154im0k" path="res://Non_Entity/Main Scene/Background.png" id="5_q4k1w"]
 [ext_resource type="TileSet" uid="uid://c66g5q3avakk7" path="res://Non_Entity/Stations/Interactables.tres" id="6_72cbv"]
 [ext_resource type="FontFile" uid="uid://brb1w3e1via4m" path="res://Graphics/Fonts/mago2.ttf" id="6_dbhs7"]
-[ext_resource type="PackedScene" uid="uid://dx3jyunh4djpd" path="res://Non_Entity/hud.tscn" id="9_5nkri"]
+[ext_resource type="PackedScene" uid="uid://kvfqkdrsky2s" path="res://Non_Entity/hud.tscn" id="9_5nkri"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y2gs0"]
 texture = ExtResource("2_ujia4")
