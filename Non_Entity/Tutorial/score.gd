@@ -18,11 +18,9 @@ func set_quota(new_quota: float):
 # Function to update earnings from Global
 func update_earnings(total: float):
 	total = Global.get_amount_paid()  # Retrieve the latest amount paid from Global
-	print("Updated earnings from Global: ", total)  # Debugging output
 	update_labels()
 
 # Function to update the UI labels
 func update_labels():
 	$Quota.text = "Quota: PHP %.2f" % Global.get_quota()  # Display the Global quota
 	$Earnings.text = "Earnings: PHP %.2f" % Global.get_amount_paid()  # Display the current earnings
-	print("Updated Earnings Text: ", $Earnings.text)  # Debugging output
