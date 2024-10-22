@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://Non_Entity/Tutorial/customer_spawning.gd" id="4_44mud"]
 [ext_resource type="FontFile" uid="uid://brb1w3e1via4m" path="res://Graphics/Fonts/mago2.ttf" id="5_82s8l"]
 [ext_resource type="PackedScene" uid="uid://dwt7q45hesbr5" path="res://Entities/Player/player_scene.tscn" id="6_0017t"]
-[ext_resource type="PackedScene" uid="uid://c4l5pipqrhfpg" path="res://Entities/Customer/Order/score.tscn" id="8_g23f1"]
+[ext_resource type="PackedScene" uid="uid://c4l5pipqrhfpg" path="res://Non_Entity/Tutorial/score.tscn" id="8_g23f1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qr4o3"]
 texture = ExtResource("2_ey8nm")
