@@ -3,8 +3,10 @@ extends CharacterBody2D
 # editable variables
 var speed := 75
 var accel := 5 
-var detected_station = []
-var detected_item = []
+var detected_area = []
+var exempted_area = []
+#var detected_station = []
+#var detected_item = []
 
 # node paths
 @onready var player_sprite: Sprite2D = $PlayerSprite
@@ -78,53 +80,76 @@ func movement(input_direction, delta) -> void:
 		
 				
 func interact(input_direction, delta) -> void:
-	#print("detected Item:", detected_item)
-	#print("detected Station:", detected_station)
+	#print("detected Area:", detected_area)
+	#print("exempted Area:", exempted_area)
 	
+	var debug = $DebugCircle
+	debug.global_position = global_position	
 	
-	if detected_item.size() > 0: detected_item.sort_custom(_sort_by_distance_from_player)
-	if detected_station.size() > 0: detected_station.sort_custom(_sort_by_distance_from_player)
-		
+	#
+	#
 
 	if has_item == false: # if no item
 		speed = 60
 		
-		if detected_station.size() > 0 and detected_station[0].takes_item == false:
-			if detected_station[0].has_method("glow"): detected_station[0].glow()
-			if Input.is_action_just_pressed("interact"):
-				carried_item = detected_station[0].interact(carried_item)
-				carried_item.pickup()
-				carried_item.is_carried = true
-				has_item = true
+		if detected_area.size() > 0:
+			detected_area.sort_custom(_sort_by_distance_from_player)
+			var nearest : Area2D = detected_area[0]
+			debug.global_position = nearest.global_position
 		
-		if detected_item.size() > 0 and detected_item[0].get_parent().is_carried == false:
-			detected_item[0].get_parent().glow()
-			if Input.is_action_just_pressed("interact"):
+			if nearest.area_type == "station" == true:
+				if nearest.takes_item == true: exempted_area.push_front(detected_area.pop_front())
 				
-				if detected_station.size() > 0: # if there is station nearby
-					detected_item[0].global_position
-					detected_station.push_back(detected_station[0])
-					detected_station.pop_front()
-					
-				carried_item = detected_item[0].get_parent()
-				carried_item.pickup()
-				carried_item.is_carried = true
-				has_item = true
+				if Input.is_action_just_pressed("interact"):
+					carried_item = nearest.interact(carried_item)
+					carried_item.pickup()
+					carried_item.is_carried = true
+					has_item = true
+				
+			if nearest.area_type == "item" and nearest.get_parent().is_carried == false:
+				nearest.get_parent().glow()
+				
+				if Input.is_action_just_pressed("interact"):	
+					carried_item = nearest.get_parent()
+					carried_item.pickup()
+					carried_item.is_carried = true
+					has_item = true
+					detected_area.erase(nearest)
+		
 
 	else: # if has item 
-		speed = 50
 		carried_item.global_position = lerp(carried_item.global_position, interact_collision.global_position, delta * accel * 3)
-		if detected_station.size() > 0 and detected_station[0].takes_item == true:
-			if detected_station[0].has_method("glow"): detected_station[0].glow(carried_item)
-			if Input.is_action_just_pressed("interact"):
-				carried_item.putdown()
-				var distance = carried_item.global_position.distance_to(detected_station[0].global_position) * 22
-				var impulse = carried_item.global_position.direction_to(detected_station[0].global_position) * distance
-				carried_item.apply_impulse(impulse, Vector2(0,0))
-				detected_station[0].interact(carried_item)
-				carried_item.is_carried = false
-				carried_item = null 
-				has_item = false
+		speed = 50
+		
+		if detected_area.size() > 0:
+			detected_area.sort_custom(_sort_by_distance_from_player)
+			var nearest : Area2D = detected_area[0]
+			debug.global_position = nearest.global_position
+			
+			if nearest.area_type == "item" and nearest.get_parent().can_stack == true: 
+				exempted_area.push_front(detected_area.pop_front())
+			
+			if nearest.area_type == "station" and nearest.takes_item == true:
+					
+				#if nearest.takes_item == false: 
+					
+	
+				if nearest.has_method("glow"): nearest.glow(carried_item)
+				
+				if Input.is_action_just_pressed("interact"):
+					
+					detected_area.append(carried_item.get_child(0))
+					carried_item.putdown()
+					var distance = carried_item.global_position.distance_to(detected_area[0].global_position) * 22
+					var impulse = carried_item.global_position.direction_to(detected_area[0].global_position) * distance
+					carried_item.apply_impulse(impulse, Vector2(0,0))
+					nearest.interact(carried_item)
+					carried_item.is_carried = false
+					carried_item = null 
+					has_item = false
+
+					
+
 
 
 
@@ -133,10 +158,14 @@ func _sort_by_distance_from_player(area1, area2):
 	var area2_to_player = interact_collision.global_position.distance_to(area2.global_position)
 	return area1_to_player < area2_to_player
 
-func _on_itementered(area: Area2D) -> void:
-	if area.get_collision_layer() == 8 and has_item == false: detected_item.push_back(area)
-	if area.get_collision_layer() == 16: detected_station.push_back(area)
+func _on_itementered(area: Area2D) -> void: 
+	if area in exempted_area: pass
+	else: detected_area.push_back(area)
+	
+	if area.has_method("hotbar_peek"): area.hotbar_peek(true)
+
 func _on_itemexited(area: Area2D) -> void: 
-	if area.collision_layer == 8: detected_item.erase(area)
-	if area.collision_layer == 16: detected_station.erase(area)
+	if area in exempted_area: exempted_area.erase(area)
+	detected_area.erase(area)
+	if area.has_method("hotbar_peek"): area.hotbar_peek(false)
 	

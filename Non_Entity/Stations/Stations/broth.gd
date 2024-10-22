@@ -1,11 +1,16 @@
 extends Area2D
 
+const area_type := "station"
 var takes_item: bool = true
 var tilemap_glow : TileMapLayer
+@onready var interact_collision: CollisionShape2D = $InteractCollision
 
 
 func _ready() -> void:
+	position += Vector2(0,3)
+	interact_collision.shape.size = Vector2(16,8)
 	tilemap_glow.modulate = Color(1,1,1,0)
+	
 
 func interact(carried_item) -> void:
 	var item = carried_item.item_sprite

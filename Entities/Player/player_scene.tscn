@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://dwt7q45hesbr5"]
+[gd_scene load_steps=16 format=3 uid="uid://dwt7q45hesbr5"]
 
 [ext_resource type="Script" path="res://Entities/Player/player.gd" id="1_rkf18"]
 [ext_resource type="Texture2D" uid="uid://ccsegplyly1lu" path="res://Entities/Player/Player Sprites.png" id="2_f1tmk"]
+[ext_resource type="Texture2D" uid="uid://cnmofymqepbim" path="res://Entities/Player/debug circle.png" id="3_utlam"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ij2xq"]
 radius = 2.5
@@ -210,6 +211,12 @@ libraries = {
 "": SubResource("AnimationLibrary_ttnoe")
 }
 
+[node name="DebugCircle" type="Sprite2D" parent="."]
+top_level = true
+position = Vector2(0, 1)
+texture = ExtResource("3_utlam")
+
+[connection signal="property_list_changed" from="." to="." method="_on_property_list_changed"]
 [connection signal="area_entered" from="InteractArea" to="." method="_on_itementered"]
 [connection signal="area_exited" from="InteractArea" to="." method="_on_itemexited"]
 [connection signal="body_entered" from="InteractArea" to="." method="_on_bodyentered_InteractArea"]

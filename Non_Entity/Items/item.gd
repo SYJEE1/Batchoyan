@@ -1,6 +1,5 @@
 extends RigidBody2D
 
-
 @onready var pickup_area: Area2D = $PickupArea
 @onready var pickup_collision: CollisionShape2D = $PickupArea/PickupCollision
 @onready var item_shadow: AnimatedSprite2D = $ItemShadow
@@ -10,11 +9,12 @@ extends RigidBody2D
 @onready var glow_animation: AnimationPlayer = $ItemGlow/GlowAnimation
 
 const sprite_frames = preload("res://Non_Entity/Items/Item.tres")
-
 @export var custom_item_type: StringName
 @export var custom_frame: int = 1
 
-@onready var is_carried : bool = false
+var is_carried := false
+var can_stack := true
+
 
 func _ready() -> void:
 	if custom_item_type: item_sprite.animation = custom_item_type
@@ -60,3 +60,6 @@ func pickup() -> void:
 func putdown() -> void:
 	item_animation.play("putdown")
 	is_carried = false
+
+func dead() -> void:
+	queue_free()
