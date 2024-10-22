@@ -1,6 +1,8 @@
 # In Global.gd
 extends Node
 
+# For Scores
+
 var amount_paid: float = 0.0
 var total_earnings: float = 0.0
 var quota: float = 1000.0
@@ -17,3 +19,16 @@ func set_amount_paid(new_amount_paid: float):
 
 func get_amount_paid() -> float:
 	return amount_paid
+
+# For Giving Orders to Customers
+
+var has_item: bool = false
+signal item_state_changed(state: bool) 
+
+func update_item_state(state: bool):
+	has_item = state
+	emit_signal("item_state_changed", state)  # Notify listeners
+	print("Global has_item updated to: ", has_item)
+
+func get_item_state() -> bool:
+	return has_item
