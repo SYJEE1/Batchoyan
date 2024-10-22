@@ -22,4 +22,6 @@ func _on_item_state_changed(state: bool):
 	has_item = state  # Update the has_item state based on the player's signal
 
 func is_item_matching(item: RigidBody2D) -> bool:
-	return item.custom_item_type == "bowl_super"  # Example check, adjust as necessary
+	var frame = Global.send_current_frame()
+	print(item.custom_item_type, " ", frame)
+	return item.custom_item_type == "bowl_super" and frame == 2
