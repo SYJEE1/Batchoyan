@@ -7,11 +7,10 @@ var tilemap_glow : TileMapLayer
 
 
 func _ready() -> void:
-	position += Vector2(0,3)
+	global_position += Vector2(0,3)
 	interact_collision.shape.size = Vector2(16,8)
 	tilemap_glow.modulate = Color(1,1,1,0)
 	
-
 func interact(carried_item) -> void:
 	var item = carried_item.item_sprite
 	if item.animation == "bowl_regular" and item.frame == 1: item.frame = 2

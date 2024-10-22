@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://dwt7q45hesbr5"]
+[gd_scene load_steps=17 format=3 uid="uid://dwt7q45hesbr5"]
 
 [ext_resource type="Script" path="res://Entities/Player/player.gd" id="1_rkf18"]
 [ext_resource type="Texture2D" uid="uid://ccsegplyly1lu" path="res://Entities/Player/Player Sprites.png" id="2_f1tmk"]
 [ext_resource type="Texture2D" uid="uid://cnmofymqepbim" path="res://Entities/Player/debug circle.png" id="3_utlam"]
+[ext_resource type="Texture2D" uid="uid://c137i4csss41g" path="res://Entities/Player/charactershadow.png" id="3_yojs3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ij2xq"]
 radius = 2.5
@@ -198,6 +199,12 @@ shape = SubResource("CircleShape2D_x02q5")
 disabled = true
 debug_color = Color(0.578428, 0.384124, 1, 0.42)
 
+[node name="Charactershadow" type="Sprite2D" parent="."]
+self_modulate = Color(0, 0, 0, 0.447059)
+z_index = -1
+y_sort_enabled = true
+texture = ExtResource("3_yojs3")
+
 [node name="PlayerSprite" type="Sprite2D" parent="."]
 y_sort_enabled = true
 position = Vector2(0, -8)
@@ -213,6 +220,7 @@ libraries = {
 
 [node name="DebugCircle" type="Sprite2D" parent="."]
 top_level = true
+z_index = 2
 position = Vector2(0, 1)
 texture = ExtResource("3_utlam")
 
