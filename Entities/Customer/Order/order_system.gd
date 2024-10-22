@@ -27,7 +27,6 @@ func _ready():
 	var order = tutorial_order()
 	display_order(order)
 	var total_price = calculate_total_price(order)
-	print("Total Price: PHP", total_price)  # Print the total price
 
 func tutorial_order():
 	var order = {}
