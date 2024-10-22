@@ -1,56 +1,71 @@
+# In Customer.gd
 extends CharacterBody2D
 
-@export var OrderPopupScene: PackedScene = preload("res://Entities/Customer/TextPopup.tscn")
+@export var spawn_point: Node2D
+var is_clickable: bool = true
+var order: Dictionary = {}
+var order_system: Node
+var timer: Timer
 
-var is_clickable: bool = true  # Flag to determine if the customer is clickable
+signal removed
+signal order_completed(amount_paid)
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	# Ensure the node is input pickable
-	set_process_input(true)  # Ensure you have a CollisionShape2D
+	var order_system_scene: PackedScene = load("res://Entities/Customer/Order/order_system.tscn")
+	order_system = order_system_scene.instantiate()
+	add_child(order_system)
+	order = order_system.tutorial_order()
+	order_system.display_order(order)
+
+	set_process_input(true)  
 	self.mouse_entered.connect(_on_mouse_entered)
 	self.mouse_exited.connect(_on_mouse_exited)
 
-	show_order_popup()  # Show the order popup automatically
+	timer = Timer.new()
+	timer.wait_time = 30
+	timer.one_shot = true
+	timer.connect("timeout", Callable (self, "_on_timer_timeout"))
+	add_child(timer)
+	timer.start()
 
-# Function to show the order popup
-func show_order_popup():
-	var popup_instance = OrderPopupScene.instantiate()
-	get_tree().current_scene.add_child(popup_instance)
-
-	# Get the customer's position
-	var customer_position = position  # Assuming this script is on the customer node
-
-	# Set the popup position (e.g., above the customer)
-	popup_instance.position = customer_position + Vector2(10, 0)  # Adjust the offset as needed
-
-	# Show the popup
-	if popup_instance.has_method("popup_centered"):
-		popup_instance.popup_centered()  # Center the popup if using PopupPanel
-
-	# Connect the popup's "popup_hide" signal to a function to reset clickability
-	popup_instance.connect("popup_hide", Callable(self, "_on_popup_hide"))
-
-	# Disable clicking on the customer
-	is_clickable = false
-
-# Called when the mouse enters the character's area
 func _on_mouse_entered():
 	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
 
-# Called when the mouse exits the character's area
 func _on_mouse_exited():
 	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 
-# Input event handling
 func _input_event(_viewport: Node, event: InputEvent, shape_idx: int):
-	# Check if the event is a mouse button event and if it was pressed.
 	if is_clickable and event is InputEventMouseButton and event.pressed:
-		# Check if the mouse click is within the bounds of the character.
-		if shape_idx != -1:  # shape_idx is -1 if the click is outside the node's collision shape.
-			print("take order")  # This line can be removed if not needed
+		if shape_idx != -1:
+			print("Finish order")
+			finish_order()
 
-# Called when the popup is hidden
-func _on_popup_hide():
-	is_clickable = true  # Re-enable clicking on the customer
-	
+func finish_order():
+	if order_system:
+		var paid = order_system.calculate_total_price(order)
+		print("Total price calculated: ", paid)
+		var price = 1.0
+
+		if timer:
+			var elapsed_time = timer.wait_time - timer.time_left
+			if elapsed_time <= 10:
+				price = 0.8
+			elif elapsed_time <= 20:
+				price = 0.7
+			elif elapsed_time == 30:
+				price = 0.0
+
+			var amount_paid = paid * price
+			print("Final Price: PHP", amount_paid)
+			
+			# Set the amount paid in the global script
+			Global.set_amount_paid(amount_paid)  # Set the amount in the global script
+
+		order_system.queue_free()
+	print("Emitting removed signal for customer")
+	emit_signal("removed", self)
+	queue_free()
+
+func _on_timer_timeout():
+	print("Time is up! The customer leaves.")
+	finish_order()
