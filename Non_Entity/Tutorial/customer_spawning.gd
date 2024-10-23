@@ -4,16 +4,23 @@ extends Node2D
 @onready var spawn_point_1 = get_node("A")
 @onready var spawn_point_2 = get_node("B")
 @onready var spawn_point_3 = get_node("C")
-@export var min_spawn_interval: float = 2.0
+@export var min_spawn_interval: float = 3.0
 @export var max_spawn_interval: float = 5.0
 
-var max_total_customers: int = 15
 var total_customers_spawned: int = 0
 var timer: Timer = null
 var spawn_points: Array = []
 var occupied_points: Dictionary = {}  # Dictionary to keep track of occupied points
+var audio_stream_player: AudioStreamPlayer
+var spawn_sound: AudioStream
+var spawn_volume_db: float = -25.0
 
 func _ready():
+	spawn_sound = preload("res://Entities/Customer/Store Door Sound Effect.mp3")
+	audio_stream_player = AudioStreamPlayer.new()  
+	audio_stream_player.stream = spawn_sound
+	audio_stream_player.volume_db = spawn_volume_db
+	add_child(audio_stream_player)
 	timer = Timer.new()
 	add_child(timer)
 	timer.connect("timeout", Callable(self, "spawn_customer"))
@@ -22,8 +29,10 @@ func _ready():
 	for point in spawn_points:
 		occupied_points[point] = false  # Initialize all points as unoccupied
 	timer.start(randf_range(min_spawn_interval, max_spawn_interval))
+	Global.connect("max_customers", Callable (self, "spawn_customer"))
 
 func spawn_customer():
+	var max_total_customers = Global.send_max_customers()
 	if total_customers_spawned >= max_total_customers:
 		return
 	
@@ -32,8 +41,12 @@ func spawn_customer():
 		var point = available_points[randi() % available_points.size()]  # Randomly select an available point
 		var customer = customer_scene.instantiate()  # Create a new customer
 		add_customer_to_point(customer, point)  # Add the customer to the selected point
+		audio_stream_player.play()
 		occupied_points[point] = true  # Mark the point as occupied
 		total_customers_spawned += 1  # Increment total customers spawned
+		Global.get_total_customers(total_customers_spawned)
+		# Global.checking_condition()
+		print(total_customers_spawned)
 
 	timer.start(randf_range(min_spawn_interval, max_spawn_interval))
 

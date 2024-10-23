@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjcshsna8sxjo"
-path="res://.godot/imported/pork.png-00aad2b0c5e16fe16e245f187069e1f1.ctex"
+uid="uid://b5mx1771tborj"
+path="res://.godot/imported/c3.png-ae640379d3f5f57674a892696d6ad3b6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Entities/Customer/Order/pork.png"
-dest_files=["res://.godot/imported/pork.png-00aad2b0c5e16fe16e245f187069e1f1.ctex"]
+source_file="res://Entities/Customer/Order/ingredients/c3.png"
+dest_files=["res://.godot/imported/c3.png-ae640379d3f5f57674a892696d6ad3b6.ctex"]
 
 [params]
 
