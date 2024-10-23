@@ -29,7 +29,6 @@ func _ready() -> void:
 	else: 
 		pickup_collision.disabled = false
 		is_carried = false
-	
 		
 func _physics_process(delta: float) -> void:
 	pass

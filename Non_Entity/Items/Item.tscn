@@ -220,7 +220,7 @@ playback_default_blend_time = 0.1
 [node name="ItemSprite" type="AnimatedSprite2D" parent="."]
 y_sort_enabled = true
 sprite_frames = ExtResource("2_opl75")
-animation = &"pork"
+animation = &"sprike"
 speed_scale = 0.0
 offset = Vector2(0, -3)
 
