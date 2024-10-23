@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://f04ap486o7gb"
-path="res://.godot/imported/miki-noodles.png-20615ae25fff78c61b76270af7d01812.ctex"
+uid="uid://vuy3wa75jvpa"
+path="res://.godot/imported/miki.png-7784ba4844bf2f0190aeab11bb0cd621.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Entities/Customer/Order/miki-noodles.png"
-dest_files=["res://.godot/imported/miki-noodles.png-20615ae25fff78c61b76270af7d01812.ctex"]
+source_file="res://Entities/Customer/Order/ingredients/miki.png"
+dest_files=["res://.godot/imported/miki.png-7784ba4844bf2f0190aeab11bb0cd621.ctex"]
 
 [params]
 

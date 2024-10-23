@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cp771tas257b2"
-path="res://.godot/imported/liver.png-49b1fcb903955760d93a5b771235362e.ctex"
+uid="uid://khka22yon8yu"
+path="res://.godot/imported/quota.png-66ea9913de770da21289a6f9eac0cfc3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Entities/Customer/Order/liver.png"
-dest_files=["res://.godot/imported/liver.png-49b1fcb903955760d93a5b771235362e.ctex"]
+source_file="res://Non_Entity/Tutorial/score-img/quota.png"
+dest_files=["res://.godot/imported/quota.png-66ea9913de770da21289a6f9eac0cfc3.ctex"]
 
 [params]
 

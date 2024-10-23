@@ -66,6 +66,7 @@ offset_bottom = 23.9998
 scale = Vector2(0.995045, 0.99585)
 size_flags_horizontal = 0
 theme_override_fonts/font = ExtResource("2_oxxl7")
+text = "stage 1"
 label_settings = SubResource("LabelSettings_2msje")
 horizontal_alignment = 1
 
