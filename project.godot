@@ -19,10 +19,6 @@ run/main_scene="res://Non_Entity/Main Scene/main_scene.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://Graphics/bachoicelogo smol transparent.png"
 
-[autoload]
-
-Global="*res://Non_Entity/Tutorial/Global.gd"
-
 [display]
 
 window/size/viewport_width=640
