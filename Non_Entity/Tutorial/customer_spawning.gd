@@ -7,7 +7,6 @@ extends Node2D
 @export var min_spawn_interval: float = 3.0
 @export var max_spawn_interval: float = 5.0
 
-var max_total_customers: int = 15
 var total_customers_spawned: int = 0
 var timer: Timer = null
 var spawn_points: Array = []
@@ -30,8 +29,10 @@ func _ready():
 	for point in spawn_points:
 		occupied_points[point] = false  # Initialize all points as unoccupied
 	timer.start(randf_range(min_spawn_interval, max_spawn_interval))
+	Global.connect("max_customers", Callable (self, "spawn_customer"))
 
 func spawn_customer():
+	var max_total_customers = Global.send_max_customers()
 	if total_customers_spawned >= max_total_customers:
 		return
 	

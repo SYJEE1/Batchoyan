@@ -34,13 +34,15 @@ var sidedish = {
 }
 # Nodes
 @onready var vbox_container= get_node("Control/VBoxContainer")
+var order_function_name: String = ""
 
 func _ready():
-	var order = tutorial()
-	print(order)
+	var order_function_name = Global.send_order() 
+	var order = call(order_function_name)
 	var total_price = calculate_total_price(order)
-	print("Total Price: ", total_price)
-	display_order(order)  # Call display_order to visualize the order
+	print(order)
+	print (total_price)
+	display_order(order)
 
 func tutorial() -> Dictionary:
 	var order = {}

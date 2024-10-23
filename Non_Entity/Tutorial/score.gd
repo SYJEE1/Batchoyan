@@ -3,8 +3,6 @@ extends Control
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# Set initial quota from Global
-	update_stage(Global.send_stage_num())  # Initialize quota from Global
-	
 	update_labels()  # Update labels to reflect initial values
 	Global.connect("amount_paid_changed", Callable (self, "update_earnings"))
 	Global.connect("new_stage_number", Callable (self, "update_stage"))
@@ -16,7 +14,6 @@ func update_earnings(total: float):
 	update_labels()
 
 func update_stage (new_stage: String):
-	new_stage = Global.send_stage_num()
 	update_labels()
 	
 # Function to update the UI labels

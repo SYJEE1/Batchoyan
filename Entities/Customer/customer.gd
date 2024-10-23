@@ -17,7 +17,9 @@ func _ready():
 	var order_system_scene: PackedScene = load("res://Entities/Customer/Order/order_system.tscn")
 	order_system = order_system_scene.instantiate()
 	add_child(order_system)
-	order = order_system.tutorial()
+	
+	var order_function_name = Global.send_order() 
+	var order = order_system.call(order_function_name)
 	order_system.display_order(order)
 	
 	set_process_input(true)  
