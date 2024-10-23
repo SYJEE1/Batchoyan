@@ -105,7 +105,7 @@ func interact(input_direction, delta) -> void:
 					carried_item.pickup()
 					carried_item.is_carried = true
 					has_item = true
-          Global.update_item_state(true)
+					Global.update_item_state(true)
 				
 			if nearest.area_type == "item" and nearest.get_parent().is_carried == false:
 				nearest.get_parent().glow()
@@ -149,11 +149,11 @@ func interact(input_direction, delta) -> void:
 					carried_item.is_carried = false
 					carried_item = null 
 					has_item = false
-          Global.update_item_state(true) 
+					Global.update_item_state(true) 
 
 
-	else: # if has item 
-		carried_item.global_position = lerp(carried_item.global_position, interact_collision.global_position, delta * accel * 3)
+		else: # if has item 
+			carried_item.global_position = lerp(carried_item.global_position, interact_collision.global_position, delta * accel * 3)
 
 
 		speed = 50
@@ -184,7 +184,7 @@ func interact(input_direction, delta) -> void:
 					carried_item.is_carried = false
 					carried_item = null 
 					has_item = false
-				  Global.update_item_state(false)  # Emit signal
+					Global.update_item_state(false)  # Emit signal
 
 func _sort_by_distance_from_player(area1, area2):
 	var area1_to_player = interact_collision.global_position.distance_to(area1.global_position)
