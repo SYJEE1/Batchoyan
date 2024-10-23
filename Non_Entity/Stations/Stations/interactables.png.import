@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bu41gi12eevg8"
-path="res://.godot/imported/interactables.png-704c8dfaafbc4dc467562588544df49d.ctex"
+uid="uid://bmqftefku1wvf"
+path="res://.godot/imported/interactables.png-b595a4c8bbb70dfb38ba0930ec3e3b79.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Non_Entity/Stations/interactables.png"
-dest_files=["res://.godot/imported/interactables.png-704c8dfaafbc4dc467562588544df49d.ctex"]
+source_file="res://Non_Entity/Stations/Stations/interactables.png"
+dest_files=["res://.godot/imported/interactables.png-b595a4c8bbb70dfb38ba0930ec3e3b79.ctex"]
 
 [params]
 

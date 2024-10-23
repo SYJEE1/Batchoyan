@@ -1,6 +1,6 @@
 extends Area2D
 
-const area_type := &"station"
+const area_type := "countertop"
 var takes_item: bool = true
 var tilemap_glow : TileMapLayer
 
