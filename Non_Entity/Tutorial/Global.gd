@@ -20,6 +20,7 @@ signal amount_paid_changed(new_amount: float)
 signal new_stage_number(stage_number: String)
 signal max_customers(customers: int)
 signal new_ordersystem(order: String)
+signal total_customers_updated
 
 func _ready () -> void:
 	var tutorial = tutorial_scene.instantiate()
@@ -37,6 +38,15 @@ func _ready () -> void:
 func _on_updates_completed() -> void:
 	send_quota()  # Call the function to send the quota
 	send_stage_num()  # Call the function to send the stage number
+
+func checking_condition():
+	var total = send_total_customers()
+	var max = send_max_customers()
+	if total >= max:
+		print("Level Finished")
+		get_tree().change_scene_to_file("res://Non_Entity/Main Scene/main_scene.tscn")
+	else:
+		print("Level Not Finished")
 
 # Quota
 func get_quota(quota: float):
@@ -58,6 +68,7 @@ func get_total_customers(customers: int):
 	if customers != total_spawned_customers:  # Only update if there's a change
 		total_spawned_customers = customers
 		return total_spawned_customers
+		emit_signal("total_customers_updated")
 func send_total_customers() -> float:
 	return total_spawned_customers
 

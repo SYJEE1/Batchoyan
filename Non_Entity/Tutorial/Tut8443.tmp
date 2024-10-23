@@ -173,12 +173,10 @@ tile_set = ExtResource("3_rrfj2")
 
 [node name="ColaRef" type="TileMapLayer" parent="TileMaps"]
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AAAMAAMAAAANAAQAAAAMAAQAAAANAAUAAAA=")
 tile_set = ExtResource("3_rrfj2")
 
 [node name="Glow" type="TileMapLayer" parent="TileMaps/ColaRef"]
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AAALAAIAAAAOAAMAAAALAAMAAAAOAAQAAAALAAQAAAAOAAUAAAALAAUAAAAOAAYAAAAMAAIAAAAPAAMAAAAMAAMAAAAPAAQAAAAMAAQAAAAPAAUAAAAMAAUAAAAPAAYAAAANAAIAAAAQAAMAAAANAAMAAAAQAAQAAAANAAQAAAAQAAUAAAANAAUAAAAQAAYAAAA=")
 tile_set = ExtResource("3_rrfj2")
 
 [node name="Ref" type="TileMapLayer" parent="TileMaps"]
