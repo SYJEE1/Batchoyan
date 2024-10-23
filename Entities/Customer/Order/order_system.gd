@@ -1,109 +1,476 @@
 extends Node2D
 
-# Preload assets
-var broth = {"Broth": preload("res://Entities/Customer/Order/broth.png")}
-var noodles = {"NoodleType1": preload("res://Entities/Customer/Order/miki-noodles.png")}
+# Preload assets with their prices
+var bowl = {
+	"Bowl1": {"texture": preload("res://Entities/Customer/Order/ingredients/bowl-regular.png"), "price": 30, "item_type": "bowl_regular", "frame": 1},
+	"Bowl2": {"texture": preload("res://Entities/Customer/Order/ingredients/bowl-super.png"), "price": 50, "item_type": "bowl_super", "frame": 1}
+}
+var noodles = {
+	"NoodleType1": {"texture": preload("res://Entities/Customer/Order/ingredients/miki.png"), "price": 20},
+	"NoodleType2": {"texture": preload("res://Entities/Customer/Order/ingredients/miswa.png"), "price": 20},
+	"NoodleType3": {"texture": preload("res://Entities/Customer/Order/ingredients/sotanghon.png"), "price": 20},
+	"NoodleType4": {"texture": preload("res://Entities/Customer/Order/ingredients/bihon.png"), "price": 20}
+}
 var toppings = {
-	"Topping1": preload("res://Entities/Customer/Order/pork.png"), 
-	"Topping2": preload("res://Entities/Customer/Order/liver.png"), 
-	"Topping3": preload("res://Entities/Customer/Order/chicharon.png")
+	"Topping1": {"texture": preload("res://Entities/Customer/Order/ingredients/pork.png"), "price": 10},
+	"Topping2": {"texture": preload("res://Entities/Customer/Order/ingredients/liver.png"), "price": 10},
+	"Topping3": {"texture": preload("res://Entities/Customer/Order/ingredients/chicharon-temp.png"), "price": 10},
+	"Topping4": {"texture": preload("res://Entities/Customer/Order/ingredients/egg.png"), "price": 10}
 }
-var background = {"Background": preload("res://Entities/Customer/Order/order-bg-4-ingre.png")}
-
-# Prices for each item
-var prices: Dictionary = {
-	"Broth": 50,  # Price for broth
-	"NoodleType1": 40,  # Price for noodle
-	"Topping1": 20,  # Price for topping 1
-	"Topping2": 20,  # Price for topping 2
-	"Topping3": 20   # Price for topping 3
+var drinks = {
+	"Drink1": {"texture": preload("res://Entities/Customer/Order/ingredients/water.png"), "price": 10, "item_type": "water", "frame": 1},
+	"Drink2": {"texture": preload("res://Entities/Customer/Order/ingredients/cora.png"), "price": 20, "item_type": "cora", "frame": 1},
+	"Drink3": {"texture": preload("res://Entities/Customer/Order/ingredients/sprike.png"), "price": 20, "item_type": "sprike", "frame": 1},
+	"Drink4": {"texture": preload("res://Entities/Customer/Order/ingredients/loyal.png"), "price": 20, "item_type": "loyal", "frame": 1},
+	"Drink5": {"texture": preload("res://Entities/Customer/Order/ingredients/c3.png"), "price": 15, "item_type": "c3", "frame": 1}
 }
-
+var sidedish = {
+	"Sidedish1": {"texture": preload("res://Entities/Customer/Order/ingredients/puto.png"), "price": 20},
+	"Sidedish2": {"texture": preload("res://Entities/Customer/Order/ingredients/pandesal.png"), "price": 20}
+}
 # Nodes
-var order_display 
-@onready var hbox_container = get_node("Control/HBoxContainer")
+@onready var vbox_container= get_node("Control/VBoxContainer")
+var order_function_name: String = ""
 
 func _ready():
-	var order = tutorial_order()
-	display_order(order)
+	var order_function_name = Global.send_order() 
+	var order = call(order_function_name)
 	var total_price = calculate_total_price(order)
-	print("Total Price: PHP", total_price)  # Print the total price
+	print(order)
+	display_order(order)
+	animation_name(order)
+	animation_frame(order)
+	print(animation_frame(order))
+	Global.send_current_animation()
 
-func tutorial_order():
+func tutorial() -> Dictionary:
 	var order = {}
 	
-	# Add broth
-	order["Broth"] = broth["Broth"]
-	
-	# Only 1 noodle type
-	order["Noodle"] = noodles["NoodleType1"]
-	
-	# Randomize toppings (at least 1, up to 3)
+	# Populate the bowl
+	var bowl_keys = bowl.keys()
+	order["Bowl"] = bowl_keys[0]  # Store the key
+
+	# Populate the noodle
+	var noodle_keys = noodles.keys()
+	order["Noodle"] = noodle_keys[0]  # Store the key
+
+	# Populate toppings
 	var topping_keys = toppings.keys()
 	var chosen_toppings = []
-	var num_toppings = randi() % 3 + 1  # between 1 and 3 toppings
+	for topping_choice in topping_keys:
+		order[topping_choice] = topping_choice
+		chosen_toppings.append(topping_choice)
+
+	return order
+func stage1_order() -> Dictionary:
+	var order = {}
+	
+	# Populate the bowl
+	var bowl_keys = bowl.keys()
+	order["Bowl"] = bowl_keys[0]  # Store the key
+
+	# Populate the noodle
+	var noodle_keys = noodles.keys()
+	order["Noodle"] = noodle_keys[0]  # Store the key
+
+	# Populate toppings
+	var topping_keys = toppings.keys()
+	var chosen_toppings = []
+	var num_toppings = randi() % 4 + 1 
 	for i in range(num_toppings):
 		var topping_choice = topping_keys[randi() % topping_keys.size()]
 		if topping_choice not in chosen_toppings:
-			order[topping_choice] = toppings[topping_choice]
+			order[topping_choice] = topping_choice  # Store the key
 			chosen_toppings.append(topping_choice)
-	
-	return order
 
+	return order
+func stage2_order() -> Dictionary:
+	var order = {}
+	
+	# Populate the bowl
+	var bowl_keys = bowl.keys()
+	order["Bowl"] = bowl_keys[0]  # Store the key
+
+	# Populate the noodle
+	var noodle_keys = noodles.keys()
+	order["Noodle"] = noodle_keys[0]  # Store the key
+
+	# Populate toppings
+	var topping_keys = toppings.keys()
+	var chosen_toppings = []
+	var num_toppings = randi() % 4 + 1 
+	for i in range(num_toppings):
+		var topping_choice = topping_keys[randi() % topping_keys.size()]
+		if topping_choice not in chosen_toppings:
+			order[topping_choice] = topping_choice  # Store the key
+			chosen_toppings.append(topping_choice)
+
+	# Populate drinks
+	var drink_keys = drinks.keys()
+	order["Drink"] = drink_keys[0]  # Store the key
+
+	return order
+func stage3_order() -> Dictionary:
+	var order = {}
+	
+	# Populate the bowl
+	var bowl_keys = bowl.keys()
+	order["Bowl"] = bowl_keys[0]  # Store the key
+
+	# Populate the noodle
+	var noodle_keys = noodles.keys()
+	order["Noodle"] = noodle_keys[randi() % 2]  # Store the key
+
+	# Populate toppings
+	var topping_keys = toppings.keys()
+	var chosen_toppings = []
+	var num_toppings = randi() % 4 + 1 
+	for i in range(num_toppings):
+		var topping_choice = topping_keys[randi() % topping_keys.size()]
+		if topping_choice not in chosen_toppings:
+			order[topping_choice] = topping_choice  # Store the key
+			chosen_toppings.append(topping_choice)
+
+	# Populate drinks
+	var drink_keys = drinks.keys()
+	order["Drink"] = drink_keys[0]  # Store the key
+
+	return order
+func stage4_order() -> Dictionary:
+	var order = {}
+	
+	# Populate the bowl
+	var bowl_keys = bowl.keys()
+	order["Bowl"] = bowl_keys[randi() % bowl_keys.size()]  # Store the key
+
+	# Populate the noodle
+	var noodle_keys = noodles.keys()
+	order["Noodle"] = noodle_keys[randi() % 2]  # Store the key
+
+	# Populate toppings
+	var topping_keys = toppings.keys()
+	var chosen_toppings = []
+	var num_toppings = randi() % 4 + 1 
+	for i in range(num_toppings):
+		var topping_choice = topping_keys[randi() % topping_keys.size()]
+		if topping_choice not in chosen_toppings:
+			order[topping_choice] = topping_choice  # Store the key
+			chosen_toppings.append(topping_choice)
+
+	# Populate drinks
+	var drink_keys = drinks.keys()
+	order["Drink"] = drink_keys[0]  # Store the key
+
+	return order
+func stage5_order() -> Dictionary:
+	var order = {}
+	
+	# Populate the bowl
+	var bowl_keys = bowl.keys()
+	order["Bowl"] = bowl_keys[randi() % bowl_keys.size()]  # Store the key
+
+	# Populate the noodle
+	var noodle_keys = noodles.keys()
+	order["Noodle"] = noodle_keys[randi() % 3]  # Store the key
+
+	# Populate toppings
+	var topping_keys = toppings.keys()
+	var chosen_toppings = []
+	var num_toppings = randi() % 4 + 1 
+	for i in range(num_toppings):
+		var topping_choice = topping_keys[randi() % topping_keys.size()]
+		if topping_choice not in chosen_toppings:
+			order[topping_choice] = topping_choice  # Store the key
+			chosen_toppings.append(topping_choice)
+
+	# Populate drinks
+	var drink_keys = drinks.keys()
+	order["Drink"] = drink_keys[0]  # Store the key
+
+	return order
+func stage6_order() -> Dictionary:
+	var order = {}
+	
+	# Populate the bowl
+	var bowl_keys = bowl.keys()
+	order["Bowl"] = bowl_keys[randi() % bowl_keys.size()]  # Store the key
+
+	# Populate the noodle
+	var noodle_keys = noodles.keys()
+	order["Noodle"] = noodle_keys[randi() % 3]  # Store the key
+
+	# Populate toppings
+	var topping_keys = toppings.keys()
+	var chosen_toppings = []
+	var num_toppings = randi() % 4 + 1 
+	for i in range(num_toppings):
+		var topping_choice = topping_keys[randi() % topping_keys.size()]
+		if topping_choice not in chosen_toppings:
+			order[topping_choice] = topping_choice  # Store the key
+			chosen_toppings.append(topping_choice)
+
+	# Populate drinks
+	var drink_keys = drinks.keys()
+	order["Drink"] = drink_keys[randi() % drink_keys.size()]  # Store the key
+
+	return order
+func stage7_order() -> Dictionary:
+	var order = {}
+	
+	# Populate the bowl
+	var bowl_keys = bowl.keys()
+	order["Bowl"] = bowl_keys[randi() % bowl_keys.size()]  # Store the key
+
+	# Populate the noodle
+	var noodle_keys = noodles.keys()
+	order["Noodle"] = noodle_keys[randi() % 3]  # Store the key
+
+	# Populate toppings
+	var topping_keys = toppings.keys()
+	var chosen_toppings = []
+	var num_toppings = randi() % 4 + 1 
+	for i in range(num_toppings):
+		var topping_choice = topping_keys[randi() % topping_keys.size()]
+		if topping_choice not in chosen_toppings:
+			order[topping_choice] = topping_choice  # Store the key
+			chosen_toppings.append(topping_choice)
+
+	# Populate drinks
+	var drink_keys = drinks.keys()
+	order["Drink"] = drink_keys[randi() % drink_keys.size()]  # Store the key
+	
+	var sidedish_keys = sidedish.keys()
+	order["Sidedish"] = sidedish_keys[0]
+
+	return order
+func stage8_order() -> Dictionary:
+	var order = {}
+	
+	# Populate the bowl
+	var bowl_keys = bowl.keys()
+	order["Bowl"] = bowl_keys[randi() % bowl_keys.size()]  # Store the key
+
+	# Populate the noodle
+	var noodle_keys = noodles.keys()
+	order["Noodle"] = noodle_keys[randi() % noodle_keys.size()]  # Store the key
+
+	# Populate toppings
+	var topping_keys = toppings.keys()
+	var chosen_toppings = []
+	var num_toppings = randi() % 4 + 1 
+	for i in range(num_toppings):
+		var topping_choice = topping_keys[randi() % topping_keys.size()]
+		if topping_choice not in chosen_toppings:
+			order[topping_choice] = topping_choice  # Store the key
+			chosen_toppings.append(topping_choice)
+
+	# Populate drinks
+	var drink_keys = drinks.keys()
+	order["Drink"] = drink_keys[randi() % drink_keys.size()]  # Store the key
+	
+	var sidedish_keys = sidedish.keys()
+	order["Sidedish"] = sidedish_keys[0]
+
+	return order
+func stage9_order() -> Dictionary:
+	var order = {}
+	
+	# Populate the bowl
+	var bowl_keys = bowl.keys()
+	order["Bowl"] = bowl_keys[randi() % bowl_keys.size()]  # Store the key
+
+	# Populate the noodle
+	var noodle_keys = noodles.keys()
+	order["Noodle"] = noodle_keys[randi() % noodle_keys.size()]  # Store the key
+
+	# Populate toppings
+	var topping_keys = toppings.keys()
+	var chosen_toppings = []
+	var num_toppings = randi() % 4 + 1 
+	for i in range(num_toppings):
+		var topping_choice = topping_keys[randi() % topping_keys.size()]
+		if topping_choice not in chosen_toppings:
+			order[topping_choice] = topping_choice  # Store the key
+			chosen_toppings.append(topping_choice)
+
+	# Populate drinks
+	var drink_keys = drinks.keys()
+	order["Drink"] = drink_keys[randi() % drink_keys.size()]  # Store the key
+	
+	var sidedish_keys = sidedish.keys()
+	order["Sidedish"] = sidedish_keys[randi() % sidedish_keys.size()]
+
+	return order
 func display_order(order: Dictionary):
 	# Clear previous order display
-	var children = hbox_container.get_children()
+	var children = vbox_container.get_children()
 	for child in children:
 		child.queue_free()
 	
-	# Display broth
-	var broth_sprite = TextureRect.new()
-	broth_sprite.texture = order["Broth"]
-	broth_sprite.scale = Vector2(1, 1)  # Set size to match the asset
-	broth_sprite.position = Vector2(5, 5)  # Position relative to the background
-	hbox_container.add_child(broth_sprite)
+	# Initialize the first HBoxContainer
+	var hbox_container = HBoxContainer.new()
+	vbox_container.add_child(hbox_container)
+	var sprite_count = 0
 	
+	# Display bowl
+	if order.has("Bowl"):
+		var bowl_key = order["Bowl"]
+		var bowl_sprite = TextureRect.new()
+		bowl_sprite.texture = bowl[bowl_key]["texture"]  # Access the texture
+		bowl_sprite.scale = Vector2(1, 1)  # Set size to match the asset
+		bowl_sprite.position = Vector2(5, 5)  # Position for bowl
+		hbox_container.add_child(bowl_sprite)
+		sprite_count += 1  # Increment sprite count
+
 	# Display noodle
-	var noodle_sprite = TextureRect.new()
-	noodle_sprite.texture = order["Noodle"]
-	noodle_sprite.scale = Vector2(1, 1)  # Set size to match the asset
-	noodle_sprite.position = Vector2(16, 0)  # Adjusted position relative to the background
-	hbox_container.add_child(noodle_sprite)
-	
+	if order.has("Noodle"):
+		var noodle_key = order["Noodle"]
+		var noodle_sprite = TextureRect.new()
+		noodle_sprite.texture = noodles[noodle_key]["texture"]  # Access the texture
+		noodle_sprite.scale = Vector2(1, 1)  # Set size to match the asset
+		noodle_sprite.position = Vector2(16, 0)  # Position for noodle
+		hbox_container.add_child(noodle_sprite)
+		sprite_count += 1  # Increment sprite count
+
 	# Display toppings
 	var topping_x = 32  # Starting x position for toppings
 	var topping_count = 0  # Count the number of toppings
 
+	# Count toppings
 	for topping in order.keys():
 		if topping.begins_with("Topping"):
 			topping_count += 1  # Increment topping count
 
 	# Adjust the starting position based on the number of toppings
-	topping_x += (topping_count - 1) * 20  # Adjust for spacing if there are toppings
+	topping_x += (topping_count - 1) * 16  # Adjust for spacing if there are toppings
 
+	# Display each topping
 	for topping in order.keys():
 		if topping.begins_with("Topping"):
 			var topping_sprite = TextureRect.new()
-			topping_sprite.texture = order[topping]
+			topping_sprite.texture = toppings[topping]["texture"]  # Access the texture
 			topping_sprite.scale = Vector2(1, 1)  # Set size to match the asset
 			topping_sprite.position = Vector2(topping_x, 5)  # Centered in the background
-			hbox_container.add_child(topping_sprite)
+			if sprite_count < 6:
+				hbox_container.add_child(topping_sprite)
+				sprite_count += 1  # Increment sprite count
+			else:
+				# Create a new HBoxContainer for the next row
+				hbox_container = HBoxContainer.new()
+				vbox_container.add_child(hbox_container)
+				hbox_container.add_child(topping_sprite)
+				sprite_count = 1  # Reset sprite count
 			topping_x -= 20  # Decrement x position for next topping (20 for spacing)
 
+	# Display drink
+	if order.has("Drink"):
+		var drink_key = order["Drink"]
+		var drink_sprite = TextureRect.new()
+		drink_sprite.texture = drinks[drink_key]["texture"]  # Access the texture
+		drink_sprite.scale = Vector2(1, 1)  # Set size to match the asset
+		drink_sprite.position = Vector2(5, 40)  # Position for drink
+		if sprite_count < 6:
+			hbox_container.add_child(drink_sprite)
+			sprite_count += 1  # Increment sprite count
+		else:
+			# Create a new HBoxContainer for the next row
+			hbox_container = HBoxContainer.new()
+			vbox_container.add_child(hbox_container)
+			hbox_container.add_child(drink_sprite)
+			sprite_count = 1  # Reset sprite count
+
+	if order.has("Sidedish"):
+		var sidedish_key = order["Sidedish"]
+		var sidedish_sprite = TextureRect.new()
+		sidedish_sprite.texture = sidedish[sidedish_key]["texture"]  # Access the texture
+		sidedish_sprite.scale = Vector2(1, 1)  # Set size to match the asset
+		sidedish_sprite.position = Vector2(5, 40)  # Position for drink
+		if sprite_count < 6:
+			hbox_container.add_child(sidedish_sprite)
+			sprite_count += 1  # Increment sprite count
+		else:
+			# Create a new HBoxContainer for the next row
+			hbox_container = HBoxContainer.new()
+			vbox_container.add_child(hbox_container)
+			hbox_container.add_child(sidedish_sprite)
+			sprite_count = 1  # Reset sprite count
 func calculate_total_price(order: Dictionary) -> float:
 	var total: float = 0.0
 	
-	# Add price for broth
-	if order.has("Broth"):
-		total += prices["Broth"]
-	
-	# Add price for noodle
-	if order.has("Noodle"):
-		total += prices["NoodleType1"]  # Assuming only one noodle type is present
+	# Calculate the total price based on the order
+	if order.has("Bowl"):
+		var bowl_key = order["Bowl"]
+		total += bowl[bowl_key]["price"]  # Access the price
 
-	# Add price for toppings
+	if order.has("Noodle"):
+		var noodle_key = order["Noodle"]
+		total += noodles[noodle_key]["price"]  # Access the price
+
+	# Calculate total for toppings
 	for topping in order.keys():
 		if topping.begins_with("Topping"):
-			total += prices[topping]  # Add the price of each topping
+			total += toppings[topping]["price"]  # Access the price
 
-	return total
+	if order.has("Drink"):
+		var drink_key = order["Drink"]
+		total += drinks[drink_key]["price"]  # Access the price
+		
+	if order.has("Sidedish"):
+		var sidedish_key = order["Sidedish"]
+		total += sidedish[sidedish_key]["price"]  # Access the price
+
+	return total	
+func animation_name(order: Dictionary) -> Dictionary:
+	var batchoy: String = ""
+	var drink: String = ""
+	var sides: String = ""
+	
+	# Access the animation name
+	
+	if order.has("Bowl"):
+		var bowl_key = order["Bowl"]
+		batchoy = bowl[bowl_key]["item_type"] 
+		print ("batchoy anim: ", batchoy) 
+
+	if order.has("Drink"):
+		var drink_key = order["Drink"]
+		drink = drinks[drink_key]["item_type"]  
+		print ("drink anim: ", drink)
+		
+	if order.has("Sidedish"):
+		var sidedish_key = order["Sidedish"]
+		sides = sidedish[sidedish_key]["item_type"]  
+		print ("sidedish anim: ", sides)
+	
+	return {
+		"batchoy" : batchoy,
+		"drink": drink,
+		"sidedish": sides
+		}
+	
+func animation_frame(order: Dictionary) -> int:
+	var batchoy: int = 0
+	var drink: int = 0
+	var sides: int = 0
+	
+	# Access the animation frame
+	
+	if order.has("Bowl"):
+		var bowl_key = order["Bowl"]
+		batchoy = bowl[bowl_key]["frame"] 
+
+	if order.has("Drink"):
+		var drink_key = order["Drink"]
+		drink = drinks[drink_key]["frame"] 
+		return drink 
+		
+	if order.has("Sidedish"):
+		var sidedish_key = order["Sidedish"]
+		sides = sidedish[sidedish_key]["frame"]  
+		
+	print ("batchoy frame", batchoy)
+	print ("drinks frame", drinks)
+	print ("sides frame",sides)
+	return batchoy
+	return drink
+	return sides
