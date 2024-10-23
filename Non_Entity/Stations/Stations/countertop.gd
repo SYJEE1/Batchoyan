@@ -1,6 +1,6 @@
 extends Area2D
 
-const area_type := "countertop"
+const area_type := &"station"
 var takes_item: bool = true
 var tilemap_glow : TileMapLayer
 
@@ -8,7 +8,7 @@ var tilemap_glow : TileMapLayer
 
 
 func _ready() -> void:
-	global_position += Vector2(0,-2)
+	interact_collision.position += Vector2(0,-2)
 	interact_collision.shape.size = Vector2(14,10)
 
 func interact(carried_item) -> void:
