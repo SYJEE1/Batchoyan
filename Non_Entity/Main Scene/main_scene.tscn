@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://Non_Entity/Main Scene/main_scene.gd" id="1_qentd"]
 [ext_resource type="Texture2D" uid="uid://bf7uhiy54nagw" path="res://Non_Entity/Main Scene/ReferenceTiles.png" id="2_ujia4"]
+[ext_resource type="PackedScene" uid="uid://dxilfvhmicpld" path="res://Entities/Customer/customer_path.tscn" id="3_d16f2"]
 [ext_resource type="Script" path="res://Non_Entity/Main Scene/tile_maps.gd" id="3_i1lbk"]
 [ext_resource type="PackedScene" uid="uid://dwt7q45hesbr5" path="res://Entities/Player/player_scene.tscn" id="4_voske"]
 [ext_resource type="PackedScene" uid="uid://ke3muiiqgpcu" path="res://Non_Entity/Items/Item.tscn" id="5_pryya"]
@@ -9,7 +10,16 @@
 [ext_resource type="TileSet" uid="uid://c66g5q3avakk7" path="res://Non_Entity/Stations/Interactables.tres" id="6_72cbv"]
 [ext_resource type="FontFile" uid="uid://brb1w3e1via4m" path="res://Graphics/Fonts/mago2.ttf" id="6_dbhs7"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hstle"]
+[sub_resource type="Environment" id="Environment_l4ohr"]
+background_mode = 3
+glow_enabled = true
+glow_intensity = 1.0
+glow_strength = 0.75
+glow_bloom = 0.1
+glow_blend_mode = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y2gs0"]
+
 texture = ExtResource("2_ujia4")
 0:0/0 = 0
 1:0/0 = 0
@@ -36,9 +46,9 @@ texture = ExtResource("2_ujia4")
 4:4/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_f6ksw"]
-sources/0 = SubResource("TileSetAtlasSource_hstle")
+sources/0 = SubResource("TileSetAtlasSource_y2gs0")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rjyc3"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fp571"]
 texture = ExtResource("2_ujia4")
 0:0/0 = 0
 0:0/0/z_index = 1
@@ -107,7 +117,7 @@ texture = ExtResource("2_ujia4")
 [sub_resource type="TileSet" id="TileSet_6ywnp"]
 physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 34
-sources/0 = SubResource("TileSetAtlasSource_rjyc3")
+sources/0 = SubResource("TileSetAtlasSource_fp571")
 
 [sub_resource type="LabelSettings" id="LabelSettings_7y825"]
 
@@ -120,6 +130,9 @@ modulate = Color(1, 1, 0.996078, 0.694118)
 z_index = -2
 texture = ExtResource("5_q4k1w")
 offset = Vector2(160, 89.5)
+
+[node name="CustomerPath" parent="." instance=ExtResource("3_d16f2")]
+position = Vector2(-392, -197)
 
 [node name="TileMaps" type="Node2D" parent="."]
 y_sort_enabled = true
