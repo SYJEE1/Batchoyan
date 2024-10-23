@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=4 uid="uid://divwn1b5b3o"]
+[gd_scene load_steps=5 format=4 uid="uid://dyfotxr3hm4uu"]
 
 [ext_resource type="Script" path="res://node_2d.gd" id="1_2xp0f"]
-[ext_resource type="TileSet" uid="uid://bgbug7u577l1p" path="res://Environment/TileSet Practice.tres" id="2_hopdo"]
+[ext_resource type="TileSet" uid="uid://blwh5o1vnxevi" path="res://Environment/TileSet Practice.tres" id="2_hopdo"]
 [ext_resource type="PackedScene" uid="uid://dwt7q45hesbr5" path="res://Entities/Player/player_scene.tscn" id="3_l1w3j"]
+[ext_resource type="PackedScene" uid="uid://blaodx5vxalku" path="res://Environment/pause_menu.tscn" id="4_k8mc4"]
 
 [node name="MainScene" type="Node2D"]
 script = ExtResource("1_2xp0f")
@@ -17,3 +18,7 @@ zoom = Vector2(2, 2)
 
 [node name="PlayerScene" parent="." instance=ExtResource("3_l1w3j")]
 position = Vector2(116, 118)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("4_k8mc4")]
