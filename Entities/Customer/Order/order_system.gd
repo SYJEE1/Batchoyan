@@ -2,32 +2,28 @@ extends Node2D
 
 # Preload assets with their prices
 var bowl = {
-	"Bowl1": {"texture": preload("res://Entities/Customer/Order/ingredients/bowl-regular.png"), "price": 30},
-	"Bowl2": {"texture": preload("res://Entities/Customer/Order/ingredients/bowl-super.png"), "price": 50}
+	"Bowl1": {"texture": preload("res://Entities/Customer/Order/ingredients/bowl-regular.png"), "price": 30, "item_type": "bowl_regular", "frame": 1},
+	"Bowl2": {"texture": preload("res://Entities/Customer/Order/ingredients/bowl-super.png"), "price": 50, "item_type": "bowl_super", "frame": 1}
 }
-
 var noodles = {
 	"NoodleType1": {"texture": preload("res://Entities/Customer/Order/ingredients/miki.png"), "price": 20},
 	"NoodleType2": {"texture": preload("res://Entities/Customer/Order/ingredients/miswa.png"), "price": 20},
 	"NoodleType3": {"texture": preload("res://Entities/Customer/Order/ingredients/sotanghon.png"), "price": 20},
 	"NoodleType4": {"texture": preload("res://Entities/Customer/Order/ingredients/bihon.png"), "price": 20}
 }
-
 var toppings = {
 	"Topping1": {"texture": preload("res://Entities/Customer/Order/ingredients/pork.png"), "price": 10},
 	"Topping2": {"texture": preload("res://Entities/Customer/Order/ingredients/liver.png"), "price": 10},
 	"Topping3": {"texture": preload("res://Entities/Customer/Order/ingredients/chicharon-temp.png"), "price": 10},
 	"Topping4": {"texture": preload("res://Entities/Customer/Order/ingredients/egg.png"), "price": 10}
 }
-
 var drinks = {
-	"Drink1": {"texture": preload("res://Entities/Customer/Order/ingredients/water.png"), "price": 10},
-	"Drink2": {"texture": preload("res://Entities/Customer/Order/ingredients/cora.png"), "price": 15},
-	"Drink3": {"texture": preload("res://Entities/Customer/Order/ingredients/sprike.png"), "price": 20},
-	"Drink4": {"texture": preload("res://Entities/Customer/Order/ingredients/loyal.png"), "price": 20},
-	"Drink5": {"texture": preload("res://Entities/Customer/Order/ingredients/c3.png"), "price": 20}
+	"Drink1": {"texture": preload("res://Entities/Customer/Order/ingredients/water.png"), "price": 10, "item_type": "water", "frame": 1},
+	"Drink2": {"texture": preload("res://Entities/Customer/Order/ingredients/cora.png"), "price": 20, "item_type": "cora", "frame": 1},
+	"Drink3": {"texture": preload("res://Entities/Customer/Order/ingredients/sprike.png"), "price": 20, "item_type": "sprike", "frame": 1},
+	"Drink4": {"texture": preload("res://Entities/Customer/Order/ingredients/loyal.png"), "price": 20, "item_type": "loyal", "frame": 1},
+	"Drink5": {"texture": preload("res://Entities/Customer/Order/ingredients/c3.png"), "price": 15, "item_type": "c3", "frame": 1}
 }
-
 var sidedish = {
 	"Sidedish1": {"texture": preload("res://Entities/Customer/Order/ingredients/puto.png"), "price": 20},
 	"Sidedish2": {"texture": preload("res://Entities/Customer/Order/ingredients/pandesal.png"), "price": 20}
@@ -41,8 +37,11 @@ func _ready():
 	var order = call(order_function_name)
 	var total_price = calculate_total_price(order)
 	print(order)
-	print (total_price)
 	display_order(order)
+	animation_name(order)
+	animation_frame(order)
+	print(animation_frame(order))
+	Global.send_current_animation()
 
 func tutorial() -> Dictionary:
 	var order = {}
@@ -302,7 +301,6 @@ func stage9_order() -> Dictionary:
 	order["Sidedish"] = sidedish_keys[randi() % sidedish_keys.size()]
 
 	return order
-
 func display_order(order: Dictionary):
 	# Clear previous order display
 	var children = vbox_container.get_children()
@@ -396,7 +394,6 @@ func display_order(order: Dictionary):
 			vbox_container.add_child(hbox_container)
 			hbox_container.add_child(sidedish_sprite)
 			sprite_count = 1  # Reset sprite count
-
 func calculate_total_price(order: Dictionary) -> float:
 	var total: float = 0.0
 	
@@ -422,4 +419,58 @@ func calculate_total_price(order: Dictionary) -> float:
 		var sidedish_key = order["Sidedish"]
 		total += sidedish[sidedish_key]["price"]  # Access the price
 
-	return total
+	return total	
+func animation_name(order: Dictionary) -> Dictionary:
+	var batchoy: String = ""
+	var drink: String = ""
+	var sides: String = ""
+	
+	# Access the animation name
+	
+	if order.has("Bowl"):
+		var bowl_key = order["Bowl"]
+		batchoy = bowl[bowl_key]["item_type"] 
+		print ("batchoy anim: ", batchoy) 
+
+	if order.has("Drink"):
+		var drink_key = order["Drink"]
+		drink = drinks[drink_key]["item_type"]  
+		print ("drink anim: ", drink)
+		
+	if order.has("Sidedish"):
+		var sidedish_key = order["Sidedish"]
+		sides = sidedish[sidedish_key]["item_type"]  
+		print ("sidedish anim: ", sides)
+	
+	return {
+		"batchoy" : batchoy,
+		"drink": drink,
+		"sidedish": sides
+		}
+	
+func animation_frame(order: Dictionary) -> int:
+	var batchoy: int = 0
+	var drink: int = 0
+	var sides: int = 0
+	
+	# Access the animation frame
+	
+	if order.has("Bowl"):
+		var bowl_key = order["Bowl"]
+		batchoy = bowl[bowl_key]["frame"] 
+
+	if order.has("Drink"):
+		var drink_key = order["Drink"]
+		drink = drinks[drink_key]["frame"] 
+		return drink 
+		
+	if order.has("Sidedish"):
+		var sidedish_key = order["Sidedish"]
+		sides = sidedish[sidedish_key]["frame"]  
+		
+	print ("batchoy frame", batchoy)
+	print ("drinks frame", drinks)
+	print ("sides frame",sides)
+	return batchoy
+	return drink
+	return sides

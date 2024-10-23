@@ -44,6 +44,8 @@ func spawn_customer():
 		audio_stream_player.play()
 		occupied_points[point] = true  # Mark the point as occupied
 		total_customers_spawned += 1  # Increment total customers spawned
+		Global.get_total_customers(total_customers_spawned)
+		print(total_customers_spawned)
 
 	timer.start(randf_range(min_spawn_interval, max_spawn_interval))
 
