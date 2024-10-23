@@ -16,3 +16,4 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	fps_label.text = "FPS: %d" %Engine.get_frames_per_second()
+	
