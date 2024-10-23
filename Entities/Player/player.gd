@@ -116,11 +116,45 @@ func interact(input_direction, delta) -> void:
 					carried_item.is_carried = true
 					has_item = true
 					detected_area.erase(nearest)
-				  Global.update_item_state(true) 
+
+		
+
+	else: # if has item 
+		carried_item.global_position = lerp(carried_item.global_position, interact_collision.global_position, delta * accel * 3)
+		speed = 50
+		
+		if detected_area.size() > 0:
+			detected_area.sort_custom(_sort_by_distance_from_player)
+			var nearest : Area2D = detected_area[0]
+			debug.global_position = nearest.global_position
+			
+			if nearest.area_type == "item" and nearest.get_parent().can_stack == true: 
+				exempted_area.push_front(detected_area.pop_front())
+			
+			if nearest.area_type == "station" and nearest.takes_item == true:
+					
+				#if nearest.takes_item == false: 
+					
+	
+				if nearest.has_method("glow"): nearest.glow(carried_item)
+				
+				if Input.is_action_just_pressed("interact"):
+					
+					detected_area.append(carried_item.get_child(0))
+					carried_item.putdown()
+					var distance = carried_item.global_position.distance_to(detected_area[0].global_position) * 22
+					var impulse = carried_item.global_position.direction_to(detected_area[0].global_position) * distance
+					carried_item.apply_impulse(impulse, Vector2(0,0))
+					nearest.interact(carried_item)
+					carried_item.is_carried = false
+					carried_item = null 
+					has_item = false
+          Global.update_item_state(true) 
 
 
 	else: # if has item 
 		carried_item.global_position = lerp(carried_item.global_position, interact_collision.global_position, delta * accel * 3)
+
 
 		speed = 50
 		
