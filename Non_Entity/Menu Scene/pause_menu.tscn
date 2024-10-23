@@ -1,94 +1,94 @@
 [gd_scene load_steps=11 format=3 uid="uid://blaodx5vxalku"]
 
-[ext_resource type="Script" path="res://pause_menu.gd" id="1_yj24g"]
-[ext_resource type="Shader" path="res://Environment/pause_menu.gdshader" id="2_0a4vg"]
-[ext_resource type="Shader" path="res://ScoreBoardTex.gdshader" id="2_2a63l"]
+[ext_resource type="Script" path="res://Non_Entity/Menu Scene/pause_menu.gd" id="1_yj24g"]
+[ext_resource type="Shader" path="res://Non_Entity/Menu Scene/pause_menu.gdshader" id="2_0a4vg"]
+[ext_resource type="Shader" path="res://Non_Entity/Menu Scene/ScoreBoardTex.gdshader" id="2_2a63l"]
 [ext_resource type="Texture2D" uid="uid://dujlds1pllniw" path="res://Graphics/menu_background1.png" id="3_8s6vg"]
 [ext_resource type="Texture2D" uid="uid://dgwvw6vryskae" path="res://Non_Entity/Items/bachoicelogo.png" id="4_usjih"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_aumv5"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yb2cm"]
 shader = ExtResource("2_0a4vg")
 shader_parameter/lod = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mk4qg"]
 shader = ExtResource("2_2a63l")
 
-[sub_resource type="Animation" id="Animation_x0xet"]
+[sub_resource type="Animation" id="Animation_psg51"]
 resource_name = "blur"
 length = 0.3
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:material:shader_parameter/lod")
+tracks/0/path = NodePath("PanelContainer:modulate:r")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.15, 0, 0.15, 0),
-"times": PackedFloat32Array(0)
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.15, 0, 0.15, 0, 1, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(0, 0.3)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("PanelContainer:modulate:r")
+tracks/1/path = NodePath("PanelContainer:modulate:g")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1, -0.15, 0, 0.15, 0),
-"times": PackedFloat32Array(0)
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.15, 0, 0.15, 0, 1, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(0, 0.3)
 }
 tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("PanelContainer:modulate:g")
+tracks/2/path = NodePath("PanelContainer:modulate:b")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1, -0.15, 0, 0.15, 0),
-"times": PackedFloat32Array(0)
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.15, 0, 0.15, 0, 1, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(0, 0.3)
 }
 tracks/3/type = "bezier"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("PanelContainer:modulate:b")
+tracks/3/path = NodePath("PanelContainer:modulate:a")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1, -0.15, 0, 0.15, 0),
-"times": PackedFloat32Array(0)
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.15, 0, 0.15, 0, 1, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(0, 0.3)
 }
 tracks/4/type = "bezier"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("PanelContainer:modulate:a")
+tracks/4/path = NodePath("ColorRect:material:shader_parameter/lod")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.15, 0, 0.15, 0),
-"times": PackedFloat32Array(0)
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.15, 0, 0.15, 0, 0.87, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(0, 0.3)
 }
 
-[sub_resource type="Animation" id="Animation_xlufe"]
+[sub_resource type="Animation" id="Animation_fleij"]
 length = 0.001
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:material:shader_parameter/lod")
+tracks/0/path = NodePath("PanelContainer:modulate:r")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.15, 0, 0.15, 0),
+"points": PackedFloat32Array(1, -0.15, 0, 0.15, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("PanelContainer:modulate:r")
+tracks/1/path = NodePath("PanelContainer:modulate:g")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -99,7 +99,7 @@ tracks/1/keys = {
 tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("PanelContainer:modulate:g")
+tracks/2/path = NodePath("PanelContainer:modulate:b")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -110,7 +110,7 @@ tracks/2/keys = {
 tracks/3/type = "bezier"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("PanelContainer:modulate:b")
+tracks/3/path = NodePath("PanelContainer:modulate:a")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -121,7 +121,7 @@ tracks/3/keys = {
 tracks/4/type = "bezier"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("PanelContainer:modulate:a")
+tracks/4/path = NodePath("ColorRect:material:shader_parameter/lod")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -130,10 +130,10 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0)
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_1onfv"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ag8kv"]
 _data = {
-"RESET": SubResource("Animation_xlufe"),
-"blur": SubResource("Animation_x0xet")
+"RESET": SubResource("Animation_fleij"),
+"blur": SubResource("Animation_psg51")
 }
 
 [node name="PauseMenu" type="Control"]
@@ -147,7 +147,7 @@ grow_vertical = 2
 script = ExtResource("1_yj24g")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-material = SubResource("ShaderMaterial_aumv5")
+material = SubResource("ShaderMaterial_yb2cm")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -156,7 +156,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
-modulate = Color(1, 1, 1, 0)
 top_level = true
 layout_mode = 1
 anchors_preset = 8
@@ -188,6 +187,7 @@ size_flags_vertical = 8
 text = "QUIT"
 
 [node name="ScoreboardBG" type="TextureRect" parent="."]
+visible = false
 texture_filter = 1
 texture_repeat = 2
 material = SubResource("ShaderMaterial_mk4qg")
@@ -205,6 +205,7 @@ texture = ExtResource("3_8s6vg")
 stretch_mode = 6
 
 [node name="BCIcon" type="TextureRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -216,9 +217,9 @@ grow_horizontal = 2
 texture = ExtResource("4_usjih")
 expand_mode = 1
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_1onfv")
+"": SubResource("AnimationLibrary_ag8kv")
 }
 
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]

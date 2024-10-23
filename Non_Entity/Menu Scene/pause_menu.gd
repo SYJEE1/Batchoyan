@@ -1,20 +1,22 @@
 extends Control
 
+func _ready():
+	$AnimationPlayer.play("RESET")
 
 func resume():
-	get_tree().pause = false
-	$AnimationTree.play_backwards("blur")
-func pause():
-	get_tree().pause = true
-	$AnimationTree.play("blur")
+	get_tree().paused = false
+	$AnimationPlayer.play_backwards("blur")
+func paused():
+	get_tree().paused = true
+	$AnimationPlayer.play("blur")
 func testEsc():
-	if Input.is_action_just_pressed("esc") and get_tree().pause == false:
-		pause()
-	if Input.is_action_just_pressed("esc") and get_tree().pause == true:
+	if Input.is_action_just_pressed("esc") and !get_tree().paused:
+		paused()
+	elif Input.is_action_just_pressed("esc") and get_tree().paused:
 		resume()
 		
 
-# Called when the node enters the scene tree for the first time.
+# Called when the node enters the scene tree for the first time.$PanelContainer
 func _on_resume_pressed():
 	resume()
 
