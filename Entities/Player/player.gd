@@ -19,7 +19,6 @@ var has_item : bool
 @onready var interact_collision: CollisionShape2D = $InteractArea/InteractCollision
 @onready var ray_1: RayCast2D = $InteractArea/InteractCollision/Ray1
 
-
 # this functions runs once 
 func _ready() -> void:
 	animation_player.play("idle_down")
@@ -84,7 +83,7 @@ func interact(input_direction, delta) -> void:
 	#print("exempted Area:", exempted_area)
 	
 	var debug = $DebugCircle
-	debug.global_position = global_position	
+	debug.global_position = global_position
 	
 	
 	#if detected_area.size() > 0 and detected_area[0].area_type == "station" == true and detected_area[0].takes_item == true: exempted_area.push_front(detected_area.pop_front())
@@ -96,10 +95,10 @@ func interact(input_direction, delta) -> void:
 			detected_area.sort_custom(_sort_by_distance_from_player)
 			var nearest : Area2D = detected_area[0]
 			debug.global_position = nearest.global_position
-		
-			if nearest.area_type == "countertop" or nearest.area_type == "stove" or nearest.area_type == "cuttingboard": 
+				
+			if nearest.area_type == "countertop" or nearest.area_type == "stove" or nearest.area_type == "cuttingboard" or nearest.area_type == "ReceivingArea": 
 				exempted_area.push_front(detected_area.pop_front())
-			
+				
 			if nearest.area_type == "station":
 				
 				if nearest.has_method("glow") and nearest.takes_item == false: 
@@ -160,11 +159,6 @@ func interact(input_direction, delta) -> void:
 					carried_item = null 
 					has_item = false
 					
-
-					
-
-
-
 
 func _sort_by_distance_from_player(area1, area2):
 	var area1_to_player = interact_collision.global_position.distance_to(area1.global_position)

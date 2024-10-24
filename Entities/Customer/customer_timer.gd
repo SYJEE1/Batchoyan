@@ -15,7 +15,7 @@ func _ready() -> void:
 	progress_bar.value = 0  # Initialize the progress bar value
 
 	# Start the timer (assuming you have a Timer node connected to _onTimeout)
-	$Timer.start(1.0)  # Start timer to call _onTimeout every second
+	$Timer.start(1.0)  
 
 func _onTimeout() -> void:
 	# Increment the progress bar value
@@ -31,7 +31,7 @@ func _onTimeout() -> void:
 	elif progress_bar.value < TOTAL_DURATION:
 		progress_bar.tint_progress = Color.RED
 	else:
-		progress_bar.tint_progress = Color.BLACK  # After 60 seconds, set to black or stop
+		progress_bar.tint_progress = Color.RED  # After 60 seconds, set to black or stop
 
 	# Stop the timer if the maximum value is reached
 	if progress_bar.value >= TOTAL_DURATION:

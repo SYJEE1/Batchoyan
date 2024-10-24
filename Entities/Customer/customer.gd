@@ -7,6 +7,8 @@ var progress_bar: Node
 var timer: Timer
 var nearby_item: RigidBody2D = null
 
+@onready var area: Area2D = $ReceivingArea
+
 signal removed
 signal order_completed(amount_paid)
 

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dw3suuhju8nxo" path="res://Entities/Customer/Order/bg-5up.png" id="2_del3u"]
 
 [node name="OrderSystem" type="Node2D"]
-position = Vector2(5, -37)
+position = Vector2(4.76837e-07, 4.76837e-07)
 scale = Vector2(0.497699, 0.499176)
 script = ExtResource("1_4nplm")
 
@@ -17,12 +17,10 @@ offset_bottom = 40.0
 [node name="VBoxContainer" type="VBoxContainer" parent="Control"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.200925
-anchor_right = 0.200925
 offset_top = 2.0033
 offset_right = 40.0
 offset_bottom = 42.0033
-theme_override_constants/separation = 1
+scale = Vector2(0.998655, 0.998273)
 metadata/_edit_use_anchors_ = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer"]

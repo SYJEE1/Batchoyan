@@ -1,5 +1,7 @@
 extends Area2D
 
+const area_type := &"ReceivingArea"
+
 var has_item = Global.get_item_state()  # Flag to track if the player is holding an item
 var player_scene: PackedScene
 var frame = Global.send_current_frame()

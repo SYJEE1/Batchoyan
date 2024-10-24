@@ -373,7 +373,7 @@ func display_order(order: Dictionary):
 			topping_sprite.scale = Vector2(1, 1)  # Set size to match the asset
 			topping_sprite.position = Vector2(topping_x, 5)  # Centered in the background
 			total_sprites += 1
-			if total_sprites < 6:
+			if total_sprites < 5:
 				hbox_container.add_child(topping_sprite)
 				sprite_count += 1  # Increment sprite count
 				print(total_sprites)
@@ -392,7 +392,7 @@ func display_order(order: Dictionary):
 		drink_sprite.scale = Vector2(1, 1)  # Set size to match the asset
 		drink_sprite.position = Vector2(5, 40)  # Position for drink
 		total_sprites += 1
-		if total_sprites < 6:
+		if total_sprites < 5:
 			hbox_container.add_child(drink_sprite)
 			sprite_count += 1  # Increment sprite count
 			print(total_sprites)
@@ -409,7 +409,7 @@ func display_order(order: Dictionary):
 		sidedish_sprite.scale = Vector2(1, 1)  # Set size to match the asset
 		sidedish_sprite.position = Vector2(5, 40)  # Position for drink
 		total_sprites += 1
-		if total_sprites < 6:
+		if total_sprites < 5:
 			hbox_container.add_child(sidedish_sprite)
 			sprite_count += 1  # Increment sprite count
 			print(total_sprites)
@@ -420,11 +420,11 @@ func display_order(order: Dictionary):
 			print(total_sprites)
 			
 	
-	if total_sprites <= 3:
+	if total_sprites == 3:
 		add_child(bg_3)
 	elif total_sprites == 4:
 		add_child(bg_4)
-	else:
+	elif total_sprites > 4:
 		add_child(bg_5up)
 		
 	vbox_container.add_child(hbox_container)
