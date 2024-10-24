@@ -13,7 +13,7 @@ func _process(delta: float) -> void:
 
 func _on_try_again_pressed() -> void:
 	#change the file path to the current scene 
-	get_tree().change_scene_to_file("next scene")
+	get_tree().change_scene_to_file("res://Non_Entity/Tutorial/Tutorial.tscn")
 
 
 func _on_quit_pressed() -> void:

@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://uv8ffon84pxw"]
 
-[ext_resource type="Script" path="res://next.gd" id="1_8u1ns"]
+[ext_resource type="Script" path="res://Non_Entity/Next And Fail Scene/next.gd" id="1_8u1ns"]
 [ext_resource type="Texture2D" uid="uid://dujlds1pllniw" path="res://Graphics/menu_background1.png" id="2_1ma26"]
 [ext_resource type="Shader" path="res://Non_Entity/Next And Fail Scene/FailScene.gdshader" id="2_vj4ir"]
 [ext_resource type="FontFile" uid="uid://brb1w3e1via4m" path="res://Graphics/Fonts/mago2.ttf" id="3_lty0k"]

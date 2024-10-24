@@ -42,9 +42,9 @@ func _on_updates_completed() -> void:
 func checking_condition():
 	var total = send_total_customers()
 	var max = send_max_customers()
-	if total >= max:
+	if total >= max and new_quota == total_earnings:
 		print("Level Finished")
-		get_tree().change_scene_to_file("res://Non_Entity/Next And Fail Scene/Fail.tscn")
+		get_tree().change_scene_to_file("res://Non_Entity/Next And Fail Scene/next.tscn")
 	else:
 		print("Level Not Finished")
 
