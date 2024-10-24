@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bu41gi12eevg8"
-path="res://.godot/imported/interactables.png-704c8dfaafbc4dc467562588544df49d.ctex"
+uid="uid://c137i4csss41g"
+path="res://.godot/imported/charactershadow.png-5225cd09386f6fbb0fce2d1aefc0a62c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Non_Entity/Stations/interactables.png"
-dest_files=["res://.godot/imported/interactables.png-704c8dfaafbc4dc467562588544df49d.ctex"]
+source_file="res://Entities/Player/charactershadow.png"
+dest_files=["res://.godot/imported/charactershadow.png-5225cd09386f6fbb0fce2d1aefc0a62c.ctex"]
 
 [params]
 
