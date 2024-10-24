@@ -11,7 +11,8 @@ Over 130 Variations: Experiment with different ingredients and styles to create 
 Charming Pixel Art: Enjoy beautifully crafted pixel art that brings the cooking experience to life.
 Engaging Gameplay: Manage your time and resources effectively to serve customers and grow your restaurant.
 Unlockable Content: Discover new recipes, kitchen upgrades, and special ingredients as you progress through the game.
-##Team Members
+
+## Team Members
 Allana Yzabelle Diaz - Project Manager, Game Designer and Game Programmer
 Eryth John Gange - Pixel Artist, Game Designer and Game Programmer
 Jaztine Keico Hao - Pixel Artist
