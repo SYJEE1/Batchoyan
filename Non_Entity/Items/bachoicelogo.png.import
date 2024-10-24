@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dgwvw6vryskae"
-path="res://.godot/imported/bachoicelogo.png-713683d5ea17c8827094b8110e1ceb74.ctex"
+path="res://.godot/imported/bachoicelogo.png-27d5f4a4bfe5cbeb9b9cbc863ca860bc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Environment/bachoicelogo.png"
-dest_files=["res://.godot/imported/bachoicelogo.png-713683d5ea17c8827094b8110e1ceb74.ctex"]
+source_file="res://Non_Entity/Items/bachoicelogo.png"
+dest_files=["res://.godot/imported/bachoicelogo.png-27d5f4a4bfe5cbeb9b9cbc863ca860bc.ctex"]
 
 [params]
 
