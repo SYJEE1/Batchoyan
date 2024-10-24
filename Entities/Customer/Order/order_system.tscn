@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cvxnkro0h5hs6"]
 
-[ext_resource type="Script" path="res://Entities/Customer/Order/order_system.gd" id="1_4nplm"]
+[ext_resource type="Script" path="res://Entities/Customer/order_system.gd" id="1_4nplm"]
 [ext_resource type="Texture2D" uid="uid://dw3suuhju8nxo" path="res://Entities/Customer/Order/bg-5up.png" id="2_del3u"]
 
 [node name="OrderSystem" type="Node2D"]

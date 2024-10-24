@@ -17,7 +17,6 @@ var exempted_area = []
 var has_item : bool
 @onready var interact_area: Area2D = $InteractArea
 @onready var interact_collision: CollisionShape2D = $InteractArea/InteractCollision
-@onready var ray_1: RayCast2D = $InteractArea/InteractCollision/Ray1
 
 # this functions runs once 
 func _ready() -> void:
@@ -79,8 +78,8 @@ func movement(input_direction, delta) -> void:
 		
 				
 func interact(input_direction, delta) -> void:
-	#print("detected Area:", detected_area)
-	#print("exempted Area:", exempted_area)
+	# print("detected Area:", detected_area)
+	# print("exempted Area:", exempted_area)
 	
 	var debug = $DebugCircle
 	debug.global_position = global_position

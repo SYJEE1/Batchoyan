@@ -265,17 +265,3 @@ func find_bowl_algo(code:String) -> int:
 	print("final bowl index:", bowl_index)
 	
 	return bowl_index
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	

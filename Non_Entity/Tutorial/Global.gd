@@ -9,7 +9,7 @@ var new_quota: float = 0.0
 var stage_number: String = ""
 var max_total_customers: int = 0
 var total_spawned_customers: int = 0
-var tutorial_scene = preload("res://Non_Entity/Tutorial/Tutorial.tscn")
+var stage1_scene = preload("res://Non_Entity/Stages/Stage1.tscn")
 var new_order: String = ""
 var has_item: bool = false
 var current_item_frame: int = 1
@@ -23,10 +23,10 @@ signal new_ordersystem(order: String)
 signal total_customers_updated
 
 func _ready () -> void:
-	var tutorial = tutorial_scene.instantiate()
-	get_tree().current_scene.add_child(tutorial)
-	tutorial.connect("updates_completed", Callable (self, "_on_updates_completed"))
-	tutorial.queue_free()  
+	var stage1 = stage1_scene.instantiate()
+	get_tree().current_scene.add_child(stage1)
+	stage1.connect("updates_completed", Callable (self, "_on_updates_completed"))
+	stage1.queue_free()  
 	get_quota(new_quota)
 	send_quota()
 	send_max_customers()
@@ -42,7 +42,7 @@ func _on_updates_completed() -> void:
 func checking_condition():
 	var total = send_total_customers()
 	var max = send_max_customers()
-	if total >= max:
+	if total > max:
 		print("Level Finished")
 		get_tree().change_scene_to_file("res://Non_Entity/Main Scene/main_scene.tscn")
 	else:

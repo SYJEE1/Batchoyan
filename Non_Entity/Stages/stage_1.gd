@@ -4,8 +4,8 @@ extends Node2D
 
 var quota: float = 1000
 var stage_num: String = "1"
-var customers: int = 15
-var order_function = "stage2_order"
+var customers: int = 16
+var order_function = "tutorial"
 
 signal updates_completed
 
@@ -22,6 +22,6 @@ func _ready() -> void:
 	emit_signal("updates_completed")
 	Global.connect("total_customers_updated", Callable(self, "checking_condition"))
 
-func _process(delta: float) -> void:
-	fps_label.text = "FPS: %d" %Engine.get_frames_per_second()
+# func _process(delta: float) -> void:
+	# fps_label.text = "FPS: %d" %Engine.get_frames_per_second()
 	

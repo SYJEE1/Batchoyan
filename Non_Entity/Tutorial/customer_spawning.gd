@@ -50,7 +50,7 @@ func spawn_customer():
 		occupied_points[point] = true  # Mark the point as occupied
 		total_customers_spawned += 1  # Increment total customers spawned
 		Global.get_total_customers(total_customers_spawned)
-		# Global.checking_condition()
+		Global.checking_condition()
 
 	timer.start(randf_range(min_spawn_interval, max_spawn_interval))
 

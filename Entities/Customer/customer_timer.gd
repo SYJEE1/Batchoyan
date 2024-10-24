@@ -3,9 +3,9 @@ extends Node2D
 @onready var progress_bar: TextureProgressBar = $ProgressBar
 
 # Define the total duration for the progress bar
-const TOTAL_DURATION: float = 60.0  # 15 + 15 + 15 + 15 seconds
-const GREEN_DURATION: float = 15.0
-const YELLOW_DURATION: float = 15.0
+const TOTAL_DURATION: float = 90.0  # 15 + 15 + 15 + 15 seconds
+const GREEN_DURATION: float = 30.0
+const YELLOW_DURATION: float = 30.0
 const ORANGE_DURATION: float = 15.0
 const RED_DURATION: float = 15.0
 
@@ -15,7 +15,6 @@ func _ready() -> void:
 	progress_bar.value = 0  # Initialize the progress bar value
 
 	# Start the timer (assuming you have a Timer node connected to _onTimeout)
-	$Timer.start(1.0)  
 
 func _onTimeout() -> void:
 	# Increment the progress bar value
@@ -32,7 +31,3 @@ func _onTimeout() -> void:
 		progress_bar.tint_progress = Color.RED
 	else:
 		progress_bar.tint_progress = Color.RED  # After 60 seconds, set to black or stop
-
-	# Stop the timer if the maximum value is reached
-	if progress_bar.value >= TOTAL_DURATION:
-		$Timer.stop()

@@ -15,7 +15,7 @@ warnings/check_invalid_track_paths=false
 [application]
 
 config/name="Batchoyan"
-run/main_scene="res://Non_Entity/Main Scene/main_scene.tscn"
+run/main_scene="res://Environment/menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://Graphics/bachoicelogo smol transparent.png"
 
@@ -92,6 +92,7 @@ back={
 2d_physics/layer_4="ItemInteract"
 2d_physics/layer_5="StationInteract"
 2d_physics/layer_6="ItemCollision"
+2d_physics/main_scene="res://Environment/menu.tscn"
 
 [physics]
 

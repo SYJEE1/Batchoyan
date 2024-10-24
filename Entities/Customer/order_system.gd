@@ -2,20 +2,20 @@ extends Node2D
 
 # Preload assets with their prices
 var bowl = {
-	"Bowl1": {"texture": preload("res://Entities/Customer/Order/ingredients/bowl-regular.png"), "price": 30},
-	"Bowl2": {"texture": preload("res://Entities/Customer/Order/ingredients/bowl-super.png"), "price": 50}
+	"Bowl1": {"texture": preload("res://Entities/Customer/Order/ingredients/bowl-regular.png"), "price": 40, "item_type": "bowl", "bowl_index": 0},
+	"Bowl2": {"texture": preload("res://Entities/Customer/Order/ingredients/bowl-super.png"), "price": 60, "item_type": "bowl_large", "bowl_index": 69}
 }
 var noodles = {
-	"NoodleType1": {"texture": preload("res://Entities/Customer/Order/ingredients/miki.png"), "price": 20},
-	"NoodleType2": {"texture": preload("res://Entities/Customer/Order/ingredients/miswa.png"), "price": 20},
-	"NoodleType3": {"texture": preload("res://Entities/Customer/Order/ingredients/sotanghon.png"), "price": 20},
-	"NoodleType4": {"texture": preload("res://Entities/Customer/Order/ingredients/bihon.png"), "price": 20}
+	"NoodleType1": {"texture": preload("res://Entities/Customer/Order/ingredients/miki.png"), "price": 20, "bowl_index": 48},
+	"NoodleType2": {"texture": preload("res://Entities/Customer/Order/ingredients/miswa.png"), "price": 20, "bowl_index": 0},
+	"NoodleType3": {"texture": preload("res://Entities/Customer/Order/ingredients/sotanghon.png"), "price": 20, "bowl_index": 32},
+	"NoodleType4": {"texture": preload("res://Entities/Customer/Order/ingredients/bihon.png"), "price": 20, "bowl_index": 16}
 }
 var toppings = {
-	"Topping1": {"texture": preload("res://Entities/Customer/Order/ingredients/pork.png"), "price": 10},
-	"Topping2": {"texture": preload("res://Entities/Customer/Order/ingredients/liver.png"), "price": 10},
-	"Topping3": {"texture": preload("res://Entities/Customer/Order/ingredients/chicharon-temp.png"), "price": 10},
-	"Topping4": {"texture": preload("res://Entities/Customer/Order/ingredients/egg.png"), "price": 10}
+	"Topping1": {"texture": preload("res://Entities/Customer/Order/ingredients/egg.png"), "price": 10 },
+	"Topping2": {"texture": preload("res://Entities/Customer/Order/ingredients/pork.png"), "price": 10},
+	"Topping3": {"texture": preload("res://Entities/Customer/Order/ingredients/liver.png"), "price": 10},
+	"Topping4": {"texture": preload("res://Entities/Customer/Order/ingredients/chicharon-temp.png"), "price": 10}
 }
 var drinks = {
 	"Drink1": {"texture": preload("res://Entities/Customer/Order/ingredients/water.png"), "price": 10, "item_type": "water", "frame": 1},
@@ -25,8 +25,8 @@ var drinks = {
 	"Drink5": {"texture": preload("res://Entities/Customer/Order/ingredients/c3.png"), "price": 15, "item_type": "c3", "frame": 1}
 }
 var sidedish = {
-	"Sidedish1": {"texture": preload("res://Entities/Customer/Order/ingredients/puto.png"), "price": 20},
-	"Sidedish2": {"texture": preload("res://Entities/Customer/Order/ingredients/pandesal.png"), "price": 20}
+	"Sidedish1": {"texture": preload("res://Entities/Customer/Order/ingredients/puto.png"), "price": 20, "item_type": "puto", "frame": 1},
+	"Sidedish2": {"texture": preload("res://Entities/Customer/Order/ingredients/pandesal.png"), "price": 20, "item_type": "pandesal", "frame": 1}
 }
 # Nodes
 @onready var vbox_container= get_node("Control/VBoxContainer")
@@ -36,9 +36,12 @@ func _ready():
 	var order_function_name = Global.send_order() 
 	var order = call(order_function_name)
 	var total_price = calculate_total_price(order)
-	print(order)
+	var bowl_info = find_bowl_index(order)
+	var drink_info = find_drink_index(order)
+	var sidedish_info = find_sidedish_index(order)
+	var order_info = combine_order_info(order)
 	display_order(order)
-
+	
 func tutorial() -> Dictionary:
 	var order = {}
 	
@@ -56,7 +59,7 @@ func tutorial() -> Dictionary:
 	for topping_choice in topping_keys:
 		order[topping_choice] = topping_choice
 		chosen_toppings.append(topping_choice)
-
+		
 	return order
 func stage1_order() -> Dictionary:
 	var order = {}
@@ -306,6 +309,8 @@ func display_order(order: Dictionary):
 	# Initialize the first HBoxContainer
 	var hbox_container = HBoxContainer.new()
 	var addtl_hbox = HBoxContainer.new()
+	hbox_container.z_index = 2
+	addtl_hbox.z_index = 2
 	var sprite_count = 0
 	var total_sprites = 0
 	
@@ -321,9 +326,9 @@ func display_order(order: Dictionary):
 	bg_4.position = Vector2(0, 0)
 	bg_5up.position = Vector2(0, 0)
 	
-	bg_3.z_index = -1
-	bg_4.z_index = -1
-	bg_5up.z_index = -1
+	bg_3.z_index = 1
+	bg_4.z_index = 1
+	bg_5up.z_index = 1
 	
 	bg_3.scale = Vector2(1.5, 1.5)
 	bg_4.scale = Vector2(1.5, 1.5)
@@ -339,7 +344,6 @@ func display_order(order: Dictionary):
 		hbox_container.add_child(bowl_sprite)
 		sprite_count += 1  # Increment sprite count
 		total_sprites += 1
-		print(total_sprites)
 
 	# Display noodle
 	if order.has("Noodle"):
@@ -351,23 +355,14 @@ func display_order(order: Dictionary):
 		hbox_container.add_child(noodle_sprite)
 		sprite_count += 1  # Increment sprite count
 		total_sprites += 1
-		print(total_sprites)
-
-	# Display toppings
-	var topping_x = 32  # Starting x position for toppings
-	var topping_count = 0  # Count the number of toppings
-
-	# Count toppings
-	for topping in order.keys():
-		if topping.begins_with("Topping"):
-			topping_count += 1  # Increment topping count
-
-	# Adjust the starting position based on the number of toppings
-	topping_x += (topping_count - 1) * 16  # Adjust for spacing if there are toppings
 
 	# Display each topping
 	for topping in order.keys():
 		if topping.begins_with("Topping"):
+			var topping_x = 32  # Starting x position for toppings
+			var topping_count = 0  # Count the number of toppings
+			topping_count += 1 
+			topping_x += (topping_count - 1) * 16 
 			var topping_sprite = TextureRect.new()
 			topping_sprite.texture = toppings[topping]["texture"]  # Access the texture
 			topping_sprite.scale = Vector2(1, 1)  # Set size to match the asset
@@ -376,12 +371,10 @@ func display_order(order: Dictionary):
 			if total_sprites < 5:
 				hbox_container.add_child(topping_sprite)
 				sprite_count += 1  # Increment sprite count
-				print(total_sprites)
 			else:
 				# Create a new HBoxContainer for the next row
 				addtl_hbox.add_child(topping_sprite)
 				sprite_count = 1  # Reset sprite count
-				print(total_sprites)
 			topping_x -= 20  # Decrement x position for next topping (20 for spacing)
 
 	# Display drink
@@ -395,12 +388,10 @@ func display_order(order: Dictionary):
 		if total_sprites < 5:
 			hbox_container.add_child(drink_sprite)
 			sprite_count += 1  # Increment sprite count
-			print(total_sprites)
 		else:
 			# Create a new HBoxContainer for the next row
 			addtl_hbox.add_child(drink_sprite)
 			sprite_count = 1  # Reset sprite count
-			print(total_sprites)
 
 	if order.has("Sidedish"):
 		var sidedish_key = order["Sidedish"]
@@ -408,28 +399,25 @@ func display_order(order: Dictionary):
 		sidedish_sprite.texture = sidedish[sidedish_key]["texture"]  # Access the texture
 		sidedish_sprite.scale = Vector2(1, 1)  # Set size to match the asset
 		sidedish_sprite.position = Vector2(5, 40)  # Position for drink
-		total_sprites += 1
 		if total_sprites < 5:
 			hbox_container.add_child(sidedish_sprite)
 			sprite_count += 1  # Increment sprite count
-			print(total_sprites)
 		else:
 			# Create a new HBoxContainer for the next row
 			addtl_hbox.add_child(sidedish_sprite)
 			sprite_count = 1  # Reset sprite count
-			print(total_sprites)
 			
+	var bg_checker = total_sprites
 	
-	if total_sprites == 3:
+	if bg_checker == 3:
 		add_child(bg_3)
-	elif total_sprites == 4:
+	elif bg_checker == 4:
 		add_child(bg_4)
-	elif total_sprites > 4:
+	elif bg_checker > 4:
 		add_child(bg_5up)
 		
 	vbox_container.add_child(hbox_container)
 	vbox_container.add_child(addtl_hbox)
-
 func calculate_total_price(order: Dictionary) -> float:
 	var total: float = 0.0
 	
@@ -454,5 +442,136 @@ func calculate_total_price(order: Dictionary) -> float:
 	if order.has("Sidedish"):
 		var sidedish_key = order["Sidedish"]
 		total += sidedish[sidedish_key]["price"]  # Access the price
-
 	return total
+func find_bowl_index(order: Dictionary) -> int:
+	var bowl_index = 0
+	
+	if order.has("Bowl"):
+		var bowl_key = order["Bowl"]
+		bowl_index += bowl[bowl_key]["bowl_index"] 
+
+	if order.has("Noodle"):
+		var noodle_key = order["Noodle"]
+		bowl_index += noodles[noodle_key]["bowl_index"] 
+
+	# Calculate total for toppings
+	# Mapping for topping keys to their corresponding values
+	var topping_mapping = {
+		"Topping1": "E", 
+		"Topping2": "P", 
+		"Topping3": "L",  
+		"Topping4": "C"   
+	}
+
+	# Collect unique toppings
+	var toppings_set = PackedStringArray()
+
+	for topping_key in order.keys():
+		if topping_key.begins_with("Topping"):
+			if topping_mapping.has(topping_key):
+				var topping_value = topping_mapping[topping_key]
+				toppings_set.append(topping_value)  # Add the topping to the set
+
+	toppings_set.sort()
+	# Sort the combined toppings to ensure consistent ordering
+	var toppings_array = Array(toppings_set)  # Convert to Array
+	var combined_toppings: String = ""
+	for topping in toppings_array:
+		combined_toppings += topping  # Concatenate toppings toppings into a string
+		
+	# Use a mapping to determine the bowl index for the combined toppings
+	var toppings_index_mapping = {
+		"": 0,
+		"E": 1,
+		"P": 2,
+		"L": 3,
+		"C": 4,
+		"EP": 5,
+		"CP": 6,
+		"LP": 7,
+		"EL": 8,
+		"CL": 9,
+		"CE": 10,
+		"ELP": 11,
+		"CLP": 12,
+		"CEL": 13,
+		"CEP": 14,
+		"CELP": 15
+	}
+
+	# Add the topping bowl index to the total bowl index
+	if toppings_index_mapping.has(combined_toppings):
+		bowl_index += toppings_index_mapping[combined_toppings]
+	else:
+		print("Error: Invalid topping combination")
+
+	return bowl_index
+
+func get_bowl_item_type(order: Dictionary) -> String:
+	var item_type: String = ""
+	if order.has("Bowl"):
+		var bowl_key = order["Bowl"]
+		if bowl.has(bowl_key):
+			return bowl[bowl_key]["item_type"]  # Return the item type of the bowl
+	return item_type
+
+func combine_bowl_info(bowl_index: int, item_type: String) -> Dictionary:
+	return {
+		"item_type": item_type,
+		"bowl_index": bowl_index
+	}
+
+func find_bowl_info(order: Dictionary) -> Dictionary:
+	var bowl_index = find_bowl_index(order)  # Get the bowl index
+	var item_type = get_bowl_item_type(order)  # Get the bowl item type
+
+	# Combine bowl info using the new function
+	return combine_bowl_info(bowl_index, item_type)
+
+func find_drink_index(order: Dictionary) -> Variant:
+	var drink_info = {"item_type": "", "frame": 0}
+	
+	if order.has("Drink"):
+		var drinks_key = order["Drink"]
+		drink_info["item_type"] = drinks[drinks_key]["item_type"]  # Assuming there's a "name" key
+		drink_info["frame"] = drinks[drinks_key]["frame"]  
+	else:
+		return null
+
+	return drink_info
+
+func find_sidedish_index(order: Dictionary) -> Variant:
+	var sidedish_info = {"item_type": "", "frame": 0}
+	
+	if order.has("Sidedish"):
+		var sidedish_key = order["Sidedish"]
+		sidedish_info["item_type"] = sidedish[sidedish_key]["item_type"]  # Assuming there's a "name" key
+		sidedish_info["frame"] = sidedish[sidedish_key]["frame"]  
+	else:
+		return null
+
+	return sidedish_info
+	
+func combine_order_info(order: Dictionary) -> Variant:
+	var combined_info = {
+		"bowl": {"item_type": "", "bowl_index": 0},
+		"drink": {"item_type": "", "frame": 0},
+		"sidedish": {"item_type": "", "frame": 0}
+	}
+
+	# Get bowl info
+	var bowl_info = find_bowl_info(order)
+	if bowl_info:
+		combined_info["bowl"] = bowl_info
+
+	# Get drink info
+	var drink_info = find_drink_index(order)
+	if drink_info:
+		combined_info["drink"] = drink_info
+
+	# Get sidedish info
+	var sidedish_info = find_sidedish_index(order)
+	if sidedish_info:
+		combined_info["sidedish"] = sidedish_info
+
+	return combined_info
