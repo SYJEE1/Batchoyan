@@ -1,5 +1,20 @@
 extends RigidBody2D
 
+# func find_bowl_algo(code:String) -> int: 
+# find bowl algo tutorial
+
+# Input (B)asic or (S)uper
+# Input #if 1:Empty 2:Broth 3:Overcooked 4:DirtyDishes 5:Noodles :)
+
+# if you input 5:Noodles you can:
+# Input 6:Miswa 7:Bihon 8:Sotanghon 9:Miki
+
+# then Input toppings (E)gg (P)ork (L)iver (C)hicharon
+
+# examples:
+# S3 = Super Bowl, Overcooked
+# R58EPL = Regular, Sotanghon with Egg, Pork and Liver
+
 @onready var pickup_area: Area2D = $PickupArea
 @onready var pickup_collision: CollisionShape2D = $PickupArea/PickupCollision
 @onready var item_shadow: AnimatedSprite2D = $ItemShadow
@@ -26,10 +41,6 @@ var possible_ingredients = ["raw_cut_liver", "raw_cut_pork", "egg", "noodles", "
 var pot_array = []
 var on_stove := false
 
-#func _physics_process(delta: float) -> void:
-	#print(possible_ingredients)
-
-
 func _ready() -> void:
 	if custom_item_type: item_sprite.animation = custom_item_type
 	if custom_frame: item_sprite.frame = custom_frame
@@ -43,9 +54,7 @@ func _ready() -> void:
 	on_stove = false
 	update_pot()
 	
-
-
-
+	
 func set_item(animation, frame) -> void:
 	var item_shadow: AnimatedSprite2D = $ItemShadow
 	var item_glow: AnimatedSprite2D = $ItemGlow
@@ -62,7 +71,6 @@ func set_item(animation, frame) -> void:
 	item_shadow.sprite_frames = item_sprite.sprite_frames
 	item_shadow.animation = item_sprite.animation
 	item_shadow.frame = item_sprite.frame
-
 
 func glow(time:int = 2) -> void:
 	glow_animation.play("glow")
@@ -126,7 +134,9 @@ func toggle_onstove():
 	update_pot()
 
 func update_pot() -> void:
-		
+	
+	progress_bar.max_value = pot_array.size() * 10
+	
 	# on stove, fire animation
 	if on_stove == true and pot_array.size() > 0:
 		progress_bar.visible = true
@@ -141,10 +151,8 @@ func update_pot() -> void:
 		cook_timer.paused = false
 	else: cook_timer.paused = true
 	
-	
-	
 	# Reset Pot Values
-	print ("pot now contains: ", pot_array)
+	#print ("pot now contains: ", pot_array)
 	$ItemSprite/InsidePot/Liver.visible = false
 	$ItemSprite/InsidePot/Pork.visible = false
 	$ItemSprite/InsidePot/Egg.visible = false
@@ -154,6 +162,7 @@ func update_pot() -> void:
 	# Checks if pot has an item and puts a lid
 	if pot_array.size() > 0:
 		set_item("pot", 3)
+		
 	else: possible_ingredients = ["raw_cut_liver", "raw_cut_pork", "egg", "noodles", "broth"]
 		
 	# item goes into pot
@@ -162,23 +171,18 @@ func update_pot() -> void:
 		if item_type == "raw_cut_liver": $ItemSprite/InsidePot/Liver.visible = true
 		if item_type == "raw_cut_pork": $ItemSprite/InsidePot/Pork.visible = true
 		if item_type == "egg": $ItemSprite/InsidePot/Egg.visible = true
-		if item_type in ["miswa","bihon","sotanghon","miki"]: $ItemSprite/InsidePot/Noodle.visible = true
-	
-
-	
-	
+		if item_type == "noodles": $ItemSprite/InsidePot/Noodle.visible = true
 	
 func pickup() -> void:
 	on_stove = false
 	update_pot()
 	item_animation.play("pickup")
 	is_carried = true
-	sleeping = false
+	
 
 func putdown() -> void:
 	item_animation.play("putdown")
 	is_carried = false
-	sleeping = true
 
 func dead() -> void:
 	queue_free()
@@ -194,8 +198,6 @@ func reset() -> void:
 	$ItemSprite/Fire/Overcooked.emitting = false
 	$ItemSprite/Fire/Burnt.emitting = false
 	update_pot()
-		
-
 
 func _on_cook_timer_timeout() -> void:
 	progress_bar.value += 1
@@ -210,6 +212,64 @@ func _on_cook_timer_timeout() -> void:
 		$ItemSprite/Fire/Burnt.emitting = true
 		progress_bar.tint_progress = Color.BLACK
 		update_pot()
+	
+
+func find_bowl_algo(code:String) -> int: 
+	
+	var bowl_index := 0
+	var toppings := ""
+	
+	for x in code:
+		print(x)
+		# if Regular or Super
+		if x == "R": bowl_index += 0
+		elif x == "S": bowl_index += 69
+		
+		#if 1:Empty 2:Broth 3:Overcooked 4:DirtyDishes 5:GourmetNoodles :)
+		if x == "1": bowl_index += 1
+		elif x == "2": bowl_index += 2 
+		elif x == "3": bowl_index += 3
+		elif x == "4": bowl_index += 4
+		elif x == "5": bowl_index += 5
+		
+		#if 6:Miswa 7:Bihon 8:Sotanghon 9:Miki
+		elif x == "6": bowl_index += 0
+		elif x == "7": bowl_index += 16
+		elif x == "8": bowl_index += 32
+		elif x == "9": bowl_index += 48
+		
+		# if (E)gg (P)ork (L)iver (C)hicharon
+		if x == "E": toppings += "E"
+		elif x == "P": toppings += "P"
+		elif x == "L": toppings += "L"
+		elif x == "C": toppings += "C"
+		
+	if toppings == "": bowl_index += 0
+	elif toppings == "E": bowl_index += 1
+	elif toppings == "P": bowl_index += 2
+	elif toppings == "L": bowl_index += 3
+	elif toppings == "C": bowl_index += 4
+	elif toppings == "EP": bowl_index += 5
+	elif toppings == "CP": bowl_index += 6
+	elif toppings == "PL": bowl_index += 7
+	elif toppings == "LE": bowl_index += 8
+	elif toppings == "LC": bowl_index += 9
+	elif toppings == "EC": bowl_index += 10
+	elif toppings == "EPL": bowl_index += 11
+	elif toppings == "CPL": bowl_index += 12
+	elif toppings == "CLE": bowl_index += 13
+	elif toppings == "CPE": bowl_index += 14
+	elif toppings == "EPLC": bowl_index += 15 
+	else: print("error bowl code"); breakpoint
+	
+	print("final bowl index:", bowl_index)
+	
+	return bowl_index
+	
+	
+	
+	
+	
 	
 	
 	

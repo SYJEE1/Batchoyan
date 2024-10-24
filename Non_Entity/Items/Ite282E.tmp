@@ -440,6 +440,8 @@ mass = 10.0
 lock_rotation = true
 linear_damp = 2.0
 script = ExtResource("2_uf2dp")
+custom_item_type = null
+custom_frame = null
 
 [node name="PickupArea" type="Area2D" parent="."]
 collision_layer = 8
@@ -624,7 +626,6 @@ playback_auto_capture_transition_type = 4
 playback_default_blend_time = 0.5
 
 [node name="FinishedBowl" type="Sprite2D" parent="."]
-visible = false
 texture = SubResource("AtlasTexture_86djx")
 
 [connection signal="body_entered" from="." to="." method="_oncontact"]
