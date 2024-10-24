@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dwt7q45hesbr5" path="res://Entities/Player/player_scene.tscn" id="6_0017t"]
 [ext_resource type="PackedScene" uid="uid://c4l5pipqrhfpg" path="res://Non_Entity/Tutorial/score.tscn" id="8_g23f1"]
 [ext_resource type="PackedScene" uid="uid://ke3muiiqgpcu" path="res://Non_Entity/Items/Item.tscn" id="9_k508g"]
-[ext_resource type="PackedScene" uid="uid://blaodx5vxalku" path="res://Non_Entity/Menu Scene/pause_menu.tscn" id="10_ruvq4"]
+[ext_resource type="PackedScene" uid="uid://bk0nfo5btjpxm" path="res://Non_Entity/Menu Scene/pause_menu.tscn" id="10_ruvq4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qr4o3"]
 texture = ExtResource("2_ey8nm")

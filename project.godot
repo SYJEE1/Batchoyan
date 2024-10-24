@@ -21,7 +21,7 @@ config/icon="res://Graphics/icon.svg"
 
 [autoload]
 
-Global="*res://Non_Entity/Tutorial/Global.gd"
+Global="*res://Entities/Customer/Global.gd"
 
 [display]
 
