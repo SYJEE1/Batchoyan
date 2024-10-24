@@ -44,7 +44,7 @@ func checking_condition():
 	var max = send_max_customers()
 	if total >= max:
 		print("Level Finished")
-		get_tree().change_scene_to_file("res://Non_Entity/Main Scene/main_scene.tscn")
+		get_tree().change_scene_to_file("res://Non_Entity/Next And Fail Scene/Fail.tscn")
 	else:
 		print("Level Not Finished")
 
