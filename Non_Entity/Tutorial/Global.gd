@@ -43,11 +43,12 @@ func checking_condition():
 	var total = send_total_customers()
 	var max = send_max_customers()
 	var total_earnings = get_amount_paid()
-	if total >= max and new_quota >= total_earnings:
-		print("Level Finished")
-		get_tree().change_scene_to_file("res://Non_Entity/Next And Fail Scene/next.tscn")
-	else:
-		print("Level Not Finished")
+	var total_max_earnings = 1500
+	if total >= max:
+		if new_quota < total_earnings or total_earnings == max_total_customers:
+			get_tree().change_scene_to_file("res://Non_Entity/Next And Fail Scene/next.tscn")
+		elif new_quota > total_earnings:
+			get_tree().change_scene_to_file("res://Non_Entity/Next And Fail Scene/Fail.tscn")
 
 # Quota
 func get_quota(quota: float):
