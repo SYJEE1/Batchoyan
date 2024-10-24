@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=4 uid="uid://vyu2twerlhgs"]
+[gd_scene load_steps=47 format=4 uid="uid://vyu2twerlhgs"]
 
 [ext_resource type="Script" path="res://Non_Entity/Stages/stage_1.gd" id="1_crsol"]
 [ext_resource type="Texture2D" uid="uid://dvg4wt154im0k" path="res://Non_Entity/Main Scene/Background.png" id="1_mux3k"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://ke3muiiqgpcu" path="res://Non_Entity/Items/Item.tscn" id="7_3wnng"]
 [ext_resource type="Script" path="res://Non_Entity/Tutorial/customer_spawning.gd" id="9_w3k5i"]
 [ext_resource type="PackedScene" uid="uid://c4l5pipqrhfpg" path="res://Non_Entity/Tutorial/score.tscn" id="10_730n8"]
+[ext_resource type="PackedScene" uid="uid://bk0nfo5btjpxm" path="res://Non_Entity/Menu Scene/pause_menu.tscn" id="13_ry0gi"]
 
 [sub_resource type="Environment" id="Environment_oupni"]
 background_mode = 3
@@ -4406,7 +4407,7 @@ custom_item_type = &"pot"
 
 [node name="Item2" parent="." instance=ExtResource("7_3wnng")]
 z_index = 1
-position = Vector2(279, 99)
+position = Vector2(151, 98)
 custom_item_type = &"bowl"
 custom_frame = 63
 
@@ -4452,3 +4453,7 @@ size_flags_horizontal = 0
 theme_override_fonts/font = ExtResource("6_ho5e1")
 text = "FPS: 120 batchoys"
 label_settings = SubResource("LabelSettings_rw5da")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("13_ry0gi")]
