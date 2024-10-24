@@ -80,8 +80,8 @@ func movement(input_direction, delta) -> void:
 		
 				
 func interact(input_direction, delta) -> void:
-	#print("detected Area:", detected_area)
-	#print("exempted Area:", exempted_area)
+	print("detected Area:", detected_area)
+	print("exempted Area:", exempted_area)
 	
 	var debug = $DebugCircle
 	debug.global_position = global_position	
@@ -132,7 +132,7 @@ func interact(input_direction, delta) -> void:
 			debug.global_position = nearest.global_position
 			
 			if nearest.area_type == "item": # if holding an item, sees an item
-				if nearest.get_parent().item_sprite.animation != "pot": exempted_area.push_front(detected_area.pop_front())	
+				if nearest.get_parent().item_sprite.animation not in ["pot", "bowl"]: exempted_area.push_front(detected_area.pop_front())	
 				else: 
 					if carried_item.item_sprite.animation in nearest.get_parent().possible_ingredients: 
 						nearest.get_parent().glow()
