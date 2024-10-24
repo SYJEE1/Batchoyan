@@ -78,7 +78,7 @@ func movement(input_direction, delta) -> void:
 				delta * accel * 5)
 	else:
 		if Input.is_action_just_pressed("X"):
-			DialogueManager.show_example_dialogue_balloon(load("res://Entities/tutorial.dialogue"), "start")
+			DialogueManager.show_example_dialogue_balloon(load("res://Non_Entity/Dialogue/tutorial.dialogue"), "start")
 			game_running = true
 			$"../HUD".get_node("Start").hide()
 		
