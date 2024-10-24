@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bp24iceyuahv6"
-path="res://.godot/imported/order-bg-4-ingre.png-4643e99c34b7d08fd6f35d834990ef15.ctex"
+uid="uid://buvlbkh0imeul"
+path="res://.godot/imported/bg-4.png-273892c2cf033cd4d8812da5984041b7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Entities/Customer/Order/order-bg-4-ingre.png"
-dest_files=["res://.godot/imported/order-bg-4-ingre.png-4643e99c34b7d08fd6f35d834990ef15.ctex"]
+source_file="res://Entities/Customer/Order/bg-4.png"
+dest_files=["res://.godot/imported/bg-4.png-273892c2cf033cd4d8812da5984041b7.ctex"]
 
 [params]
 

@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var spawn_point: Node2D
 var order: Dictionary = {}
 var order_system: Node
+var progress_bar: Node
 var timer: Timer
 var nearby_item: RigidBody2D = null
 
@@ -26,8 +27,12 @@ func _ready():
 	self.mouse_entered.connect(_on_mouse_entered)
 	self.mouse_exited.connect(_on_mouse_exited)
 
+	var progress: PackedScene = load("res://Entities/Customer/customer_timer.tscn")
+	progress_bar = progress.instantiate()
+	add_child(progress_bar)
+
 	timer = Timer.new()
-	timer.wait_time = 30
+	timer.wait_time = 40
 	timer.one_shot = true
 	timer.connect("timeout", Callable(self, "_on_timer_timeout"))
 	add_child(timer)
@@ -46,11 +51,13 @@ func finish_order():
 
 		if timer:
 			var elapsed_time = timer.wait_time - timer.time_left
-			if elapsed_time <= 10:
+			if elapsed_time <= 15:
+				price = 0.9
+			elif elapsed_time <= 30:
 				price = 0.8
-			elif elapsed_time <= 20:
+			elif elapsed_time == 45:
 				price = 0.7
-			elif elapsed_time == 30:
+			elif elapsed_time == 60:
 				price = 0.0
 
 			var amount_paid = paid * price

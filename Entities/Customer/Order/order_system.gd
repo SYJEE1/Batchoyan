@@ -2,8 +2,8 @@ extends Node2D
 
 # Preload assets with their prices
 var bowl = {
-	"Bowl1": {"texture": preload("res://Entities/Customer/Order/ingredients/bowl-regular.png"), "price": 30, "item_type": "bowl_regular", "frame": 1},
-	"Bowl2": {"texture": preload("res://Entities/Customer/Order/ingredients/bowl-super.png"), "price": 50, "item_type": "bowl_super", "frame": 1}
+	"Bowl1": {"texture": preload("res://Entities/Customer/Order/ingredients/bowl-regular.png"), "price": 30},
+	"Bowl2": {"texture": preload("res://Entities/Customer/Order/ingredients/bowl-super.png"), "price": 50}
 }
 var noodles = {
 	"NoodleType1": {"texture": preload("res://Entities/Customer/Order/ingredients/miki.png"), "price": 20},
@@ -38,10 +38,6 @@ func _ready():
 	var total_price = calculate_total_price(order)
 	print(order)
 	display_order(order)
-	animation_name(order)
-	animation_frame(order)
-	print(animation_frame(order))
-	Global.send_current_animation()
 
 func tutorial() -> Dictionary:
 	var order = {}
@@ -309,8 +305,29 @@ func display_order(order: Dictionary):
 	
 	# Initialize the first HBoxContainer
 	var hbox_container = HBoxContainer.new()
-	vbox_container.add_child(hbox_container)
+	var addtl_hbox = HBoxContainer.new()
 	var sprite_count = 0
+	var total_sprites = 0
+	
+	var bg_3 = TextureRect.new()
+	var bg_4 = TextureRect.new()
+	var bg_5up = TextureRect.new()
+	
+	bg_3.texture = preload("res://Entities/Customer/Order/bg-3.png") 
+	bg_4.texture = preload("res://Entities/Customer/Order/bg-4.png") 
+	bg_5up.texture = preload("res://Entities/Customer/Order/bg-5up.png")
+	
+	bg_3.position = Vector2(0, 0)
+	bg_4.position = Vector2(0, 0)
+	bg_5up.position = Vector2(0, 0)
+	
+	bg_3.z_index = -1
+	bg_4.z_index = -1
+	bg_5up.z_index = -1
+	
+	bg_3.scale = Vector2(1.5, 1.5)
+	bg_4.scale = Vector2(1.5, 1.5)
+	bg_5up.scale = Vector2(1.5, 1.5)
 	
 	# Display bowl
 	if order.has("Bowl"):
@@ -321,6 +338,8 @@ func display_order(order: Dictionary):
 		bowl_sprite.position = Vector2(5, 5)  # Position for bowl
 		hbox_container.add_child(bowl_sprite)
 		sprite_count += 1  # Increment sprite count
+		total_sprites += 1
+		print(total_sprites)
 
 	# Display noodle
 	if order.has("Noodle"):
@@ -331,6 +350,8 @@ func display_order(order: Dictionary):
 		noodle_sprite.position = Vector2(16, 0)  # Position for noodle
 		hbox_container.add_child(noodle_sprite)
 		sprite_count += 1  # Increment sprite count
+		total_sprites += 1
+		print(total_sprites)
 
 	# Display toppings
 	var topping_x = 32  # Starting x position for toppings
@@ -351,15 +372,16 @@ func display_order(order: Dictionary):
 			topping_sprite.texture = toppings[topping]["texture"]  # Access the texture
 			topping_sprite.scale = Vector2(1, 1)  # Set size to match the asset
 			topping_sprite.position = Vector2(topping_x, 5)  # Centered in the background
-			if sprite_count < 6:
+			total_sprites += 1
+			if total_sprites < 6:
 				hbox_container.add_child(topping_sprite)
 				sprite_count += 1  # Increment sprite count
+				print(total_sprites)
 			else:
 				# Create a new HBoxContainer for the next row
-				hbox_container = HBoxContainer.new()
-				vbox_container.add_child(hbox_container)
-				hbox_container.add_child(topping_sprite)
+				addtl_hbox.add_child(topping_sprite)
 				sprite_count = 1  # Reset sprite count
+				print(total_sprites)
 			topping_x -= 20  # Decrement x position for next topping (20 for spacing)
 
 	# Display drink
@@ -369,15 +391,16 @@ func display_order(order: Dictionary):
 		drink_sprite.texture = drinks[drink_key]["texture"]  # Access the texture
 		drink_sprite.scale = Vector2(1, 1)  # Set size to match the asset
 		drink_sprite.position = Vector2(5, 40)  # Position for drink
-		if sprite_count < 6:
+		total_sprites += 1
+		if total_sprites < 6:
 			hbox_container.add_child(drink_sprite)
 			sprite_count += 1  # Increment sprite count
+			print(total_sprites)
 		else:
 			# Create a new HBoxContainer for the next row
-			hbox_container = HBoxContainer.new()
-			vbox_container.add_child(hbox_container)
-			hbox_container.add_child(drink_sprite)
+			addtl_hbox.add_child(drink_sprite)
 			sprite_count = 1  # Reset sprite count
+			print(total_sprites)
 
 	if order.has("Sidedish"):
 		var sidedish_key = order["Sidedish"]
@@ -385,15 +408,28 @@ func display_order(order: Dictionary):
 		sidedish_sprite.texture = sidedish[sidedish_key]["texture"]  # Access the texture
 		sidedish_sprite.scale = Vector2(1, 1)  # Set size to match the asset
 		sidedish_sprite.position = Vector2(5, 40)  # Position for drink
-		if sprite_count < 6:
+		total_sprites += 1
+		if total_sprites < 6:
 			hbox_container.add_child(sidedish_sprite)
 			sprite_count += 1  # Increment sprite count
+			print(total_sprites)
 		else:
 			# Create a new HBoxContainer for the next row
-			hbox_container = HBoxContainer.new()
-			vbox_container.add_child(hbox_container)
-			hbox_container.add_child(sidedish_sprite)
+			addtl_hbox.add_child(sidedish_sprite)
 			sprite_count = 1  # Reset sprite count
+			print(total_sprites)
+			
+	
+	if total_sprites <= 3:
+		add_child(bg_3)
+	elif total_sprites == 4:
+		add_child(bg_4)
+	else:
+		add_child(bg_5up)
+		
+	vbox_container.add_child(hbox_container)
+	vbox_container.add_child(addtl_hbox)
+
 func calculate_total_price(order: Dictionary) -> float:
 	var total: float = 0.0
 	
@@ -419,58 +455,4 @@ func calculate_total_price(order: Dictionary) -> float:
 		var sidedish_key = order["Sidedish"]
 		total += sidedish[sidedish_key]["price"]  # Access the price
 
-	return total	
-func animation_name(order: Dictionary) -> Dictionary:
-	var batchoy: String = ""
-	var drink: String = ""
-	var sides: String = ""
-	
-	# Access the animation name
-	
-	if order.has("Bowl"):
-		var bowl_key = order["Bowl"]
-		batchoy = bowl[bowl_key]["item_type"] 
-		print ("batchoy anim: ", batchoy) 
-
-	if order.has("Drink"):
-		var drink_key = order["Drink"]
-		drink = drinks[drink_key]["item_type"]  
-		print ("drink anim: ", drink)
-		
-	if order.has("Sidedish"):
-		var sidedish_key = order["Sidedish"]
-		sides = sidedish[sidedish_key]["item_type"]  
-		print ("sidedish anim: ", sides)
-	
-	return {
-		"batchoy" : batchoy,
-		"drink": drink,
-		"sidedish": sides
-		}
-	
-func animation_frame(order: Dictionary) -> int:
-	var batchoy: int = 0
-	var drink: int = 0
-	var sides: int = 0
-	
-	# Access the animation frame
-	
-	if order.has("Bowl"):
-		var bowl_key = order["Bowl"]
-		batchoy = bowl[bowl_key]["frame"] 
-
-	if order.has("Drink"):
-		var drink_key = order["Drink"]
-		drink = drinks[drink_key]["frame"] 
-		return drink 
-		
-	if order.has("Sidedish"):
-		var sidedish_key = order["Sidedish"]
-		sides = sidedish[sidedish_key]["frame"]  
-		
-	print ("batchoy frame", batchoy)
-	print ("drinks frame", drinks)
-	print ("sides frame",sides)
-	return batchoy
-	return drink
-	return sides
+	return total

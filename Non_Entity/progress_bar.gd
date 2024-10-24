@@ -7,9 +7,6 @@ func _ready() -> void:
 	# wait time (seconds*2)
 	progress_bar.max_value = 30
 
-func _process(delta: float) -> void:
-	print(progress_bar.value)
-
 
 func _onTimeout() -> void:
 	progress_bar.value += 1

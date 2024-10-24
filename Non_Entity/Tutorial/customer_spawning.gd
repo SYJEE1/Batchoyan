@@ -39,14 +39,18 @@ func spawn_customer():
 	var available_points = get_available_spawn_points()
 	if available_points.size() > 0:
 		var point = available_points[randi() % available_points.size()]  # Randomly select an available point
-		var customer = customer_scene.instantiate()  # Create a new customer
-		add_customer_to_point(customer, point)  # Add the customer to the selected point
+		var customer = customer_scene.instantiate() 
+		var animation_player = customer.get_node("Customer/AnimationPlayer")  
+		var animations = ["1", "2", "3", "4"]
+		var random_animation = animations[randi() % animations.size()]  # Randomly select an animation
+		add_customer_to_point(customer, point)
+		animation_player.play(random_animation)
+		animation_player.get_animation(random_animation).loop = true  
 		audio_stream_player.play()
 		occupied_points[point] = true  # Mark the point as occupied
 		total_customers_spawned += 1  # Increment total customers spawned
 		Global.get_total_customers(total_customers_spawned)
 		# Global.checking_condition()
-		print(total_customers_spawned)
 
 	timer.start(randf_range(min_spawn_interval, max_spawn_interval))
 
@@ -66,3 +70,4 @@ func get_available_spawn_points() -> Array:
 func _on_customer_removed(customer: Node2D):
 	if customer.spawn_point:  # Check if the spawn point is set
 		occupied_points[customer.spawn_point] = false  # Mark the customer's spawn point as unoccupied
+		

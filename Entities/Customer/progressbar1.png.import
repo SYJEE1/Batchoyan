@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://64tym3jxj8sw"
-path="res://.godot/imported/order-bg-3-ingre.png-05b28c865f453137b880e47d2dc0a006.ctex"
+uid="uid://8a0dwcq7o6py"
+path="res://.godot/imported/progressbar1.png-468c0fc19062517329a2278ff2507d44.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Entities/Customer/Order/order-bg-3-ingre.png"
-dest_files=["res://.godot/imported/order-bg-3-ingre.png-05b28c865f453137b880e47d2dc0a006.ctex"]
+source_file="res://Entities/Customer/progressbar1.png"
+dest_files=["res://.godot/imported/progressbar1.png-468c0fc19062517329a2278ff2507d44.ctex"]
 
 [params]
 
