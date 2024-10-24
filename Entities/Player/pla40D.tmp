@@ -5,8 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://cnmofymqepbim" path="res://Entities/Player/debug circle.png" id="3_utlam"]
 [ext_resource type="Texture2D" uid="uid://c137i4csss41g" path="res://Entities/Player/charactershadow.png" id="3_yojs3"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_a560j"]
-radius = 2.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ij2xq"]
+radius = 2.5
+height = 5.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_x02q5"]
 radius = 9.0
@@ -187,7 +188,7 @@ script = ExtResource("1_rkf18")
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="."]
 rotation = 1.5708
-shape = SubResource("CircleShape2D_a560j")
+shape = SubResource("CapsuleShape2D_ij2xq")
 
 [node name="InteractArea" type="Area2D" parent="."]
 collision_layer = 4
@@ -218,6 +219,7 @@ libraries = {
 }
 
 [node name="DebugCircle" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.509804)
 top_level = true
 z_index = 2
 position = Vector2(0, 1)

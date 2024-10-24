@@ -1,10 +1,9 @@
-[gd_scene load_steps=36 format=3 uid="uid://ke3muiiqgpcu"]
+[gd_scene load_steps=35 format=3 uid="uid://ke3muiiqgpcu"]
 
 [ext_resource type="SpriteFrames" uid="uid://bouevinhbka7y" path="res://Non_Entity/Items/Item.tres" id="2_opl75"]
 [ext_resource type="Script" path="res://Non_Entity/Items/item.gd" id="2_uf2dp"]
 [ext_resource type="Script" path="res://Non_Entity/Items/pickup_area.gd" id="3_2h5ff"]
 [ext_resource type="Texture2D" uid="uid://bh20llck6qa1k" path="res://Non_Entity/interactables.png" id="4_tq24j"]
-[ext_resource type="Gradient" uid="uid://c0wg5efxyis55" path="res://Non_Entity/Items/FireColorRamp.tres" id="5_2dl7x"]
 [ext_resource type="Texture2D" uid="uid://dfkava7vrr6yq" path="res://Non_Entity/progressbar1.png" id="5_2n5gf"]
 [ext_resource type="Texture2D" uid="uid://dgrm3foqvobk" path="res://Non_Entity/progressbar2.png" id="6_4egsj"]
 
@@ -252,10 +251,10 @@ _data = {
 "nofire": SubResource("Animation_tkbly")
 }
 
-[sub_resource type="Gradient" id="Gradient_30ru6"]
+[sub_resource type="Gradient" id="Gradient_418du"]
 interpolation_mode = 2
-offsets = PackedFloat32Array(0, 0.896694, 1)
-colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0)
+offsets = PackedFloat32Array(0, 0.165289, 0.359504, 0.578512, 1)
+colors = PackedColorArray(50, 1, 0.8, 1, 50, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0)
 
 [sub_resource type="Animation" id="Animation_wk5me"]
 length = 0.001
@@ -448,6 +447,8 @@ mass = 10.0
 lock_rotation = true
 linear_damp = 2.0
 script = ExtResource("2_uf2dp")
+custom_item_type = null
+custom_frame = null
 
 [node name="PickupArea" type="Area2D" parent="."]
 collision_layer = 8
@@ -530,7 +531,6 @@ animation = &"sotanghon"
 frame = 1
 
 [node name="CookTimer" type="Timer" parent="ItemSprite/InsidePot"]
-wait_time = 0.5
 autostart = true
 
 [node name="Fire" type="Sprite2D" parent="ItemSprite"]
@@ -552,7 +552,6 @@ playback_default_blend_time = 10.0
 
 [node name="Fire" type="CPUParticles2D" parent="ItemSprite/Fire"]
 position = Vector2(0, 2)
-emitting = false
 amount = 20
 lifetime = 3.0
 explosiveness = 0.1
@@ -566,59 +565,21 @@ gravity = Vector2(0, -5)
 initial_velocity_min = 1.0
 initial_velocity_max = 2.0
 damping_max = 1.0
-color_ramp = ExtResource("5_2dl7x")
-hue_variation_max = 0.09
-
-[node name="Burnt" type="CPUParticles2D" parent="ItemSprite/Fire"]
-position = Vector2(0, -3.78)
-emitting = false
-amount = 30
-lifetime = 5.0
-explosiveness = 0.1
-randomness = 1.0
-lifetime_randomness = 0.15
-emission_shape = 3
-emission_rect_extents = Vector2(6, 0)
-direction = Vector2(0, 1)
-spread = 180.0
-gravity = Vector2(0, -5)
-initial_velocity_max = 5.0
-damping_max = 3.0
-scale_amount_max = 3.0
-color_ramp = SubResource("Gradient_30ru6")
-hue_variation_max = 0.09
-
-[node name="Overcooked" type="CPUParticles2D" parent="ItemSprite/Fire"]
-position = Vector2(0, 2)
-emitting = false
-amount = 50
-lifetime = 6.0
-one_shot = true
-preprocess = 1.0
-explosiveness = 0.89
-randomness = 1.0
-lifetime_randomness = 0.6
-emission_shape = 3
-emission_rect_extents = Vector2(6, 0)
-spread = 180.0
-gravity = Vector2(0, -5)
-initial_velocity_max = 5.0
-damping_max = 3.0
-scale_amount_max = 2.0
-color_ramp = ExtResource("5_2dl7x")
+color_ramp = SubResource("Gradient_418du")
 hue_variation_max = 0.09
 
 [node name="ProgressBar" type="TextureProgressBar" parent="ItemSprite"]
 visible = false
 z_index = 1
+anchors_preset = -1
 offset_left = 6.0
 offset_top = -16.0
 offset_right = 13.0
 offset_bottom = -9.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-max_value = 20.0
-allow_greater = true
+max_value = 10.0
+rounded = true
 fill_mode = 4
 texture_under = ExtResource("5_2n5gf")
 texture_progress = ExtResource("6_4egsj")

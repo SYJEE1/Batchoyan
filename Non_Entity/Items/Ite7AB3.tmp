@@ -530,7 +530,6 @@ animation = &"sotanghon"
 frame = 1
 
 [node name="CookTimer" type="Timer" parent="ItemSprite/InsidePot"]
-wait_time = 0.5
 autostart = true
 
 [node name="Fire" type="Sprite2D" parent="ItemSprite"]
@@ -611,14 +610,14 @@ hue_variation_max = 0.09
 [node name="ProgressBar" type="TextureProgressBar" parent="ItemSprite"]
 visible = false
 z_index = 1
+anchors_preset = -1
 offset_left = 6.0
 offset_top = -16.0
 offset_right = 13.0
 offset_bottom = -9.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-max_value = 20.0
-allow_greater = true
+max_value = 10.0
 fill_mode = 4
 texture_under = ExtResource("5_2n5gf")
 texture_progress = ExtResource("6_4egsj")
